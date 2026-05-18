@@ -1,8 +1,280 @@
 \documentclass{ximera}
 \title{Absolute Value Inequalities}
+
+\outcome{Solve absolute value inequalities by isolating the absolute value expression.}
+\outcome{Identify special cases: no solution and all real numbers.}
+\outcome{Express solution sets in interval notation.}
+\outcome{Solve applications involving absolute value inequalities.}
+\outcome{Rewrite compound inequalities as absolute value inequalities.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Solve absolute value inequalities by isolating the absolute value expression.
+  \item Identify special cases: no solution and all real numbers.
+  \item Express solution sets in interval notation.
+  \item Solve applications involving absolute value inequalities.
+  \item Rewrite compound inequalities as absolute value inequalities.
+\end{itemize}
+\medskip
+
+\section*{Quick Check}
+
+\begin{problem}
+If $(2,-3)$ is a point on the graph of $f(x)$, which of the following \textbf{must} be a point on the graph of $|f(x)|$?
+\begin{hint}
+The absolute value of $f(x)$ takes the absolute value of the $y$-coordinate.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$(-2,-3)$}
+  \choice[correct]{$(2,3)$}
+  \choice{$(-2,3)$}
+  \choice{Unable to determine}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Given $|w+2| \leq 3$, which of the following statements is equivalent?
+\begin{hint}
+$|a - b|$ measures the distance between $a$ and $b$ on the number line.
+\end{hint}
+\begin{multipleChoice}
+  \choice{The distance between $w$ and $2$ is less than $3$ units.}
+  \choice{The distance between $w$ and $-2$ is less than $3$ units.}
+  \choice{The distance between $w$ and $2$ is $3$ units or less.}
+  \choice[correct]{The distance between $w$ and $-2$ is $3$ units or less.}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which of the following inequalities has \textbf{no solution}?
+\begin{hint}
+An absolute value expression is always non-negative.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$|x+3| \geq 7$}
+  \choice[correct]{$|x+3| < -3$}
+  \choice{$|x+3| \leq 0$}
+  \choice{$|x+3| > -2$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Rewrite as an absolute value inequality: ``The value of $y$ differs from $7$ by more than $3$ units.''
+\begin{hint}
+``Differs from $a$ by more than $b$'' means $|x - a| > b$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$|y+7| > 3$}
+  \choice{$|y+3| > 7$}
+  \choice[correct]{$3 < |y-7|$}
+  \choice{$|y-3| > 7$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The inequality $2 < |y| < 11$ is logically equivalent to:
+\begin{hint}
+Think of this as two separate conditions that must both hold simultaneously.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$2 < y < 11$}
+  \choice{$|y| < 2$ \OR $|y| > 11$}
+  \choice[correct]{$|y| > 2$ \AND $|y| < 11$}
+  \choice{$2 < |y|$ \OR $|y| < 11$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Solve the following inequalities. Whenever possible, express your solution in interval notation.
+\begin{enumerate}
+  \item[(a)] $3|4-t| - 2 < 16$
+  \medskip
+  \item[(b)] $2|x+3| - 4 \geq 6$
+  \medskip
+  \item[(c)] $|y+7| + 3 > 3$
+  \medskip
+  \item[(d)] $|2x+7| + 5 < 1$
+  \medskip
+  \item[(e)] $|5-p| + 13 > 6$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Always \underline{isolate the absolute value}:
+  \begin{align*}
+    3|4-t| &< 18\\
+    |4-t| &< 6\\
+    -6 < 4-t &< 6\\
+    -10 < -t &< 2\\
+    10 > t &> -2
+  \end{align*}
+  Interval notation: $(-2,10)$
+
+  \item[(b)] Always \underline{isolate the absolute value}:
+  \begin{align*}
+    2|x+3| &\geq 10\\
+    |x+3| &\geq 5\\
+    x+3 \geq 5 \quad &\text{OR}\quad x+3 \leq -5\\
+    x \geq 2 \quad &\text{OR}\quad x \leq -8
+  \end{align*}
+  Interval notation: $(-\infty,-8] \cup [2,\infty)$
+
+  \textit{Remember that interval notation always moves from most negative to most positive when reading left to right.}
+
+  \item[(c)] Always \underline{isolate the absolute value}:
+  \begin{align*}
+    |y+7| &> 0\\
+    y+7 > 0 \quad &\text{OR}\quad y+7 < 0\\
+    y > -7 \quad &\text{OR}\quad y < -7
+  \end{align*}
+  Interval notation: $(-\infty,-7) \cup (-7,\infty)$
+
+  \item[(d)] Always \underline{isolate the absolute value}: $$|2x+7| < -4$$
+  However by definition, the absolute value of \underline{anything} must be at least 0, so this inequality has \textbf{NO SOLUTION}.
+
+  \item[(e)] Always \underline{isolate the absolute value}: $$|5-p| > -7$$
+  Since the absolute value of \underline{anything} is guaranteed to be at least 0, any number $p$ will satisfy this inequality. Thus the solution is \textbf{ALL REAL NUMBERS}.\\
+  Interval notation: $(-\infty,\infty)$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Solve the following inequalities. Whenever possible, express your solution in interval notation.
+\begin{enumerate}
+  \item[(a)] $15 < |-2d-3| + 6$
+  \medskip
+  \item[(b)] $\ds\left|\dfrac{m-4}{2}\right| < 14$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Always \underline{isolate the absolute value}:
+  \begin{align*}
+    9 &< |-2d-3|\\
+    9 < -2d-3 \quad &\text{OR}\quad -9 > -2d-3\\
+    12 < -2d \quad &\text{OR}\quad -6 > -2d\\
+    -6 > d \quad &\text{OR}\quad 3 < d
+  \end{align*}
+  Interval notation: $(-\infty,-6) \cup (3,\infty)$
+
+  \item[(b)] \underline{Absolute value is already isolated}:
+  \begin{align*}
+    -14 &< \frac{m-4}{2} < 14\\
+    -28 &< m-4 < 28\\
+    -24 &< m < 32
+  \end{align*}
+  Interval notation: $(-24,32)$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Solve the equation or inequality. Write the solution set to each inequality in interval notation.
+\begin{enumerate}
+  \item[(a)] $|2b+5| - 6 = 3$
+  \medskip
+  \item[(b)] $|2b+5| - 6 \geq 3$
+  \medskip
+  \item[(c)] $|2b+5| - 6 < 3$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Always \underline{isolate the absolute value}:
+  \begin{align*}
+    |2b+5| &= 9\\
+    2b+5 = 9 \quad &\text{OR}\quad 2b+5 = -9\\
+    2b = 4 \quad &\text{OR}\quad 2b = -14\\
+    b = 2 \quad &\text{OR}\quad b = -7
+  \end{align*}
+
+  \item[(b)] Always \underline{isolate the absolute value}:
+  \begin{align*}
+    |2b+5| &\geq 9\\
+    2b+5 \geq 9 \quad &\text{OR}\quad 2b+5 \leq -9\\
+    2b \geq 4 \quad &\text{OR}\quad 2b \leq -14\\
+    b \geq 2 \quad &\text{OR}\quad b \leq -7
+  \end{align*}
+  Interval notation: $(-\infty,-7] \cup [2,\infty)$
+
+  \item[(c)] Always \underline{isolate the absolute value}:
+  \begin{align*}
+    |2b+5| &< 9\\
+    -9 < 2b+5 &< 9\\
+    -14 < 2b &< 4\\
+    -7 < b &< 2
+  \end{align*}
+  Interval notation: $(-7,2)$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+A police officer uses a radar detector to determine that a motorist is traveling 34 mph in a 25-mph school zone. The driver goes to court and argues that the radar detector is not accurate. The manufacturer claims that the radar detector is calibrated to be in error by no more than 3 mph.
+\begin{enumerate}
+  \item[(a)] If $x$ represents the motorist's actual speed, write an absolute value inequality that represents an interval in which to estimate $x$.
+  \medskip
+  \item[(b)] Solve the inequality and interpret the answer. Should the motorist receive a ticket?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $|x - 34| \leq 3$
+
+  \item[(b)] \begin{align*}
+    -3 &\leq x-34 \leq 3\\
+    31 &\leq x \leq 37
+  \end{align*}
+  The motorist's speed was at least 31 mph, well above the limit, so \textbf{she should receive a ticket.}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+\textbf{Challenge.} Rewrite each compound inequality as an absolute value inequality.
+\begin{enumerate}
+  \item[(a)] $2 < x < 6$
+  \medskip
+  \item[(b)] $x \leq -1$ or $x \geq 11$
+  \medskip
+  \item[(c)] $x \geq -3$ and $x \leq 7$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Find the midpoint: $m = \dfrac{2+6}{2} = 4$.
+  \begin{align*}
+    -2 < x-4 &< 2\\
+    |x-4| &< 2
+  \end{align*}
+
+  \item[(b)] $m = \dfrac{-1+11}{2} = 5$
+  \begin{align*}
+    x-5 \leq -6 \quad &\text{or}\quad x-5 \geq 6\\
+    |x-5| &\geq 6
+  \end{align*}
+
+  \item[(c)] $m = \dfrac{-3+7}{2} = 2$
+  \begin{align*}
+    x-2 \geq -5 \quad &\text{and}\quad x-2 \leq 5\\
+    |x-2| &\leq 5
+  \end{align*}
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
