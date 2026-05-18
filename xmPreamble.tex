@@ -53,14 +53,4 @@
 %  UNLESS the filename contains the string 'Variant', 
 %         when one gets the newer expandable hints. 
 %  Once the OSU server gets updated, all this will become obsolete.
-\IfSubStr{\jobname}{\detokenize{Variant}}{
-    \typeout{Compiling NEW version for \jobname\ (with hint as expandable)}%
-}{
-    \typeout{Compiling OSU version of hints for \jobname}%
-    % These variables give the OLD types of hints.
-    % In the (near) future, this should no longer be needed.
-    %  Only for use with OSU server, and xake > v2.1.3
-    \def\xmNotHintAsExpandable{1}
-    \def\xmNotExpandableAsAccordion{1}
-}
 % EndOfRatherVeryAdvancedExample
