@@ -1,40 +1,390 @@
 \documentclass{ximera}
 \title{Compound Linear Inequalities}
 
+\outcome{Solve linear inequalities in one variable.}
 \outcome{Solve compound linear inequalities using AND and OR.}
-\outcome{Express solution sets in interval notation.}
-\outcome{Solve absolute value inequalities by isolating and splitting.}
+\outcome{Express solution sets in interval notation and set-builder notation.}
+\outcome{Represent solution sets on a number line.}
+\outcome{Solve applications involving linear inequalities.}
 
 \begin{document}
 \begin{abstract}
-Practice problems on compound and absolute value inequalities.
+Practice problems on linear and compound inequalities, including applications.
 \end{abstract}
 \maketitle
 \displayOutcomes
 
+\section*{Multiple Choice}
+
 \begin{problem}
-Which of the following is the solution to $-1 < 2x + 3 \leq 7$?
+The inequality $3(x-2) < 3x - 6$ is:
 \begin{hint}
-Subtract 3 from all parts, then divide by 2.
+Distribute the left side and simplify. What does the resulting statement say?
 \end{hint}
 \begin{multipleChoice}
-\choice{$(-2, 2]$}
-\choice[correct]{$(-2, 2]$}
-\choice{$[-2, 2)$}
-\choice{$(-\infty, 2]$}
+  \choice{Always true}
+  \choice[correct]{Always false}
+  \choice{True only for $x > 0$}
+  \choice{True only for $x < 2$}
 \end{multipleChoice}
 \end{problem}
 
 \begin{problem}
-Solve $|2x - 1| \leq 5$ and express your answer in interval notation.
+The compound inequality $4 < 2x + 1 < 10$ is logically equivalent to:
+\begin{hint}
+Subtract 1 from all three parts, then divide by 2. Check whether endpoints should be included.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x > \dfrac{3}{2}$ or $x < \dfrac{9}{2}$}
+  \choice[correct]{$\dfrac{3}{2} < x < \dfrac{9}{2}$}
+  \choice{$x < \dfrac{3}{2}$ or $x > \dfrac{9}{2}$}
+  \choice{$\dfrac{3}{2} \leq x \leq \dfrac{9}{2}$}
+\end{multipleChoice}
+\end{problem}
+
+
+\section*{Free Response}
+
+\begin{problem}
+Complete the following table by filling in the missing inequality, interval notation, and
+set-builder notation. For the number line column, sketch the solution set on paper.
+
+\medskip
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Inequality} & \textbf{Interval Notation} & \textbf{Set-Builder Notation} & \textbf{Number Line (given)} \\
+\hline
+& $[-2,3)$ & & --- \\[10pt]
+\hline
+& & &
+\begin{tikzpicture}[scale=0.22,baseline=-2pt]
+  \draw[<->,thick] (-1.5,0)--(14,0);
+  \foreach \x in {0,3,6,9,12} {
+    \draw[thick] (\x,0.5)--(\x,-0.5) node[below,font=\tiny] {$\x$};
+  }
+  \draw[very thick,blue] (0,0)--(12,0);
+  \opendot{0} \opendot{12}
+\end{tikzpicture} \\[16pt]
+\hline
+$x \leq 4$ & & & --- \\[10pt]
+\hline
+& & $\big\{x \mid -1 < x \leq 5\big\}$ & --- \\[10pt]
+\hline
+& & &
+\begin{tikzpicture}[scale=0.35,baseline=-2pt]
+  \draw[<->,thick] (-5,0)--(4.5,0);
+  \foreach \x in {-4,-3,-2,-1,0,1,2,3} {
+    \draw[thick] (\x,0.3)--(\x,-0.3) node[below,font=\tiny] {$\x$};
+  }
+  \draw[->,very thick,blue] (-3,0)--(4.5,0);
+  \opendot{-3}
+\end{tikzpicture} \\[16pt]
+\hline
+& $(2,\infty)$ & & --- \\[10pt]
+\hline
+$-4 \leq x \leq -1$ & & & --- \\[10pt]
+\hline
+\end{tabular}
+\end{center}
+
 \begin{freeResponse}
-Write your solution here.
+Enter your completed answers for each row here.
+\end{freeResponse}
+
+\begin{solution}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Inequality} & \textbf{Interval} & \textbf{Set-Builder} & \textbf{Number Line} \\
+\hline
+$-2 \leq x < 3$ & $[-2,3)$ & $\{x \mid -2 \leq x < 3\}$ &
+\begin{tikzpicture}[scale=0.35,baseline=-2pt]
+  \draw[<->,thick] (-4.5,0)--(4.5,0);
+  \foreach \x in {-3,-2,-1,0,1,2,3} {
+    \draw[thick] (\x,0.3)--(\x,-0.3) node[below,font=\tiny] {$\x$};
+  }
+  \draw[very thick,blue] (-2,0)--(3,0);
+  \closeddot{-2} \opendot{3}
+\end{tikzpicture} \\[16pt]
+\hline
+$0 < x < 12$ & $(0,12)$ & $\{x \mid 0 < x < 12\}$ &
+\begin{tikzpicture}[scale=0.22,baseline=-2pt]
+  \draw[<->,thick] (-1.5,0)--(14,0);
+  \foreach \x in {0,3,6,9,12} {
+    \draw[thick] (\x,0.5)--(\x,-0.5) node[below,font=\tiny] {$\x$};
+  }
+  \draw[very thick,blue] (0,0)--(12,0);
+  \opendot{0} \opendot{12}
+\end{tikzpicture} \\[16pt]
+\hline
+$x \leq 4$ & $(-\infty,4]$ & $\{x \mid x \leq 4\}$ &
+\begin{tikzpicture}[scale=0.35,baseline=-2pt]
+  \draw[<->,thick] (-4.5,0)--(5.5,0);
+  \foreach \x in {-3,-2,-1,0,1,2,3,4} {
+    \draw[thick] (\x,0.3)--(\x,-0.3) node[below,font=\tiny] {$\x$};
+  }
+  \draw[<-,very thick,blue] (-4.5,0)--(4,0);
+  \closeddot{4}
+\end{tikzpicture} \\[16pt]
+\hline
+$-1 < x \leq 5$ & $(-1,5]$ & $\{x \mid -1 < x \leq 5\}$ &
+\begin{tikzpicture}[scale=0.35,baseline=-2pt]
+  \draw[<->,thick] (-3.5,0)--(6.5,0);
+  \foreach \x in {-2,-1,0,1,2,3,4,5} {
+    \draw[thick] (\x,0.3)--(\x,-0.3) node[below,font=\tiny] {$\x$};
+  }
+  \draw[very thick,blue] (-1,0)--(5,0);
+  \opendot{-1} \closeddot{5}
+\end{tikzpicture} \\[16pt]
+\hline
+$x > -3$ & $(-3,\infty)$ & $\{x \mid x > -3\}$ &
+\begin{tikzpicture}[scale=0.35,baseline=-2pt]
+  \draw[<->,thick] (-5,0)--(4.5,0);
+  \foreach \x in {-4,-3,-2,-1,0,1,2,3} {
+    \draw[thick] (\x,0.3)--(\x,-0.3) node[below,font=\tiny] {$\x$};
+  }
+  \draw[->,very thick,blue] (-3,0)--(4.5,0);
+  \opendot{-3}
+\end{tikzpicture} \\[16pt]
+\hline
+$x > 2$ & $(2,\infty)$ & $\{x \mid x > 2\}$ &
+\begin{tikzpicture}[scale=0.35,baseline=-2pt]
+  \draw[<->,thick] (-1.5,0)--(5.5,0);
+  \foreach \x in {-1,0,1,2,3,4} {
+    \draw[thick] (\x,0.3)--(\x,-0.3) node[below,font=\tiny] {$\x$};
+  }
+  \draw[->,very thick,blue] (2,0)--(5.5,0);
+  \opendot{2}
+\end{tikzpicture} \\[16pt]
+\hline
+$-4 \leq x \leq -1$ & $[-4,-1]$ & $\{x \mid -4 \leq x \leq -1\}$ &
+\begin{tikzpicture}[scale=0.35,baseline=-2pt]
+  \draw[<->,thick] (-5.5,0)--(1.5,0);
+  \foreach \x in {-5,-4,-3,-2,-1,0} {
+    \draw[thick] (\x,0.3)--(\x,-0.3) node[below,font=\tiny] {$\x$};
+  }
+  \draw[very thick,blue] (-4,0)--(-1,0);
+  \closeddot{-4} \closeddot{-1}
+\end{tikzpicture} \\[16pt]
+\hline
+\end{tabular}
+\end{center}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Solve the following inequalities. Express each solution in (i) set-builder notation and (ii)
+interval notation.
+
+\begin{enumerate}
+  \item[(a)] $\ds 5 \leq -\frac{3}{4}t + 10$
+  \item[(b)] $2(3x+1) - 4x > 2(x+8) - 5$
+  \item[(c)] $\ds\frac{4+x}{2} - \frac{x-3}{5} < -\frac{x}{10}$
+  \item[(d)] $8 - 4\big[4 - 3(y-3)\big] \geq 5\Big\{4-2\big[5-(y-3)\big]\Big\}$
+\end{enumerate}
+
+\begin{freeResponse}
+Show your work and write each answer in both notations.
+\end{freeResponse}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Isolate $t$:
+  \begin{align*}
+    -5 &\leq -\tfrac{3}{4}t \\
+    \tfrac{20}{3} &\geq t
+  \end{align*}
+  (i) $\ds\left\{t \;\middle|\; t \leq \tfrac{20}{3}\right\}$ \qquad
+  (ii) $\ds\left(-\infty,\, \tfrac{20}{3}\right]$
+
+  \item[(b)] Distribute and simplify:
+  \begin{align*}
+    6x + 2 - 4x &> 2x + 16 - 5 \\
+    2x + 2 &> 2x + 11 \\
+    2 &> 11
+  \end{align*}
+  This is always false: \textbf{No solution.}
+
+  \item[(c)] Multiply every term by LCD $= 10$:
+  \begin{align*}
+    5(4+x) - 2(x-3) &< -x \\
+    20 + 5x - 2x + 6 &< -x \\
+    26 + 3x &< -x \\
+    26 &< -4x \\
+    -\tfrac{13}{2} &> x
+  \end{align*}
+  (i) $\ds\left\{x \;\middle|\; x < -\tfrac{13}{2}\right\}$ \qquad
+  (ii) $\ds\left(-\infty,\, -\tfrac{13}{2}\right)$
+
+  \item[(d)] Distribute from inside out:
+  \begin{align*}
+    8 - 4\big[4 - 3y + 9\big] &\geq 5\Big\{4 - 10 + 2y - 6\Big\} \\
+    8 - 16 + 12y - 36 &\geq 20 - 50 + 10y - 30 \\
+    -44 + 12y &\geq -60 + 10y \\
+    2y &\geq -16 \\
+    y &\geq -8
+  \end{align*}
+  (i) $\{y \mid y \geq -8\}$ \qquad (ii) $[-8,\infty)$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Solve the following compound inequalities. Express each solution in interval notation and
+graph the solution set on a number line.
+
+\begin{enumerate}
+  \item[(a)] $z - 6 > 1 \AND \dfrac{3}{4}z \geq 6$
+  \item[(b)] $z - 6 > 1 \OR \dfrac{3}{4}z \geq 6$
+  \item[(c)] $-6 \leq -3x + 9 < 0$
+  \item[(d)] $\ds -2 \leq \frac{-2x+1}{-3} < 4$
+\end{enumerate}
+
+\begin{freeResponse}
+Show your work and write each answer in interval notation.
+\end{freeResponse}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Solving separately: $z > 7 \AND z \geq 8$.
+  AND means intersection --- take the overlap:
+
+  $[8,\infty)$
+
+  \begin{tikzpicture}[scale=0.45]
+    \draw[<->,thick] (4.5,0)--(12.5,0);
+    \foreach \x in {5,6,7,8,9,10,11,12} {
+      \draw[thick] (\x,0.25)--(\x,-0.25) node[below,font=\scriptsize] {$\x$};
+    }
+    \draw[->,very thick,blue] (8,0)--(12.5,0);
+    \closeddot{8}
+  \end{tikzpicture}
+
+  \item[(b)] Same individual solutions: $z > 7 \OR z \geq 8$.
+  OR means union --- combine both sets:
+
+  $(7,\infty)$
+
+  \begin{tikzpicture}[scale=0.45]
+    \draw[<->,thick] (4.5,0)--(12.5,0);
+    \foreach \x in {5,6,7,8,9,10,11,12} {
+      \draw[thick] (\x,0.25)--(\x,-0.25) node[below,font=\scriptsize] {$\x$};
+    }
+    \draw[->,very thick,blue] (7,0)--(12.5,0);
+    \opendot{7}
+  \end{tikzpicture}
+
+  \item[(c)] Isolate $x$ (dividing by $-3$ reverses the inequalities):
+  \begin{align*}
+    -15 &\leq -3x < -9 \\
+    5 &\geq x > 3
+  \end{align*}
+  $(3,5]$
+
+  \begin{tikzpicture}[scale=0.5]
+    \draw[<->,thick] (1,0)--(7,0);
+    \foreach \x in {2,3,4,5,6} {
+      \draw[thick] (\x,0.25)--(\x,-0.25) node[below,font=\scriptsize] {$\x$};
+    }
+    \draw[very thick,blue] (3,0)--(5,0);
+    \opendot{3} \closeddot{5}
+  \end{tikzpicture}
+
+  \item[(d)] Multiply through by $-3$ (reverses both inequalities):
+  \begin{align*}
+    6 &\geq -2x+1 > -12 \\
+    5 &\geq -2x > -13 \\
+    -\tfrac{5}{2} &\leq x < \tfrac{13}{2}
+  \end{align*}
+  $\left[-\dfrac{5}{2},\; \dfrac{13}{2}\right)$
+
+  \begin{tikzpicture}[scale=0.4]
+    \draw[<->,thick] (-4.5,0)--(9.5,0);
+    \foreach \x in {-4,-3,-2,-1,0,1,2,3,4,5,6,7,8} {
+      \draw[thick] (\x,0.25)--(\x,-0.25) node[below,font=\scriptsize] {$\x$};
+    }
+    \draw[very thick,blue] (-2.5,0)--(6.5,0);
+    \closeddot{-2.5} \opendot{6.5}
+    \node[above,font=\scriptsize,blue] at (-2.5,0.15) {$-\frac{5}{2}$};
+    \node[above,font=\scriptsize,blue] at (6.5,0.15) {$\frac{13}{2}$};
+  \end{tikzpicture}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Ann earns scores of 78, 82, 90, 80, and 75 on her five chapter tests, and 85 on the class
+project. Course grades are weighted as follows:
+\begin{itemize}
+  \item Chapter test average: $60\%$
+  \item Class project: $10\%$
+  \item Final exam: $30\%$
+\end{itemize}
+What scores can Ann earn on the final exam to receive a B? A B requires an overall score
+$\geq 80$ but $< 90$. Assume 100 is the maximum score and only whole-number scores are given.
+\begin{hint}
+Let $x$ be the final exam score. Write a compound inequality for the overall grade and solve for $x$.
+\end{hint}
+\begin{freeResponse}
+Set up and solve the inequality. State your answer as a range of final exam scores.
 \end{freeResponse}
 \begin{solution}
-Isolate: $-5 \leq 2x - 1 \leq 5$\\
-Add 1: $-4 \leq 2x \leq 6$\\
-Divide: $-2 \leq x \leq 3$\\
-Answer: $[-2, 3]$
+Let $x$ = Ann's final exam score:
+\begin{align*}
+  80 &\leq 0.6\!\left(\tfrac{78+82+90+80+75}{5}\right) + 0.1(85) + 0.3x < 90 \\
+  80 &\leq 0.6(81) + 8.5 + 0.3x < 90 \\
+  80 &\leq 57.1 + 0.3x < 90 \\
+  22.9 &\leq 0.3x < 32.9 \\
+  76\tfrac{1}{3} &\leq x < 109\tfrac{2}{3}
+\end{align*}
+Since $x \leq 100$ and scores are whole numbers:
+\textbf{Ann needs a final exam score between 77 and 100, inclusive.}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+The sides of a triangle are three consecutive integers greater than 1. What are the possible
+values for the shortest side if the perimeter cannot exceed 24 ft?
+\begin{hint}
+Let $x$ be the shortest side. The three sides are $x$, $x+1$, and $x+2$.
+\end{hint}
+\begin{freeResponse}
+Write an inequality for the perimeter and solve for $x$.
+\end{freeResponse}
+\begin{solution}
+\begin{align*}
+  x + (x+1) + (x+2) &\leq 24 \\
+  3x + 3 &\leq 24 \\
+  x &\leq 7
+\end{align*}
+Since each side must be greater than 1:
+\textbf{The shortest side can be 2, 3, 4, 5, 6, or 7 ft.}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Job A pays a base salary of \$25{,}000 plus a $10\%$ commission on sales. Job B pays a base
+salary of \$35{,}000 plus an $8\%$ commission on sales. How much must Tom sell for Job A's
+total compensation to exceed Job B's?
+\begin{hint}
+Let $x$ = total sales in dollars. Write an expression for each salary and set up an inequality.
+\end{hint}
+\begin{freeResponse}
+Set up and solve the inequality. State your answer in a complete sentence.
+\end{freeResponse}
+\begin{solution}
+\begin{align*}
+  25000 + 0.1x &> 35000 + 0.08x \\
+  0.02x &> 10000 \\
+  x &> 500{,}000
+\end{align*}
+\textbf{Tom must sell more than \$500{,}000 for Job A to pay more than Job B.}
 \end{solution}
 \end{problem}
 

@@ -7,8 +7,8 @@
 %%
 %% Set defaults
 %%
-\license{CC: 0}                    % Default license
-\author{Ximera Development Team}   % Default author  (if one is wanted ...)  
+\license{CC: 0}
+\author{}
 
 %%
 %%  Load extra packages
@@ -16,16 +16,30 @@
 %%  NOTE: NOT ALL PACKAGES ARE PRESENT in the docker containers
 %%   ( use a container of type '-full' to get a FULL TeXLive )
 
-\usepackage{xstring}     % Needed (at least) infra  for \IfSubStr
+\usepackage{xstring}
+\usepackage{tikz}
+\usepackage{amssymb}
+\usepackage{amsmath}
 
+%%  Math shortcut macros
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\AND}{\;\text{AND}\;}
+\newcommand{\OR}{\;\text{OR}\;}
+
+%%  TikZ: reusable number line dots
+\newcommand{\closeddot}[1]{\filldraw[blue] (#1,0) circle (3.5pt);}
+\newcommand{\opendot}[1]{\draw[blue,fill=white,thick] (#1,0) circle (3.5pt);}
 
 %%
 %%  Define extra macro's
 %%  Be careful with layout-macro's:
 %%    - they might not work/confuse the HTML version
-%%    - if needed, they could be put in xmPrintStyle.sty   
-%%
-% \newcommand{\R}{\mathbb{R}
+%%    - if needed, they could be put in xmPrintStyle.sty
 
 
 % 
