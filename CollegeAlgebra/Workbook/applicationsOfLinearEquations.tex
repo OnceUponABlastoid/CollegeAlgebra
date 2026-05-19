@@ -1,8 +1,243 @@
 \documentclass{ximera}
 \title{Applications of Linear Equations}
+
+\outcome{Determine whether two lines are parallel, perpendicular, or neither.}
+\outcome{Write equations of lines using point-slope form.}
+\outcome{Model real-world situations with linear functions.}
+\outcome{Interpret cost, revenue, and profit functions.}
+\outcome{Solve break-even problems.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Determine whether two lines are parallel, perpendicular, or neither.
+  \item Write equations of lines using point-slope form.
+  \item Model real-world situations with linear functions.
+  \item Interpret cost, revenue, and profit functions.
+  \item Solve break-even problems.
+\end{itemize}
+\medskip
+
+\section*{Quick Check}
+
+\begin{problem}
+A phone company charges a flat monthly fee plus a per-minute rate for calls. Last month, Maria talked for 120 minutes and paid \$54. This month, she talked for 200 minutes and paid \$66. What is the cost per minute charged by the company?
+\begin{hint}
+Use the two data points to find the slope (rate of change) of the cost function.
+\end{hint}
+\begin{multipleChoice}
+  \choice{\$0.10}
+  \choice{\$0.12}
+  \choice[correct]{\$0.15}
+  \choice{\$0.20}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graph below shows the total cost $C(q)$, in dollars, of producing $q$ items.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+\begin{axis}[
+  axis lines=middle,
+  xmin=0, xmax=20,
+  ymin=0, ymax=100,
+  xtick={0,5,10,15,20},
+  ytick={0,20,40,60,80,100},
+  grid=both,
+  xlabel={$q$ (items)},
+  ylabel={$C(q)$ (dollars)},
+  width=7cm, height=7cm
+]
+\addplot[very thick, blue, ->] {5*x + 20};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+What is the \underline{fixed cost} to produce the items?
+\begin{hint}
+The fixed cost is the $y$-intercept of the cost function --- the cost when $q = 0$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{\$0}
+  \choice{\$5}
+  \choice[correct]{\$20}
+  \choice{\$25}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+A company has a cost function $C(q) = 4q + 120$ and a revenue function $R(q) = 10q$, where $q$ is the number of items produced and sold. What is the break-even quantity?
+\begin{hint}
+At break-even, revenue equals cost: $R(q) = C(q)$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{10}
+  \choice{15}
+  \choice[correct]{20}
+  \choice{25}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Company A charges a flat fee of \$25 plus \$0.15 per mile. Company B charges \$10 plus \$0.25 per mile. For how many miles do both companies charge the same total amount?
+\begin{hint}
+Set the two cost expressions equal and solve for the number of miles.
+\end{hint}
+\begin{multipleChoice}
+  \choice{100 miles}
+  \choice{125 miles}
+  \choice[correct]{150 miles}
+  \choice{200 miles}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+A plumber charges a flat service fee of \$80 plus \$45 per hour. A job costs \$215 in total. How many hours did the job take?
+\begin{hint}
+Set up and solve: $80 + 45h = 215$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{2 hours}
+  \choice[correct]{3 hours}
+  \choice{4 hours}
+  \choice{5 hours}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Determine if the lines defined by the given equations are parallel, perpendicular, or neither.
+\begin{enumerate}
+  \item[(a)] $8x - 5y = 3$ and $2x = \dfrac{5}{4}y + 1$
+  \medskip
+  \item[(b)] $6x = 7y$ and $\dfrac{7}{2}x - 3y = 0$
+  \medskip
+  \item[(c)] $3y = 5$ and $x = 1$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Write each equation in slope-intercept form:
+  \begin{itemize}
+    \item $8x - 5y = 3 \Rightarrow y = \dfrac{8}{5}x - \dfrac{3}{5}$; slope $= \dfrac{8}{5}$
+    \item $2x = \dfrac{5}{4}y + 1 \Rightarrow y = \dfrac{8}{5}x - \dfrac{4}{5}$; slope $= \dfrac{8}{5}$
+  \end{itemize}
+  Equal slopes $\Rightarrow$ the lines are \textbf{parallel}.
+
+  \item[(b)] Write each equation in slope-intercept form:
+  \begin{itemize}
+    \item $6x = 7y \Rightarrow y = \dfrac{6}{7}x$; slope $= \dfrac{6}{7}$
+    \item $\dfrac{7}{2}x - 3y = 0 \Rightarrow y = \dfrac{7}{6}x$; slope $= \dfrac{7}{6}$
+  \end{itemize}
+  Slopes not equal and $\dfrac{6}{7} \cdot \dfrac{7}{6} = 1 \neq -1$, so the lines are \textbf{neither} parallel nor perpendicular.
+
+  \item[(c)] $3y = 5$ is horizontal (slope $= 0$); $x = 1$ is vertical (slope undefined). They are \textbf{perpendicular}.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Using the point-slope formula, find the equation of the line that satisfies the given conditions. Write your final answer in slope-intercept form and in standard form ($Ax + By = C$ with integer coefficients).
+\begin{enumerate}
+  \item[(a)] Passes through $(4,-6)$ with $m = 3$.
+  \medskip
+  \item[(b)] Passes through $(-4,8)$ and $(-7,-3)$.
+  \medskip
+  \item[(c)] Passes through $(6,4)$ and is perpendicular to the line $x - 5y = 1$.
+  \medskip
+  \item[(d)] Passes through $(6,8)$ and is parallel to the line $3x = 7y + 5$.
+  \medskip
+  \item[(e)] Passes through $(-11,13)$ and is parallel to the $y$-axis.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $y - (-6) = 3(x - 4)$
+  \begin{itemize}
+    \item Slope-intercept: $y = 3x - 18$
+    \item Standard form: $-3x + y = -18$
+  \end{itemize}
+
+  \item[(b)] $m = \dfrac{8-(-3)}{-4-(-7)} = \dfrac{11}{3}$. Using $(-4,8)$: $y - 8 = \dfrac{11}{3}(x+4)$
+  \begin{itemize}
+    \item Slope-intercept: $y = \dfrac{11}{3}x + \dfrac{68}{3}$
+    \item Standard form: $-11x + 3y = 68$
+  \end{itemize}
+
+  \item[(c)] Slope of $x - 5y = 1$ is $\dfrac{1}{5}$, so perpendicular slope $= -5$. Using $(6,4)$: $y - 4 = -5(x-6)$
+  \begin{itemize}
+    \item Slope-intercept: $y = -5x + 34$
+    \item Standard form: $5x + y = 34$
+  \end{itemize}
+
+  \item[(d)] Slope of $3x = 7y + 5$ is $\dfrac{3}{7}$. Using $(6,8)$: $y - 8 = \dfrac{3}{7}(x-6)$
+  \begin{itemize}
+    \item Slope-intercept: $y = \dfrac{3}{7}x + \dfrac{38}{7}$
+    \item Standard form: $-3x + 7y = 38$
+  \end{itemize}
+
+  \item[(e)] Parallel to the $y$-axis $\Rightarrow$ vertical line: $x = -11$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+The average water level in a retention pond is 6.8 ft. During a drought, the water level decreases at a rate of 3 in./day. Write a linear function $W(t)$ that represents the water level (in ft) $t$ days after a drought begins.
+
+\begin{solution}
+Convert the rate: $3\ \text{in/day} = \dfrac{3}{12}\ \text{ft/day} = \dfrac{1}{4}\ \text{ft/day}$.
+$$W(t) = 6.8 - \frac{1}{4}t$$
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+A small business makes cookies and sells them at a farmer's market. The fixed monthly cost is \$790. Labor, taxes, and ingredients cost \$0.24 per cookie, and cookies sell for \$6.00 per dozen.
+\begin{enumerate}
+  \item[(a)] Write a linear cost function $C(x)$ for producing $x$ dozen cookies per month.
+  \medskip
+  \item[(b)] Write a linear revenue function $R(x)$ for selling $x$ dozen cookies.
+  \medskip
+  \item[(c)] Write a linear profit function $P(x)$ for producing and selling $x$ dozen cookies per month.
+  \medskip
+  \item[(d)] Determine the number of dozens that must be sold for a monthly profit.
+  \medskip
+  \item[(e)] If 150 dozen cookies are sold in a given month, how much money will the business make or lose?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Variable cost: $\$0.24 \times 12 = \$2.88$ per dozen.
+  $$C(x) = 790 + 2.88x$$
+
+  \item[(b)] Revenue per dozen $= \$6.00$:
+  $$R(x) = 6x$$
+
+  \item[(c)]
+  \begin{align*}
+    P(x) &= R(x) - C(x) = 6x - (790 + 2.88x) = 3.12x - 790
+  \end{align*}
+
+  \item[(d)] Set $P(x) \geq 0$:
+  \begin{align*}
+    3.12x - 790 &\geq 0\\
+    x &\geq 253.2\ldots
+  \end{align*}
+  Round up: the business must sell at least \textbf{254 dozen} to turn a profit.
+
+  \item[(e)] $P(150) = 3.12(150) - 790 = 468 - 790 = -322$. The business will \textbf{lose \$322}.
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
