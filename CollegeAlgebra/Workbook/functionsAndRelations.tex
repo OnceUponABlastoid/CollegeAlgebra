@@ -1,8 +1,350 @@
 \documentclass{ximera}
 \title{Functions and Relations}
+
+\outcome{Determine whether a relation is a function using the vertical line test.}
+\outcome{Find the domain and range of a function.}
+\outcome{Evaluate functions at given values, including algebraic expressions.}
+\outcome{Find $x$-intercepts and $y$-intercepts of functions.}
+\outcome{Find the domain of functions involving radicals, fractions, and absolute values.}
+\outcome{Write functions to model relationships.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Determine whether a relation is a function using the vertical line test.
+  \item Find the domain and range of a function.
+  \item Evaluate functions at given values, including algebraic expressions.
+  \item Find $x$-intercepts and $y$-intercepts of functions.
+  \item Find the domain of functions involving radicals, fractions, and absolute values.
+  \item Write functions to model relationships.
+\end{itemize}
+\medskip
+
+\section*{Quick Check}
+
+\begin{problem}
+If the relation $R = \{(x,y) \mid y^2 = x\}$ is graphed, which of the following is true?
+\begin{hint}
+Apply the vertical line test: can a single $x$-value produce more than one $y$-value?
+\end{hint}
+\begin{multipleChoice}
+  \choice{$R$ is a function.}
+  \choice[correct]{$R$ is not a function because some $x$-values correspond to two $y$-values.}
+  \choice{$R$ is not a function because some $y$-values repeat.}
+  \choice{$R$ is a function with domain $x \geq 0$.}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+What is the domain of $\ds f(x) = \dfrac{\sqrt{x-2}}{x^2-9}$?
+\begin{hint}
+The radicand must be non-negative and the denominator must be nonzero.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$(2,\infty)$}
+  \choice[correct]{$[2,3) \cup (3,\infty)$}
+  \choice{$(-3,3) \cup (3,\infty)$}
+  \choice{$(2,3) \cup (3,\infty)$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which of the following represents the $x$-intercept(s) of $\ds g(x) = \dfrac{x^2-4x}{x+1}$?
+\begin{hint}
+Set $g(x) = 0$ and solve. Check that the values are in the domain.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x = -1$ and $x = 4$}
+  \choice{$x = 0$ only}
+  \choice[correct]{$x = 0$ and $x = 4$}
+  \choice{$x = 0$ and $x = -4$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graph of function $f$ is shown below.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+  axis lines=middle,
+  xmin=-4, xmax=6,
+  ymin=-3, ymax=5,
+  xtick={-4,-2,0,2,4,6},
+  ytick={-3,-2,-1,1,2,3,4,5},
+  grid=both,
+  width=8cm, height=6cm,
+  xlabel={$x$}, ylabel={$f(x)$},
+  enlargelimits
+]
+\addplot[very thick, blue, domain=-3:2] {x+2};
+\addplot[very thick, blue, domain=2:5] {4 - 0.5*(x - 2)^2};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(2,4)};
+\addplot[only marks, mark=*, blue] coordinates {(-3,-1) (5,-0.5)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+What is the range of $f$?
+\begin{hint}
+Identify the lowest and highest $y$-values reached by the graph, and check whether endpoints are included (closed dot) or excluded (open dot).
+\end{hint}
+\begin{multipleChoice}
+  \choice{$[-1,4]$}
+  \choice{$(-1,4)$}
+  \choice[correct]{$[-1,4)$}
+  \choice{$[-1,2) \cup (2,4)$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graph of function $g$ is shown below.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+  axis lines=middle,
+  xmin=-4, xmax=6,
+  ymin=-3, ymax=5,
+  xtick={-4,-2,0,2,4,6},
+  ytick={-3,-2,-1,0,1,2,3,4,5},
+  grid=both,
+  width=8cm, height=6cm,
+  xlabel={$x$}, ylabel={$g(x)$},
+  enlargelimits
+]
+\addplot[very thick, red, domain=-3:-1] {-2};
+\addplot[very thick, red, domain=1:5] {sqrt(x - 1)};
+\addplot[only marks, mark=*, red] coordinates {(-3,-2) (5,2)};
+\addplot[only marks, mark=*, mark options={fill=white}, red] coordinates {(-1,-2) (1,0)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+What is the domain of $g$?
+\begin{hint}
+Read the $x$-values where the graph exists, checking whether endpoints are included or excluded.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$[-3,-1] \cup [1,5]$}
+  \choice{$(-3,-1) \cup (1,5]$}
+  \choice[correct]{$[-3,-1) \cup (1,5]$}
+  \choice{$[-3,-1] \cup (1,5]$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+For each of the following relations, determine (i) whether it is a function, and if it is, (ii) its domain and range.
+\begin{enumerate}
+  \item[(a)] $y = |x-7| + 2$
+  \medskip
+  \item[(b)] $x^2 + (y-1)^2 = 4$
+  \medskip
+  \item[(c)] $x^2 - y^3 = 2$
+  \medskip
+  \item[(d)] $|x+3y| = 2$
+  \medskip
+  \item[(e)] $x + |3y| = 2$
+  \medskip
+  \item[(f)] $|x| + 3y = 2$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] It is a function. Domain: $(-\infty,\infty)$; Range: $[2,\infty)$
+
+  \item[(b)] Not a function: If $x=0$, then $y = \pm 3$.
+
+  \item[(c)] It is a function. Domain: $(-\infty,\infty)$; Range: $[-\sqrt[3]{2},\infty)$
+
+  \item[(d)] Not a function: If $x=0$, then $y = \pm\dfrac{2}{3}$.
+
+  \item[(e)] Not a function: If $x=0$, then $y = \pm\dfrac{2}{3}$.
+
+  \item[(f)] It is a function. Domain: $(-\infty,\infty)$; Range: $\left(-\infty,\dfrac{2}{3}\right]$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Evaluate the functions at the given values. Write exact answers in simplified form.
+
+\medskip
+\textbf{(a)} $k(x) = \sqrt{1+x}$
+\begin{enumerate}
+  \item[(i)] $k(8)$
+  \medskip
+  \item[(ii)] $k(-2)$
+  \medskip
+  \item[(iii)] $k(1)$
+  \medskip
+  \item[(iv)] $k(t-1)$
+\end{enumerate}
+
+\medskip
+\textbf{(b)} $f(x) = x^2 + 3x$
+\begin{enumerate}
+  \item[(i)] $f(-1)$
+  \medskip
+  \item[(ii)] $f(2)$
+  \medskip
+  \item[(iii)] $f(a)$
+  \medskip
+  \item[(iv)] $f(a+h)$
+  \medskip
+  \item[(v)] $\ds\frac{f(a+h) - f(a)}{h}$
+\end{enumerate}
+
+\begin{solution}
+\textbf{(a)} $k(x) = \sqrt{1+x}$
+\begin{enumerate}
+  \item[(i)] $k(8) = \sqrt{1+8} = \sqrt{9} = 3$
+  \item[(ii)] $k(-2) = \sqrt{1+(-2)} = \sqrt{-1}$, which is \textbf{undefined}.
+  \item[(iii)] $k(1) = \sqrt{1+1} = \sqrt{2}$
+  \item[(iv)] $k(t-1) = \sqrt{1+(t-1)} = \sqrt{t}$
+\end{enumerate}
+
+\medskip
+\textbf{(b)} $f(x) = x^2+3x$
+\begin{enumerate}
+  \item[(i)] $f(-1) = (-1)^2 + 3(-1) = 1-3 = -2$
+  \item[(ii)] $f(2) = (2)^2 + 3(2) = 4+6 = 10$
+  \item[(iii)] $f(a) = a^2+3a$
+  \item[(iv)] $f(a+h) = (a+h)^2 + 3(a+h) = a^2+2ah+h^2+3a+3h$
+  \item[(v)] Using (iii) and (iv):
+  \begin{align*}
+    \frac{f(a+h)-f(a)}{h} &= \frac{a^2+2ah+h^2+3a+3h-(a^2+3a)}{h}\\
+    &= \frac{2ah+h^2+3h}{h}\\
+    &= \frac{h(2a+h+3)}{h}\\
+    &= 2a+h+3
+  \end{align*}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Find the $x$-intercept(s) and the $y$-intercept for each function. If an intercept does not exist, write \textit{none}.
+\begin{enumerate}
+  \item[(a)] $q(x) = x^2 - 8$
+  \medskip
+  \item[(b)] $f(x) = -|x| + 2$
+  \medskip
+  \item[(c)] $\ds r(x) = \frac{x-4}{x^2-16}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $q(x) = x^2-8$
+  \begin{itemize}
+    \item $x$-intercepts: Set $q(x)=0$: $x^2=8$, so $x = \pm\sqrt{8}$. The $x$-intercepts are $(-\sqrt{8},0)$ and $(\sqrt{8},0)$.
+    \item $y$-intercept: $q(0) = -8$. The $y$-intercept is $(0,-8)$.
+  \end{itemize}
+
+  \item[(b)] $f(x) = -|x|+2$
+  \begin{itemize}
+    \item $x$-intercepts: $-|x|+2=0 \Rightarrow |x|=2 \Rightarrow x=\pm2$. The $x$-intercepts are $(-2,0)$ and $(2,0)$.
+    \item $y$-intercept: $f(0) = 2$. The $y$-intercept is $(0,2)$.
+  \end{itemize}
+
+  \item[(c)] $\ds r(x) = \frac{x-4}{x^2-16}$
+
+  Before finding intercepts, simplify by canceling common factors:
+  $$r(x) = \frac{x-4}{(x-4)(x+4)} = \frac{1}{x+4}$$
+  \begin{itemize}
+    \item $x$-intercepts: $\dfrac{1}{x+4}=0 \Rightarrow 1=0$. This is false, so there are \textbf{no $x$-intercepts}.
+    \item $y$-intercept: $r(0) = \dfrac{1}{4}$. The $y$-intercept is $\left(0,\dfrac{1}{4}\right)$.
+  \end{itemize}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Find the domain of each function. Express your answers in interval notation.
+\begin{enumerate}
+  \item[(a)] $f(x) = 2-\sqrt{3-x}$
+  \medskip
+  \item[(b)] $\ds y(x) = \frac{2}{\sqrt{x-7}}$
+  \medskip
+  \item[(c)] $\ds g(t) = \frac{t-4}{3(t+2)}$
+  \medskip
+  \item[(d)] $g(x) = 2x^2-3x+1,\ x \geq 1$
+  \medskip
+  \item[(e)] $\ds n(t) = \frac{t+2}{t^2-3t-28}$
+  \medskip
+  \item[(f)] $\ds h(x) = \frac{\sqrt{3-x}}{x^2-16}$
+  \medskip
+  \item[(g)] $\ds f(p) = \frac{5}{8-|p-2|}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] \textit{Argument of even root} $\geq 0$: $3-x \geq 0 \Rightarrow x \leq 3$.\\
+  Domain: $(-\infty,3]$
+
+  \item[(b)] \textit{Argument of even root} $\geq 0$ and \textit{denominator} $\neq 0$: $x-7 > 0 \Rightarrow x > 7$.\\
+  Domain: $(7,\infty)$
+
+  \item[(c)] \textit{Denominator} $\neq 0$: $3(t+2)\neq 0 \Rightarrow t \neq -2$.\\
+  Domain: $(-\infty,-2)\cup(-2,\infty)$
+
+  \item[(d)] The domain of a polynomial is $(-\infty,\infty)$, but $g(x)$ is restricted to $x\geq 1$.\\
+  Domain: $[1,\infty)$
+
+  \item[(e)] \textit{Denominator} $\neq 0$:
+  \begin{align*}
+    t^2-3t-28 &\neq 0\\
+    (t-7)(t+4) &\neq 0\\
+    t \neq 7 &\text{ and } t \neq -4
+  \end{align*}
+  Domain: $(-\infty,-4)\cup(-4,7)\cup(7,\infty)$
+
+  \item[(f)] \textit{Numerator}: $3-x \geq 0 \Rightarrow x \leq 3$, giving $(-\infty,3]$.\\
+  \textit{Denominator}: $x^2-16 \neq 0 \Rightarrow x \neq \pm 4$, giving $(-\infty,-4)\cup(-4,4)\cup(4,\infty)$.\\
+  The domain is the intersection: $(-\infty,-4)\cup(-4,3]$
+
+  \item[(g)] \textit{Denominator} $\neq 0$:
+  \begin{align*}
+    8-|p-2| &\neq 0\\
+    |p-2| &\neq 8\\
+    p \neq 10 &\text{ and } p \neq -6
+  \end{align*}
+  Domain: $(-\infty,-6)\cup(-6,10)\cup(10,\infty)$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Write a formula for a function whose output values are 2 less than three times the square of $x$.
+
+\begin{solution}
+$f(x) = 3x^2 - 2$
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+In an isosceles triangle, two angles are equal in measure. If the third angle is $x$ degrees, write a relationship that represents the measure of one of the equal angles $A(x)$ as a function of $x$.
+
+\begin{solution}
+The angles of a triangle must sum to $180^\circ$:
+\begin{align*}
+  A(x) + A(x) + x &= 180\\
+  2A(x) &= 180 - x\\
+  A(x) &= \frac{1}{2}(180-x)
+\end{align*}
+\end{solution}
+\end{problem}
 
 \end{document}
