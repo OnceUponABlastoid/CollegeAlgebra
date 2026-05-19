@@ -1,8 +1,235 @@
 \documentclass{ximera}
 \title{Exponential Functions}
+
+\outcome{Identify exponential functions and distinguish growth from decay.}
+\outcome{Determine the domain, range, and asymptote of an exponential function.}
+\outcome{Graph exponential functions using transformations.}
+\outcome{Apply compound interest and exponential growth/decay models.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Identify exponential functions $f(x)=b^x$ where $b>0$, $b\neq1$; distinguish growth ($b>1$) from decay ($0<b<1$).
+  \item Determine the domain, range, and horizontal asymptote of an exponential function.
+  \item Graph exponential functions using transformations.
+  \item Apply compound interest ($A=P(1+r/n)^{nt}$ or $A=Pe^{rt}$) and exponential models.
+\end{itemize}
+\medskip
+
+\noindent\textbf{Key facts about $f(x)=b^x$} ($b>0$, $b\neq1$): Domain $(-\infty,\infty)$; Range $(0,\infty)$; HA $y=0$; passes through $(-1,1/b)$, $(0,1)$, $(1,b)$.
+
+\bigskip
+\section*{Quick Check}
+
+\begin{problem}
+Which of the following functions represents exponential decay?
+\begin{hint}
+An exponential function $b^x$ decays when $0 < b < 1$ (base between 0 and 1).
+\end{hint}
+\begin{multipleChoice}
+  \choice{$f(x) = 5(1.3)^x$}
+  \choice[correct]{$g(x) = 0.8^x$}
+  \choice{$h(x) = 3x+2$}
+  \choice{$r(x) = (1.01)^x$}
+  \choice{$s(x) = -2^x$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graph of $f(x) = 2^x$ is reflected over the $x$-axis and then shifted up 3 units. Which equation represents the new function?
+\begin{hint}
+Reflect over the $x$-axis: multiply the entire function by $-1$. Then shift up 3: add 3 to the result.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$f(x) = -2^x+3$}
+  \choice{$f(x) = -2^{x+3}$}
+  \choice{$f(x) = 2^{-x}+3$}
+  \choice{$f(x) = -2^x-3$}
+  \choice{$f(x) = -(2^x+3)$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+What are the domain and range of $f(x) = 5\cdot 2^x - 1$?
+\begin{hint}
+The parent $5\cdot 2^x$ has range $(0,\infty)$. Subtracting 1 shifts the range down by 1.
+\end{hint}
+\begin{multipleChoice}
+  \choice{Domain: $(-\infty,\infty)$;\quad Range: $(0,\infty)$}
+  \choice{Domain: $(0,\infty)$;\quad Range: $(-1,\infty)$}
+  \choice[correct]{Domain: $(-\infty,\infty)$;\quad Range: $(-1,\infty)$}
+  \choice{Domain: $(-\infty,\infty)$;\quad Range: $[0,\infty)$}
+  \choice{Domain: $(-\infty,0)$;\quad Range: $(0,\infty)$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Consider $f(x) = 3\cdot 2^{-x}+4$. Which statement about its intercepts and horizontal asymptote is true?
+\begin{hint}
+Evaluate $f(0)$ for the $y$-intercept. For the $x$-intercept, set $f(x)=0$: is $3\cdot 2^{-x}+4=0$ solvable? As $x\to\infty$, $2^{-x}\to0$, so $f\to4$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x$-intercept: $(0,0)$; $y$-intercept: none; HA: $y=0$}
+  \choice[correct]{$x$-intercept: none; $y$-intercept: $(0,7)$; HA: $y=4$}
+  \choice{$x$-intercept: some negative $x$-value; $y$-intercept: $(0,7)$; HA: $y=4$}
+  \choice{$x$-intercept: $(0,4)$; $y$-intercept: $(0,4)$; HA: $y=3$}
+  \choice{$x$-intercept: $(1,0)$; $y$-intercept: $(0,6)$; HA: $y=0$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+A population triples every 5 years. Which model best represents this?
+\begin{hint}
+After $t$ years, the population should be multiplied by 3 every 5 years: use $3^{t/5}$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$P(t) = P_0\cdot 3^t$}
+  \choice{$P(t) = P_0\cdot 5^t$}
+  \choice[correct]{$P(t) = P_0\cdot 3^{t/5}$}
+  \choice{$P(t) = P_0\cdot(1.03)^t$}
+  \choice{$P(t) = P_0+3t$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Identify which of the following are exponential functions ($f(x)=b^x$ with $b>0$, $b\neq1$). Justify each answer.
+\begin{enumerate}
+  \item[(a)] $f(x)=\pi^x$ \quad (b) $g(x)=(-2)^x$ \quad (c) $h(x)=\left(\tfrac{2}{3}\right)^x$ \quad (d) $k(x)=x^\pi$
+  \item[(e)] $y(x)=1^x$ \quad (f) $b(x)=(\sqrt{3})^x$ \quad (g) $c(x)=(2x)^x$ \quad (h) $z(x)=0.001^x$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] \textbf{Yes.} $b=\pi>0$ and $b\neq1$.
+  \item[(b)] \textbf{No.} $b=-2<0$; the base must be positive.
+  \item[(c)] \textbf{Yes.} $b=\tfrac{2}{3}$; $0<b<1$, so this is a decay function.
+  \item[(d)] \textbf{No.} The variable is the base, not the exponent; this is a power function.
+  \item[(e)] \textbf{No.} $b=1$; $1^x=1$ is a constant, excluded by definition.
+  \item[(f)] \textbf{Yes.} $b=\sqrt{3}>1$, $b\neq1$.
+  \item[(g)] \textbf{No.} The base $2x$ is not a constant.
+  \item[(h)] \textbf{Yes.} $b=0.001>0$, $b\neq1$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+For each function: describe the transformations of the parent function, find the domain and range, and state the horizontal asymptote. (Sketch on your handout.)
+\begin{enumerate}
+  \item[(a)] $q(x) = 3^{x-4}-1$
+  \medskip
+  \item[(b)] $f(x) = -4^{x-2}+1$
+  \medskip
+  \item[(c)] $g(x) = \left(\tfrac{1}{3}\right)^{x+1}-3$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Parent: $3^x$. Transformations: shift right 4, shift down 1.
+  Domain: $(-\infty,\infty)$;\quad Range: $(-1,\infty)$;\quad HA: $y=-1$.
+
+  \item[(b)] Parent: $4^x$. Transformations: shift right 2, reflect over $x$-axis, shift up 1.
+  Domain: $(-\infty,\infty)$;\quad Range: $(-\infty,1)$;\quad HA: $y=1$.
+
+  \item[(c)] Parent: $\left(\tfrac{1}{3}\right)^x$. Transformations: shift left 1, shift down 3.
+  Domain: $(-\infty,\infty)$;\quad Range: $(-3,\infty)$;\quad HA: $y=-3$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Suppose \$8000 is invested at 3.5\% interest for 20 years. Find the final amount under each compounding option.
+
+\begin{solution}
+Use $A=P\!\left(1+\dfrac{r}{n}\right)^{nt}$ with $P=8000$, $r=0.035$, $t=20$:
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+Compounding & Formula & Result \\\hline\hline
+Simple interest & $A=8000(1+(0.035)(20))$ & \$13,600.00 \\\hline
+Annually ($n=1$) & $A=8000(1+0.035)^{20}$ & \$15,918.31 \\\hline
+Quarterly ($n=4$) & $A=8000\!\left(1+\tfrac{0.035}{4}\right)^{80}$ & \$16,061.05 \\\hline
+Monthly ($n=12$) & $A=8000\!\left(1+\tfrac{0.035}{12}\right)^{240}$ & \$16,093.62 \\\hline
+Daily ($n=365$) & $A=8000\!\left(1+\tfrac{0.035}{365}\right)^{7300}$ & \$16,109.48 \\\hline
+Continuously & $A=8000e^{(0.035)(20)}$ & \$16,110.02 \\\hline
+\end{tabular}
+\end{center}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Leslie put her money in an account offering $r\%$ interest compounded monthly. The money quadrupled in 10 years. What is the annual interest rate? Round to the nearest tenth of a percent.
+
+\begin{solution}
+Set $A=4P$ in $A=P\!\left(1+\dfrac{r}{12}\right)^{120}$:
+$$4 = \left(1+\frac{r}{12}\right)^{120} \implies 4^{1/120} = 1+\frac{r}{12} \implies r = 12\!\left(4^{1/120}-1\right) \approx 0.1394$$
+The annual rate is approximately $\mathbf{13.9\%}$.
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+There are initially 300 bacteria in a water sample. Write a model $N(t)$ (where $t$ is in days) for each scenario and find the number of bacteria after 1 week.
+\begin{enumerate}
+  \item[(a)] The bacteria double every 6 hours.
+  \item[(b)] The bacteria triple every 6 hours.
+  \item[(c)] The bacteria double every 2 days.
+  \item[(d)] The bacteria triple every 8 hours.
+\end{enumerate}
+
+\begin{solution}
+General form: $N(t) = N_0\cdot d^{t/a}$ where $d$ is the growth factor and $a$ is the period (in days).
+\begin{enumerate}
+  \item[(a)] 6 hr $= \tfrac{1}{4}$ day, $d=2$: $N(t)=300\cdot 2^{4t}$.\quad $N(7)=300\cdot 2^{28}\approx 8.05\times10^{10}$.
+  \item[(b)] 6 hr $= \tfrac{1}{4}$ day, $d=3$: $N(t)=300\cdot 3^{4t}$.\quad $N(7)=300\cdot 3^{28}\approx 6.86\times10^{15}$.
+  \item[(c)] $a=2$ days, $d=2$: $N(t)=300\cdot 2^{t/2}$.\quad $N(7)=300\cdot 2^{3.5}\approx 3400$.
+  \item[(d)] 8 hr $= \tfrac{1}{3}$ day, $d=3$: $N(t)=300\cdot 3^{3t}$.\quad $N(7)=300\cdot 3^{21}\approx 3.14\times10^{12}$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Ben needs to borrow \$15,000 for a car. Option 1: 6.7\% simple interest for 5 years. Option 2: 6.4\% compounded continuously for 5 years. Which option results in less total interest?
+
+\begin{solution}
+\begin{align*}
+  I_{\text{simple}} &= Prt = 15000(0.067)(5) = \$5{,}025.00\\
+  I_{\text{continuous}} &= Pe^{rt}-P = 15000e^{(0.064)(5)}-15000 \approx \$5{,}656.92
+\end{align*}
+\textbf{Option 1 (simple interest) results in less total interest.}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+The population of Canada in 2010 was approximately 34 million, growing at 0.804\% per year. The model is $P(t)=34(1.00804)^t$ million, where $t$ is years since 2010.
+\begin{enumerate}
+  \item[(a)] Is $P$ increasing or decreasing?
+  \item[(b)] Evaluate and interpret $P(0)$.
+  \item[(c)] Evaluate $P(5)$, $P(15)$, and $P(25)$ (round to the nearest million) and interpret.
+  \item[(d)] Is this model realistic in the long run? Explain.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Since $b=1.00804>1$, $P$ is \textbf{increasing}.
+  \item[(b)] $P(0)=34$. This is the initial (2010) population: 34 million.
+  \item[(c)] $P(5)\approx 35$ million (2015);\quad $P(15)\approx 38$ million (2025);\quad $P(25)\approx 42$ million (2035).
+  \item[(d)] Reasonable short-term, but not long-term — the model predicts unbounded growth, which is unrealistic.
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
