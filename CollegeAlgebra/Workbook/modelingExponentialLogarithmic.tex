@@ -1,8 +1,271 @@
 \documentclass{ximera}
 \title{Modeling with Exponential and Logarithmic Equations}
+
+\outcome{Build exponential growth and decay models from data.}
+\outcome{Solve applied problems involving exponential growth and decay.}
+\outcome{Apply logarithmic models to real-world scenarios.}
+\outcome{Solve formulas for a specified variable using exponential or logarithmic techniques.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Build exponential models of the form $P(t)=P_0 b^t$ or $P(t)=P_0 e^{kt}$ from given data.
+  \item Solve applied problems involving exponential growth, decay, and half-life.
+  \item Apply logarithmic models and solve for a specified variable.
+  \item Convert between the forms $P_0 b^t$ and $P_0 e^{kt}$ using $k=\ln b$.
+\end{itemize}
+
+\bigskip
+\section*{Quick Check}
+
+\begin{problem}
+The population of a bacteria culture grows according to the model $P(t) = 300\cdot e^{0.12t}$, where $P(t)$ is the population after $t$ hours. How many hours will it take for the population to triple?
+\begin{hint}
+Set $P(t)=3\cdot300=900$: $e^{0.12t}=3$, so $0.12t=\ln 3$.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$\dfrac{\ln 3}{0.12}$}
+  \choice{$\dfrac{\ln 9}{0.12}$}
+  \choice{$\dfrac{\ln 3}{0.36}$}
+  \choice{$\dfrac{\ln(900)}{0.12}$}
+  \choice{$\dfrac{\ln(300)}{0.36}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+A radioactive sample decays according to $A(x) = 100(0.8)^x$, where $A(x)$ is the mass in grams after $x$ minutes. When does the sample decay to 20 grams?
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=8cm, height=5.6cm,
+  axis lines=middle,
+  xmin=-1, xmax=10,
+  ymin=-5, ymax=110,
+  xlabel={$x$}, ylabel={$y$},
+  xticklabels={}, yticklabels={},
+  grid=none,
+  legend style={at={(1.1,0.55)}, anchor=southeast}
+]
+\addplot[domain=0:10, samples=100, thick, blue]{100*(0.8)^x};
+\addlegendentry{\small $y = 100(0.8)^x$}
+\addplot[domain=0:10, samples=2, thick, red, dashed]{20};
+\addlegendentry{\small $y = 20$}
+\addplot[only marks, mark=*, mark size=2pt, color=black] coordinates {(7,20)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{hint}
+Set $100(0.8)^x=20$, so $(0.8)^x=\tfrac{1}{5}$. Take logarithms: $x\ln(0.8)=-\ln 5$, giving $x=-\dfrac{\ln 5}{\ln 0.8}$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x = \log_{0.8}(20)$}
+  \choice{$x = \log_{0.8}(5)$}
+  \choice[correct]{$x = -\dfrac{\ln 5}{\ln 0.8}$}
+  \choice{$x = \dfrac{\ln 0.8}{\ln 5}$}
+  \choice{$x = \dfrac{\ln 80}{\ln 0.8}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+A radioactive isotope decays to half its initial value in 14 days. The remaining amount after $t$ days is $A(t) = A_0\!\left(\dfrac{1}{2}\right)^{t/14}$. What fraction of the original substance remains after 42 days?
+\begin{hint}
+Compute $A(42)/A_0 = (1/2)^{42/14} = (1/2)^3$.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$\dfrac{1}{8}$}
+  \choice{$\dfrac{1}{4}$}
+  \choice{$\left(\dfrac{1}{2}\right)^{42}$}
+  \choice{$\dfrac{1}{14}$}
+  \choice{$\dfrac{1}{6}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+A patient is given 120 mg of a drug. The amount remaining after $t$ hours is $A(t)=120(0.7)^t$. After how many hours will only 30 mg remain?
+\begin{hint}
+Set $120(0.7)^t=30$: $(0.7)^t=\tfrac{30}{120}=\tfrac{1}{4}$. Take logarithms and solve. Note that $\ln(30/120)=\ln(1/4)=\ln(0.25)$, so choices B and D are equivalent.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$t = \dfrac{\ln(0.7)}{\ln(120/30)}$}
+  \choice[correct]{$t = \dfrac{\ln(30/120)}{\ln(0.7)}$}
+  \choice{$t = \dfrac{\ln(4)}{\ln(0.7)}$}
+  \choice{$t = \dfrac{\ln(0.25)}{\ln(0.7)}$}
+  \choice{$t = \dfrac{\ln(120/0.7)}{30}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The loudness $L$ (in decibels) of a sound is modeled by $L = 10\log_{10}\!\left(\dfrac{I}{I_0}\right)$, where $I_0 = 10^{-12}$ W/m\textsuperscript{2}. A sound has intensity $I = 10^{-4}$ W/m\textsuperscript{2}. What is its loudness?
+\begin{hint}
+$L = 10\log(10^{-4}/10^{-12}) = 10\log(10^8) = 10\cdot8$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{40 dB}
+  \choice{60 dB}
+  \choice[correct]{80 dB}
+  \choice{100 dB}
+  \choice{Not listed}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Solve each equation for the indicated variable.
+\begin{enumerate}
+  \item[(a)] $T = T_f + T_0 e^{-kt}$ for $t$.
+  \medskip
+  \item[(b)] $\ds-\frac{1}{k}\ln\!\left(\frac{P}{14.7}\right) = A$ for $P$.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)]
+  \begin{align*}
+    T - T_f &= T_0 e^{-kt}\\
+    \frac{T-T_f}{T_0} &= e^{-kt}\\
+    \ln\!\left(\frac{T-T_f}{T_0}\right) &= -kt\\
+    t &= -\frac{1}{k}\ln\!\left(\frac{T-T_f}{T_0}\right)
+  \end{align*}
+
+  \item[(b)]
+  \begin{align*}
+    \ln\!\left(\frac{P}{14.7}\right) &= -kA\\
+    \frac{P}{14.7} &= e^{-kA}\\
+    P &= 14.7e^{-kA}
+  \end{align*}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+In 2000, the population of Norway was approximately 4.6 million with a 0.62\% annual growth rate.
+\begin{enumerate}
+  \item[(a)] Write an exponential function $P(t) = a\cdot b^t$ representing the population (in millions) $t$ years after 2000.
+  \medskip
+  \item[(b)] Write an equivalent function of the form $P(t)=a\cdot e^{kt}$. Round $k$ to 5 decimal places.
+  \medskip
+  \item[(c)] Use either model to approximate the year during which the population reached 5 million.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $P(t) = 4.6(1.0062)^t$ million.
+
+  \item[(b)] $k = \ln(1.0062) \approx 0.00618$, so $P(t) = 4.6e^{0.00618t}$.
+
+  \item[(c)] Solve $5 = 4.6(1.0062)^t$:
+  \begin{align*}
+    t = \frac{\ln(5/4.6)}{\ln(1.0062)} \approx 13.49 \text{ years after 2000.}
+  \end{align*}
+  The population reached 5 million in approximately \textbf{2013}.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+In 2010, the population of Ohio was approximately 11.54 million. In 2020, the population was approximately 11.69 million.
+\begin{enumerate}
+  \item[(a)] Write a function $P(t) = P_0 e^{kt}$ modeling the population (in millions) $t$ years after 2010. Round $k$ to 5 decimal places.
+  \medskip
+  \item[(b)] Use the model to approximate the population in 2030.
+  \medskip
+  \item[(c)] Predict the year in which the population will reach 12 million.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Using $P_0=11.54$ and $P(10)=11.69$:
+  \begin{align*}
+    11.69 &= 11.54e^{10k}\\
+    k &= \frac{1}{10}\ln\!\left(\frac{11.69}{11.54}\right) \approx 0.00129
+  \end{align*}
+  Model: $P(t) = 11.54e^{0.00129t}$.
+
+  \item[(b)] $P(20) = 11.54e^{0.00129(20)} \approx \mathbf{11.84}$ million.
+
+  \item[(c)] Solve $12 = 11.54e^{0.00129t}$:
+  \begin{align*}
+    t = \frac{\ln(12/11.54)}{0.00129} \approx 30.3 \text{ years after 2010.}
+  \end{align*}
+  The population will reach 12 million in approximately \textbf{2040}.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Use the model $Q(t) = Q_0 e^{-0.000121t}$ for carbon-14 decay. A sample from a mummified bull found in a pyramid in Dashur, Egypt shows that 78\% of the carbon-14 still remains. How old is the sample? Round to the nearest year.
+
+\begin{solution}
+Set $Q(t) = 0.78\,Q_0$:
+\begin{align*}
+  0.78 &= e^{-0.000121t}\\
+  \ln(0.78) &= -0.000121t\\
+  t &= \frac{\ln(0.78)}{-0.000121} \approx \mathbf{2053}\text{ years.}
+\end{align*}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Fluorodeoxyglucose contains the radionuclide fluorine-18 ($^{18}$F). A patient is given 300 MBq of $^{18}$F. After 174 minutes, one-third of the original dose remains.
+\begin{enumerate}
+  \item[(a)] Write a function $Q(t) = Q_0 e^{-kt}$ modeling the radioactivity level (in MBq) after $t$ minutes. Round $k$ to 5 decimal places.
+  \medskip
+  \item[(b)] Find the half-life of $^{18}$F. Round to the nearest minute.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Using $Q_0=300$ and $Q(174)=100$:
+  \begin{align*}
+    \tfrac{1}{3} &= e^{-174k}\\
+    k &= \frac{\ln 3}{174} \approx 0.00631
+  \end{align*}
+  Model: $Q(t) = 300e^{-0.00631t}$.
+
+  \item[(b)] Half-life $= \dfrac{\ln 2}{k} = \dfrac{\ln 2}{0.00631} \approx \mathbf{110}$ minutes.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+\$50,000 from a retirement account is invested in a large cap stock fund. After 20 years, the value is \$194,809.67.
+\begin{enumerate}
+  \item[(a)] Use $A = Pe^{rt}$ to determine the average rate of return under continuous compounding. Round to the nearest tenth of a percent.
+  \medskip
+  \item[(b)] How long will it take the investment to reach \$250,000? Round to the nearest tenth of a year.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)]
+  \begin{align*}
+    194{,}809.67 &= 50{,}000\,e^{20r}\\
+    r &= \frac{1}{20}\ln\!\left(\frac{194{,}809.67}{50{,}000}\right) \approx 0.068
+  \end{align*}
+  The average rate of return is approximately $\mathbf{6.8\%}$.
+
+  \item[(b)] Using $r=0.068$:
+  \begin{align*}
+    250{,}000 &= 50{,}000\,e^{0.068t}\\
+    5 &= e^{0.068t}\\
+    t &= \frac{\ln 5}{0.068} \approx \mathbf{23.7}\text{ years.}
+  \end{align*}
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
