@@ -1,8 +1,270 @@
 \documentclass{ximera}
 \title{Exponential Equations}
+
+\outcome{Solve exponential equations using the equivalence property.}
+\outcome{Solve exponential equations using logarithms.}
+\outcome{Apply exponential equations to compound interest and growth/decay problems.}
+\outcome{Solve equations in quadratic form involving exponentials.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Solve exponential equations using the equivalence property: $b^x=b^y \Rightarrow x=y$.
+  \item Solve exponential equations by taking logarithms of both sides.
+  \item Apply exponential equations to compound interest and growth/decay models.
+  \item Solve equations in quadratic form using the substitution $u=b^x$.
+\end{itemize}
+\medskip
+
+\noindent\textbf{Equivalence Property:} If $b>0$, $b\neq1$, then $b^x = b^y \Rightarrow x=y$.
+
+\bigskip
+\section*{Quick Check}
+
+\begin{problem}
+Suppose $f(x) = a\cdot b^x$ passes through the points $(1,12)$ and $(3,108)$. What is the value of $b$?
+\begin{hint}
+Divide the two equations to eliminate $a$: $\dfrac{108}{12} = \dfrac{a\cdot b^3}{a\cdot b^1} = b^2$. Solve for $b>0$.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$b = 3$}
+  \choice{$b = 2$}
+  \choice{$b = 4$}
+  \choice{$b = 9$}
+  \choice{$b = \sqrt{108}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Solve for $x$: $\quad\sqrt{9^{2x+1}+7} = 10$.
+\begin{hint}
+Square both sides: $9^{2x+1}+7=100$, so $9^{2x+1}=93$. Take logarithms: $(2x+1)\log 9 = \log 93$. Solve for $x$ and simplify. The exact answer is $x = \dfrac{\log 93 - \log 9}{2\log 9}$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x = 0$}
+  \choice{$x = \dfrac{1}{2}$}
+  \choice{$x = 1$}
+  \choice{$x = \dfrac{\log(93)}{2\log(9)}$}
+  \choice[correct]{Not listed}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Solve for $x$: $\quad 8^{x+1} = 4^{2x}$.
+\begin{hint}
+Convert to base 2: $2^{3(x+1)} = 2^{4x}$. Set exponents equal: $3x+3=4x$, so $x=3$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x = \log_2\!\left(\tfrac{4}{8}\right)$}
+  \choice{$x = \dfrac{\log 4}{\log 8}$}
+  \choice{$x = 1$}
+  \choice{$x = 2$}
+  \choice[correct]{Not listed; $x = 3$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Let $f(x) = 2^{3x-1}$. What is the inverse function $f^{-1}(x)$?
+\begin{hint}
+Set $y = 2^{3x-1}$, take $\log_2$ of both sides: $\log_2 y = 3x-1$. Solve for $x$.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$f^{-1}(x) = \dfrac{1+\log_2(x)}{3}$}
+  \choice{$f^{-1}(x) = \log_2\!\left(\dfrac{x-1}{3}\right)$}
+  \choice{$f^{-1}(x) = \dfrac{\log_2(x)}{3} - 1$}
+  \choice{$f^{-1}(x) = \dfrac{\log(x)}{3\log(2)} + 1$}
+  \choice{$f^{-1}(x) = \dfrac{\log(x)}{\log(2)} + \dfrac{1}{3}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graphs of $y = 4^x$ and $y = 5(2)^x - 4$ intersect at two points. At which values of $x$ do the graphs intersect?
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  width=8cm, height=5.6cm,
+  axis lines=middle,
+  xmin=-1, xmax=4,
+  ymin=-5, ymax=20,
+  xlabel={$x$}, ylabel={$y$},
+  xticklabels={}, yticklabels={},
+  grid=none,
+  legend style={at={(1.1,0.55)}, anchor=southeast}
+]
+\addplot[domain=-1:4, samples=100, thick, blue]{4^x};
+\addlegendentry{\small $y = 4^x$}
+\addplot[domain=-1:4, samples=100, thick, red, dashed]{5*2^x - 4};
+\addlegendentry{\small $y = 5(2)^x - 4$}
+\addplot[only marks, mark=*, mark size=2pt, color=black] coordinates {(0,1) (2,16)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{hint}
+Set equal: $4^x = 5\cdot 2^x - 4$. Write $(2^x)^2 - 5\cdot 2^x + 4 = 0$. Let $u = 2^x$ and factor.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x = 0$ and $x = 4$}
+  \choice{$x = \log_4(2)$ and $x = \log_2(2)$}
+  \choice{$x = \log_4(4)$ and $x = \log_4(16)$}
+  \choice[correct]{$x = 0$ and $x = 2$}
+  \choice{$x = 1$ only}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Solve each equation. Write the exact solution set. (Use the equivalence property by converting to a common base.)
+\begin{enumerate}
+  \item[(a)] $5^{2z+2} = 625$
+  \medskip
+  \item[(b)] $7^{2x-3} = \left(\dfrac{1}{49}\right)^{x+1}$
+  \medskip
+  \item[(c)] $27^{x-4} = 9^{2x+1}$
+  \medskip
+  \item[(d)] $100{,}000^{2w+1} = 10{,}000^{4-w}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $5^{2z+2} = 5^4 \Rightarrow 2z+2=4 \Rightarrow \boxed{z=1}$
+
+  \item[(b)] $7^{2x-3} = (7^{-2})^{x+1} \Rightarrow 2x-3 = -2(x+1) \Rightarrow 4x=1 \Rightarrow \boxed{x=\tfrac{1}{4}}$
+
+  \item[(c)] $(3^3)^{x-4} = (3^2)^{2x+1} \Rightarrow 3(x-4)=2(2x+1) \Rightarrow 3x-12=4x+2 \Rightarrow \boxed{x=-14}$
+
+  \item[(d)] $(10^5)^{2w+1} = (10^4)^{4-w} \Rightarrow 5(2w+1)=4(4-w) \Rightarrow 10w+5=16-4w \Rightarrow \boxed{w=\tfrac{11}{14}}$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Solve each equation. Write the exact solution set.
+\begin{enumerate}
+  \item[(a)] $801 = 23^y + 6$
+  \medskip
+  \item[(b)] $80 = 320e^{-0.5t}$
+  \medskip
+  \item[(c)] $10^{5+8x} + 4200 = 84{,}000$
+  \medskip
+  \item[(d)] $7^{4x-1} = 3^{5x}$
+  \medskip
+  \item[(e)] $11^{1-8x} = 9^{2x+3}$
+  \medskip
+  \item[(f)] $e^{2x} - 6e^x - 16 = 0$ \quad {\small (Hint: Let $u = e^x$.)}
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)]
+  \begin{align*}
+    23^y &= 795\\
+    y &= \frac{\ln 795}{\ln 23}
+  \end{align*}
+
+  \item[(b)]
+  \begin{align*}
+    e^{-0.5t} = \tfrac{1}{4} \implies -0.5t = \ln\tfrac{1}{4} \implies t = \frac{\ln(1/4)}{-0.5} = 2\ln 4
+  \end{align*}
+
+  \item[(c)]
+  \begin{align*}
+    10^{5+8x} = 79{,}800 \implies 5+8x = \log 79{,}800 \implies x = \frac{\log 79{,}800 - 5}{8}
+  \end{align*}
+
+  \item[(d)]
+  \begin{align*}
+    (4x-1)\ln 7 &= 5x\ln 3\\
+    x(4\ln 7 - 5\ln 3) &= \ln 7\\
+    x &= \frac{\ln 7}{4\ln 7 - 5\ln 3}
+  \end{align*}
+
+  \item[(e)]
+  \begin{align*}
+    (1-8x)\log 11 &= (2x+3)\log 9\\
+    \log 11 - 3\log 9 &= x(2\log 9 + 8\log 11)\\
+    x &= \frac{\log 11 - 3\log 9}{2\log 9 + 8\log 11}
+  \end{align*}
+
+  \item[(f)] Let $u = e^x$:
+  \begin{align*}
+    u^2 - 6u - 16 &= 0\\
+    (u-8)(u+2) &= 0
+  \end{align*}
+  $u=8 \Rightarrow x=\ln 8$;\quad $u=-2 \Rightarrow$ no solution (exponential is always positive).\\
+  Solution: $\boxed{x = \ln 8}$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+\$5000 grows to \$5438.10 in 2 years under continuous compounding. Find the annual interest rate. Round to the nearest tenth of a percent.
+
+\begin{solution}
+Use $A = Pe^{rt}$ with $P=5000$, $A=5438.10$, $t=2$:
+\begin{align*}
+  5438.10 &= 5000e^{2r}\\
+  e^{2r} &= \frac{5438.10}{5000}\\
+  2r &= \ln\!\left(\frac{5438.10}{5000}\right)\\
+  r &= \frac{1}{2}\ln\!\left(\frac{5438.10}{5000}\right) \approx 0.042
+\end{align*}
+The annual interest rate is approximately $\mathbf{4.2\%}$.
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+\$20,000 is invested at 3.5\% interest compounded monthly. How long will it take for the investment to double? Round to the nearest tenth of a year.
+
+\begin{solution}
+Use $A = P\!\left(1+\dfrac{r}{n}\right)^{nt}$ with $P=20{,}000$, $A=40{,}000$, $r=0.035$, $n=12$:
+\begin{align*}
+  2 &= \left(1+\frac{0.035}{12}\right)^{12t}\\
+  \ln 2 &= 12t\ln\!\left(1+\frac{0.035}{12}\right)\\
+  t &= \frac{\ln 2}{12\ln\!\left(1+\frac{0.035}{12}\right)} \approx \mathbf{19.8 \text{ years}}
+\end{align*}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Solve each equation. Write the exact solution set.
+\begin{enumerate}
+  \item[(a)] $5^{y^2-5y-11} = 125$ \quad {\small (Hint: Use the equivalence property, then solve the quadratic.)}
+  \medskip
+  \item[(b)] $11^{|x|}+9 = 130$ \quad {\small (Hint: Use the equivalence property, then solve the absolute value equation.)}
+  \medskip
+  \item[(c)] $3e^x(e^x-6) = 4e^x - 7$ \quad {\small (Hint: Let $u = e^x$.)}
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $5^{y^2-5y-11} = 5^3 \Rightarrow y^2-5y-11=3 \Rightarrow y^2-5y-14=0 \Rightarrow (y-7)(y+2)=0$.
+  Solutions: $\boxed{y=7}$ and $\boxed{y=-2}$.
+
+  \item[(b)] $11^{|x|} = 121 = 11^2 \Rightarrow |x|=2$.
+  Solutions: $\boxed{x=-2}$ and $\boxed{x=2}$.
+
+  \item[(c)] Let $u = e^x$:
+  \begin{align*}
+    3u(u-6) &= 4u-7\\
+    3u^2-22u+7 &= 0\\
+    (3u-1)(u-7) &= 0
+  \end{align*}
+  $u=\tfrac{1}{3} \Rightarrow x = \ln\tfrac{1}{3} = -\ln 3$;\quad $u=7 \Rightarrow x = \ln 7$.\\
+  Solutions: $\boxed{x = -\ln 3}$ and $\boxed{x = \ln 7}$.
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
