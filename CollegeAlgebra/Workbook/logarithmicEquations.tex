@@ -1,8 +1,247 @@
 \documentclass{ximera}
 \title{Logarithmic Equations}
+
+\outcome{Solve logarithmic equations using the equivalence property.}
+\outcome{Solve logarithmic equations by converting to exponential form.}
+\outcome{Check solutions for extraneous roots.}
+\outcome{Solve applied problems using logarithmic equations.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Solve logarithmic equations using the equivalence property: $\log_b x = \log_b y \Rightarrow x=y$.
+  \item Solve logarithmic equations by converting to exponential form.
+  \item Always check for extraneous solutions (logarithm arguments must be positive).
+  \item Solve applied problems using logarithmic equations.
+\end{itemize}
+\medskip
+
+\noindent\textbf{Equivalence Property:} If $b>0$, $b\neq1$ and $x,y>0$, then $\log_b x = \log_b y \Rightarrow x=y$.
+
+\bigskip
+\section*{Quick Check}
+
+\begin{problem}
+Solve for $x$: $\quad\log_{3}(x-1) + \log_{3}(2x-5) = 2$.
+\begin{hint}
+Condense the left side: $\log_3[(x-1)(2x-5)]=2$, so $(x-1)(2x-5)=9$. Expand, factor, and check for extraneous roots.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$x=4$}
+  \choice{$x=-\dfrac{1}{2}$}
+  \choice{$x=4$ and $x=-\dfrac{1}{2}$}
+  \choice{No real solution}
+  \choice{$x=0$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Solve and state any restrictions: $\quad\ln(x^{2}-5x) = \ln(2x-1)$.
+\begin{hint}
+By the equivalence property, $x^2-5x=2x-1$, giving $x^2-7x+1=0$. Use the quadratic formula, then check which root(s) make both logarithm arguments positive.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$x=\dfrac{7+3\sqrt{5}}{2}$ only}
+  \choice{$x=\dfrac{7-3\sqrt{5}}{2}$ only}
+  \choice{$x=\dfrac{7\pm3\sqrt{5}}{2}$ (both)}
+  \choice{$x=\dfrac{1}{2}$}
+  \choice{No real solution}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Let $f(x)=\log_{5}(2x-3)+4$ with domain $x>\dfrac{3}{2}$. Find $f^{-1}(x)$.
+\begin{hint}
+Set $y = \log_5(2x-3)+4$, isolate the log: $y-4=\log_5(2x-3)$, convert: $5^{y-4}=2x-3$, solve for $x$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$f^{-1}(x)=\dfrac{5^{x}+3}{2}$}
+  \choice[correct]{$f^{-1}(x)=\dfrac{5^{x-4}+3}{2}$}
+  \choice{$f^{-1}(x)=\dfrac{5^{x}+3}{2}-4$}
+  \choice{$f^{-1}(x)=\dfrac{5^{x+4}-3}{2}$}
+  \choice{$f^{-1}(x)=\dfrac{5^{4-x}+3}{2}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Consider $h(x)=-2\log_{3}(x+1)+3$. Which statement about its graph is true?
+\begin{hint}
+The vertical asymptote is where the argument equals zero: $x+1=0 \Rightarrow x=-1$. The $y$-intercept: $h(0)=-2\log_3(1)+3=3$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{Vertical asymptote $x=1$; $y$-intercept $(0,-3)$}
+  \choice[correct]{Vertical asymptote $x=-1$; $y$-intercept $(0,3)$}
+  \choice{Vertical asymptote $x=0$; $y$-intercept $(0,3)$}
+  \choice{Vertical asymptote $x=-1$; $y$-intercept $(0,-3)$}
+  \choice{The graph has no vertical asymptote}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Suppose $p=\log_{a} 2$ and $q=\log_{a} 3$ for $a>0$, $a\neq1$. Express $\ds\log_{a}\!\left(\dfrac{9\sqrt{6}}{8}\right)$ in terms of $p$ and $q$.
+\begin{hint}
+Write $9=3^2$, $\sqrt{6}=2^{1/2}\cdot3^{1/2}$, $8=2^3$. Then $\dfrac{9\sqrt{6}}{8} = \dfrac{3^2\cdot 2^{1/2}\cdot 3^{1/2}}{2^3} = 3^{5/2}\cdot 2^{-5/2}$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$p+3q$}
+  \choice[correct]{$\dfrac{5}{2}(q-p)$}
+  \choice{$2q-3p$}
+  \choice{$\dfrac{q-p}{2}$}
+  \choice{$\dfrac{3q-2p}{2}$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Solve each equation. Write the exact solution set. (Use the equivalence property.)
+\begin{enumerate}
+  \item[(a)] $\log_7 (12 - t) = \log_7 (t+6)$
+  \medskip
+  \item[(b)] $\log (p^2 + 6p) = \log 7$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] By the equivalence property: $12-t=t+6 \Rightarrow t=3$. \quad Solution: $\{3\}$.
+
+  \item[(b)] $p^2+6p=7 \Rightarrow p^2+6p-7=0 \Rightarrow (p+7)(p-1)=0$.
+  Check $p=-7$: $\log(49-42)=\log 7$ ✓.\quad Check $p=1$: $\log(1+6)=\log 7$ ✓.
+  Solution: $\{-7, 1\}$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Solve each equation. Write the exact solution set. Check for extraneous solutions.
+\begin{enumerate}
+  \item[(a)] $5\log_3 (7 - 5z) + 2 = 17$
+  \medskip
+  \item[(b)] $4\ln (6 - 5t) + 2 = 22$
+  \medskip
+  \item[(c)] $\log_2 w - 3 = -\log_2 (w+2)$
+  \medskip
+  \item[(d)] $\log_4(5x - 13) = 1 + \log_4 (x-2)$
+  \medskip
+  \item[(e)] $\ln x + \ln (x-3) = \ln (5x - 7)$
+  \medskip
+  \item[(f)] $\log_3 (n-5) + \log_3 (n+3) = 2$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)]
+  \begin{align*}
+    5\log_3(7-5z) &= 15 \implies \log_3(7-5z)=3 \implies 7-5z=27 \implies \boxed{z=-4}
+  \end{align*}
+
+  \item[(b)]
+  \begin{align*}
+    4\ln(6-5t) = 20 \implies \ln(6-5t)=5 \implies 6-5t=e^5 \implies \boxed{t=\frac{6-e^5}{5}}
+  \end{align*}
+
+  \item[(c)]
+  \begin{align*}
+    \log_2 w + \log_2(w+2) &= 3 \implies \log_2[w(w+2)]=3 \implies w(w+2)=8\\
+    w^2+2w-8&=0 \implies (w+4)(w-2)=0
+  \end{align*}
+  Check $w=-4$: $\log_2(-4)$ undefined — extraneous.\quad Check $w=2$: $\log_2 2 - 3 = -2 = -\log_2 4$ ✓.\\
+  Solution: $\{2\}$.
+
+  \item[(d)]
+  \begin{align*}
+    \log_4\!\left(\frac{5x-13}{x-2}\right) = 1 \implies \frac{5x-13}{x-2}=4 \implies 5x-13=4x-8 \implies \boxed{x=5}
+  \end{align*}
+  Check: $\log_4(12)$ and $1+\log_4(3)$ — verify $\log_4(12)=\log_4(4\cdot 3)=1+\log_4 3$ ✓.
+
+  \item[(e)]
+  \begin{align*}
+    \ln[x(x-3)] = \ln(5x-7) \implies x^2-3x=5x-7 \implies x^2-8x+7=0 \implies (x-7)(x-1)=0
+  \end{align*}
+  Check $x=1$: $\ln(1-3)$ undefined — extraneous.\quad Check $x=7$: $\ln 7+\ln 4=\ln 28$ ✓.\\
+  Solution: $\{7\}$.
+
+  \item[(f)]
+  \begin{align*}
+    \log_3[(n-5)(n+3)]=2 \implies (n-5)(n+3)=9 \implies n^2-2n-24=0 \implies (n-6)(n+4)=0
+  \end{align*}
+  Check $n=-4$: $\log_3(-9)$ undefined — extraneous.\quad Check $n=6$: $\log_3 1+\log_3 9=0+2=2$ ✓.\\
+  Solution: $\{6\}$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+On August 31st, 1854, an epidemic of cholera was discovered in London from a contaminated community water pump. The cumulative number of deaths $D(t)$ at time $t$ days after August 31st is given by:
+$$D(t) = 91 + 160\ln(t+1).$$
+\begin{enumerate}
+  \item[(a)] Find the cumulative number of deaths by September 15th. Round to the nearest integer.
+  \medskip
+  \item[(b)] Approximately how many days after August 31st did the cumulative deaths reach 600?
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] September 15th is $t=15$ days after August 31st:
+  $$D(15) = 91 + 160\ln(16) \approx \mathbf{535}\text{ deaths.}$$
+
+  \item[(b)] Set $D(t)=600$:
+  \begin{align*}
+    600 &= 91+160\ln(t+1)\\
+    509 &= 160\ln(t+1)\\
+    t+1 &= e^{509/160}\\
+    t &= e^{509/160}-1 \approx \mathbf{23}\text{ days.}
+  \end{align*}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Solve each equation. Write the exact solution set.
+\begin{enumerate}
+  \item[(a)] $\log_8 |3-x| = \log_8 5$
+  \medskip
+  \item[(b)] $\log_2 (\log_4 x) = -1$
+  \medskip
+  \item[(c)] $(\ln x)^2 + \ln x^3 = -2$ \quad {\small (Hint: Let $u = \ln x$.)}
+  \medskip
+  \item[(d)] $\log_5 \sqrt{6c+5} + \log_5 \sqrt{c} = 1$ \quad {\small (Hint: Combine logs first.)}
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $|3-x|=5 \Rightarrow 3-x=5$ or $3-x=-5$.\\
+  Solutions: $\boxed{x=-2}$ and $\boxed{x=8}$.
+
+  \item[(b)]
+  \begin{align*}
+    \log_4 x = 2^{-1} = \tfrac{1}{2} \implies x = 4^{1/2} = \boxed{2}
+  \end{align*}
+
+  \item[(c)] Using $\ln x^3 = 3\ln x$, let $u=\ln x$:
+  \begin{align*}
+    u^2+3u+2=0 \implies (u+2)(u+1)=0
+  \end{align*}
+  $u=-2 \Rightarrow \ln x=-2 \Rightarrow x=e^{-2}$;\quad $u=-1 \Rightarrow \ln x=-1 \Rightarrow x=e^{-1}$.\\
+  Solutions: $\boxed{x=e^{-2}}$ and $\boxed{x=e^{-1}}$.
+
+  \item[(d)]
+  \begin{align*}
+    \log_5\sqrt{c(6c+5)} = 1 \implies c(6c+5)=25 \implies 6c^2+5c-25=0 \implies (3c-5)(2c+5)=0
+  \end{align*}
+  Check $c=-\tfrac{5}{2}$: $\log_5\sqrt{-\tfrac{5}{2}}$ undefined — extraneous.\\
+  Solution: $\boxed{c=\dfrac{5}{3}}$.
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
