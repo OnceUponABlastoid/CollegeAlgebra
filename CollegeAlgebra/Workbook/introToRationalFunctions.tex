@@ -1,8 +1,277 @@
 \documentclass{ximera}
-\title{Intro to Rational Functions}
+\title{Introduction to Rational Functions}
+
+\outcome{Identify vertical and horizontal asymptotes of a rational function.}
+\outcome{Determine end behavior and limits of a rational function.}
+\outcome{Find all intercepts and asymptotes of a rational function.}
+\outcome{Determine whether a graph crosses its horizontal asymptote.}
+\outcome{Find slant asymptotes using polynomial division.}
+\outcome{Write a rational function satisfying given properties.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Identify vertical and horizontal asymptotes of a rational function.
+  \item Determine end behavior of a rational function.
+  \item Find all intercepts and asymptotes, and determine whether the graph crosses the horizontal asymptote.
+  \item Find slant asymptotes using polynomial division.
+  \item Write a rational function satisfying given properties.
+\end{itemize}
+\medskip
+
+\noindent\textbf{Note:} Before finding $x$-intercepts and vertical asymptotes, always simplify by canceling any common factors between the numerator and denominator first.
+
+\bigskip
+\section*{Quick Check}
+
+\begin{problem}
+Select the rational function that has exactly \emph{one} vertical asymptote.
+\begin{hint}
+First simplify (cancel common factors), then set the denominator equal to zero. Count the distinct real solutions.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$r(x)=\dfrac{x^2-16}{x+4}$}
+  \choice{$f(x)=\dfrac{x+4}{x^2+16}$}
+  \choice[correct]{$h(x)=\dfrac{3x^3-x^2+x}{x^2+6x+9}$}
+  \choice{$g(x)=\dfrac{3x-2}{x^2-5x+6}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Select the rational function with an $x$-intercept at $(-2,0)$.
+\begin{hint}
+An $x$-intercept requires the numerator to equal zero (with the denominator nonzero) after simplifying. Check which function has $x=-2$ as a zero of the simplified numerator.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$f(x)=\dfrac{x^2+4}{x+2}$}
+  \choice[correct]{$g(x)=\dfrac{x^2-5x-14}{9-x^2}$}
+  \choice{$r(x)=\dfrac{3x+6}{x^2-4}$}
+  \choice{Not listed}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which function has at least one vertical asymptote, but \emph{no} horizontal asymptote?
+\begin{hint}
+A rational function has a horizontal asymptote only when the degree of the numerator is less than or equal to the degree of the denominator. If the numerator degree is strictly greater, there is no horizontal asymptote.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$p(x)=\dfrac{-2(x-5)}{3(x-4)(x+1)}$}
+  \choice{$f(x)=\dfrac{x^3+1}{x^2+9}$}
+  \choice{$b(x)=\dfrac{2x^2-8}{2+9x-5x^2}$}
+  \choice[correct]{$r(x)=\dfrac{x^3-2x^2}{3(x-1)^2}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Given $\displaystyle f(x)=\frac{3(x+1)^2(2x-5)}{(3-x)(x-4)(x+2)}$, what do the values of $f(x)$ approach as $x\to\infty$?
+\begin{hint}
+Find the horizontal asymptote: compare the leading terms of the numerator and denominator. The numerator has leading term $3 \cdot x^2 \cdot 2x = 6x^3$; the denominator has leading term $(-x)(x)(x) = -x^3$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$0$}
+  \choice{$\infty$}
+  \choice[correct]{$-6$}
+  \choice{$3$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which of the following rational functions has a vertical asymptote but \emph{no hole} in its graph?
+\begin{hint}
+A hole occurs when a factor cancels from both numerator and denominator. A vertical asymptote occurs at a zero of the denominator that does \emph{not} cancel.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$f(x)=\dfrac{x^2-4}{x-2}$}
+  \choice{$g(x)=\dfrac{x+1}{x^2-1}$}
+  \choice{$h(x)=\dfrac{x}{x^2-x}$}
+  \choice{$r(x)=\dfrac{x+3}{x^2-9}$}
+  \choice[correct]{$p(x)=\dfrac{x^2+1}{x-2}$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+The graph of $f$ (from the handout) has a vertical asymptote at $x=-3$ and a horizontal asymptote at $y=-2$. Use the graph to complete each statement.
+\begin{enumerate}
+  \item[(a)] As $x\to -\infty$, $f(x) \to$ \underline{\hspace{0.75in}}.
+  \item[(b)] As $x\to -3^-$, $f(x) \to$ \underline{\hspace{0.75in}}.
+  \item[(c)] As $x\to -3^+$, $f(x) \to$ \underline{\hspace{0.75in}}.
+  \item[(d)] As $x\to \infty$, $f(x) \to$ \underline{\hspace{0.75in}}.
+  \item[(e)] $f$ is increasing over: \underline{\hspace{1.5in}}.
+  \item[(f)] $f$ is decreasing over: \underline{\hspace{1.5in}}.
+  \item[(g)] Domain: \underline{\hspace{2in}}.
+  \item[(h)] Range: \underline{\hspace{2in}}.
+  \item[(i)] Vertical asymptote: \underline{\hspace{1in}}.
+  \item[(j)] Horizontal asymptote: \underline{\hspace{1in}}.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $-2$
+  \item[(b)] $+\infty$
+  \item[(c)] $-\infty$
+  \item[(d)] $-2$
+  \item[(e)] $(-\infty,-3)$ and $(-3,\infty)$
+  \item[(f)] None (N/A)
+  \item[(g)] $(-\infty,-3)\cup(-3,\infty)$
+  \item[(h)] $(-\infty,-2)\cup(-2,\infty)$
+  \item[(i)] $x=-3$
+  \item[(j)] $y=-2$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Determine the vertical asymptotes of each function (if any).
+\begin{enumerate}
+  \item[(a)] $\ds f(x) = \dfrac{x}{x-3}$
+  \medskip
+  \item[(b)] $\ds w(t) = \dfrac{t+4}{3t^2+5t-8}$
+  \medskip
+  \item[(c)] $\ds g(z) = \dfrac{10}{z^2+7}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] No common factors. Set $x-3=0 \Rightarrow x=3$. Vertical asymptote: $x=3$.
+
+  \item[(b)] Factor the denominator: $3t^2+5t-8 = (3t+8)(t-1)$. No common factors with $t+4$. Set each factor equal to zero: $t=-\tfrac{8}{3}$ and $t=1$. Vertical asymptotes: $t=-\dfrac{8}{3}$ and $t=1$.
+
+  \item[(c)] $z^2+7=0$ has no real solutions (since $z^2 \geq 0$ implies $z^2+7 \geq 7 > 0$). No vertical asymptotes.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+The graph of $\ds f(x) = \dfrac{x^2+7x-3}{6x^4+2}$ behaves like which function for large values of $|x|$?
+\begin{enumerate}
+  \item[(a)] $y = \dfrac{x^2}{6x^2}$
+  \item[(b)] $y = 0$
+  \item[(c)] $y = -\dfrac{3}{2}$
+  \item[(d)] $y = \dfrac{1}{6}x - \dfrac{3}{2}$
+\end{enumerate}
+
+\begin{solution}
+The degree of the denominator (4) is greater than the degree of the numerator (2), so the horizontal asymptote is $y=0$. The answer is \textbf{(b)}.
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Identify the horizontal asymptote of each function, or state that none exists.
+\begin{enumerate}
+  \item[(a)] $\ds q(x) = \dfrac{7}{x^2+2x+1}$
+  \medskip
+  \item[(b)] $\ds f(k) = \dfrac{2k^3-6k+1}{k-3}$
+  \medskip
+  \item[(c)] $\ds g(t) = \dfrac{6t^2-3t+3}{2t^2-t+6}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Degree of denominator (2) $>$ degree of numerator (0). Horizontal asymptote: $y=0$.
+
+  \item[(b)] Degree of numerator (3) $>$ degree of denominator (1). \textbf{No horizontal asymptote.}
+
+  \item[(c)] Equal degrees. Horizontal asymptote is the ratio of leading coefficients: $y = \dfrac{6}{2} = 3$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Write an equation of the slant asymptote of $\ds f(x) = \dfrac{x^2+5x+2}{x+3}$.
+
+\begin{solution}
+The numerator degree (2) is exactly one more than the denominator degree (1), so a slant asymptote exists. Divide using synthetic division with $c=-3$ on coefficients $[1,\;5,\;2]$:
+$$-3 \mid 1 \quad 5 \quad 2$$
+$$\phantom{-3\mid}\underline{\phantom{1}\quad -3 \quad -6}$$
+$$\phantom{-3\mid}1 \quad 2 \quad -4$$
+Quotient $Q(x) = x+2$, Remainder $R = -4$. The slant asymptote is $y = x+2$.
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+For each function, find all $x$- and $y$-intercepts and all asymptotes. If a horizontal asymptote exists, find any point(s) where the graph crosses it.
+\begin{enumerate}
+  \item[(a)] $\ds f(x) = \dfrac{(2x-3)(x+1)}{(x-1)(x+2)}$
+  \medskip
+  \item[(b)] $\ds g(x) = \dfrac{-4x^2+5x-1}{x^2+2}$
+  \medskip
+  \item[(c)] $\ds h(x) = \dfrac{3x-4}{x^3+2x^2-9x-18}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $f(x) = \dfrac{(2x-3)(x+1)}{(x-1)(x+2)}$ — no common factors.
+  \begin{itemize}
+    \item $x$-intercepts: $x = \tfrac{3}{2}$ and $x = -1$. Points: $\left(\tfrac{3}{2},0\right)$ and $(-1,0)$.
+    \item $y$-intercept: $f(0) = \dfrac{(-3)(1)}{(-1)(2)} = \dfrac{3}{2}$. Point: $\left(0,\tfrac{3}{2}\right)$.
+    \item Vertical asymptotes: $x=1$ and $x=-2$.
+    \item Horizontal asymptote: equal degrees, ratio of leading coefficients $= \tfrac{2}{1} = 2$; so $y=2$.
+    \item Crosses $y=2$: Set $\dfrac{(2x-3)(x+1)}{(x-1)(x+2)}=2$:
+    \begin{align*}
+      2(x-1)(x+2) &= (2x-3)(x+1)\\
+      2x^2+2x-4 &= 2x^2-x-3 \implies 3x=1 \implies x=\tfrac{1}{3}
+    \end{align*}
+    Crosses HA at $\left(\tfrac{1}{3},2\right)$.
+  \end{itemize}
+
+  \item[(b)] $g(x) = \dfrac{-(4x-1)(x-1)}{x^2+2}$ — denominator $x^2+2>0$ always, no vertical asymptotes.
+  \begin{itemize}
+    \item $x$-intercepts: $x = \tfrac{1}{4}$ and $x = 1$. Points: $\left(\tfrac{1}{4},0\right)$ and $(1,0)$.
+    \item $y$-intercept: $g(0) = \dfrac{-1}{2}$. Point: $\left(0,-\tfrac{1}{2}\right)$.
+    \item Vertical asymptotes: None.
+    \item Horizontal asymptote: equal degrees, ratio $= \tfrac{-4}{1} = -4$; so $y=-4$.
+    \item Crosses $y=-4$: Set $\dfrac{-4x^2+5x-1}{x^2+2}=-4$:
+    \begin{align*}
+      -4x^2+5x-1 &= -4x^2-8 \implies 5x = -7 \implies x = -\tfrac{7}{5}
+    \end{align*}
+    Crosses HA at $\left(-\tfrac{7}{5},-4\right)$.
+  \end{itemize}
+
+  \item[(c)] Factor the denominator: $x^3+2x^2-9x-18 = x^2(x+2)-9(x+2) = (x^2-9)(x+2) = (x-3)(x+3)(x+2)$. No common factors with $3x-4$.
+  \begin{itemize}
+    \item $x$-intercept: $3x-4=0 \Rightarrow x=\tfrac{4}{3}$. Point: $\left(\tfrac{4}{3},0\right)$.
+    \item $y$-intercept: $h(0) = \dfrac{-4}{-18} = \dfrac{2}{9}$. Point: $\left(0,\tfrac{2}{9}\right)$.
+    \item Vertical asymptotes: $x=3$, $x=-3$, $x=-2$.
+    \item Horizontal asymptote: degree of numerator (1) $<$ degree of denominator (3); so $y=0$.
+    \item Crosses $y=0$: this is exactly the $x$-intercept, $\left(\tfrac{4}{3},0\right)$.
+  \end{itemize}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Write a rational function $f(x)$ satisfying each set of conditions. (Answers may vary.)
+\begin{enumerate}
+  \item[(a)] $x$-intercepts: $(-4,0)$ and $(2,0)$;\quad vertical asymptote: $x=1$;\quad horizontal asymptote: $y=2$.
+  \medskip
+  \item[(b)] $x$-intercept: $\left(\tfrac{3}{2},0\right)$;\quad $y$-intercept: $(0,3)$;\quad vertical asymptotes: $x=-2$ and $x=5$;\quad horizontal asymptote: $y=0$.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Use the $x$-intercepts for numerator factors and the VA for denominator factor. To get $y=2$ as the HA with equal degrees, use a double factor in the denominator:
+  $$f(x) = \frac{2(x+4)(x-2)}{(x-1)^2}$$
+
+  \item[(b)] Use the $x$-intercept and VA's for factors. HA $y=0$ means degree of numerator $<$ degree of denominator (already satisfied). Use the $y$-intercept to find the leading coefficient $a$:
+  $$f(x) = \frac{a(2x-3)}{(x+2)(x-5)}; \quad f(0) = \frac{-3a}{-10} = \frac{3a}{10} = 3 \implies a=10$$
+  $$f(x) = \frac{10(2x-3)}{(x+2)(x-5)}$$
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
