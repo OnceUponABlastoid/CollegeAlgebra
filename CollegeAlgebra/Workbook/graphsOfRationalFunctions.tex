@@ -1,8 +1,221 @@
 \documentclass{ximera}
 \title{Graphs of Rational Functions}
+
+\outcome{Read asymptotes, intercepts, end behavior, and multiplicities from a graph of a rational function.}
+\outcome{Identify a possible formula for a rational function from its graph.}
+\outcome{Sketch a rational function using intercepts, asymptotes, and sign analysis.}
+\outcome{Determine where a rational function crosses its horizontal asymptote.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Read key features (asymptotes, intercepts, end behavior, multiplicities) from a graph of a rational function.
+  \item Identify a possible formula for a rational function from its graph.
+  \item Sketch a rational function using intercepts, asymptotes, and sign analysis.
+  \item Determine where a rational function crosses its horizontal asymptote.
+\end{itemize}
+\medskip
+
+\section*{Quick Check}
+
+Use the graph of $f(x)$ below to answer the following five questions.
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+\begin{axis}[
+  axis lines=middle,
+  xmin=-7, xmax=9,
+  ymin=-7, ymax=9,
+  xtick={-6,...,8},
+  ytick={-6,-4,...,8},
+  grid=major,
+  width=12cm, height=8cm,
+  samples=100,
+  xlabel={$x$}, ylabel={$f(x)$}
+]
+\addplot[latex-latex, very thick, blue, domain=-6.5:-1.54] {(3*(x-1)^2*(x+2))/((x+1)^2*(x-3))};
+\addplot[latex-latex, very thick, blue, domain=-0.36:2.6] {(3*(x-1)^2*(x+2))/((x+1)^2*(x-3))};
+\addplot[latex-latex, very thick, blue, domain=3.6:8.5] {(3*(x-1)^2*(x+2))/((x+1)^2*(x-3))};
+\addplot[latex-latex, very thick, blue, dashed, domain=-6.75:8.75] {3};
+\draw[latex-latex, very thick, blue, dashed] (-1,-6.75) -- (-1,8.75);
+\draw[latex-latex, very thick, blue, dashed] (3,-6.75) -- (3,8.75);
+\addplot[only marks, mark=*, mark options={fill=blue}, blue] coordinates {(-2,0) (1,0) (0,-2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{problem}
+Which of the following is \emph{not} a factor of $f(x)$?
+\begin{hint}
+Identify the $x$-intercepts and asymptotes from the graph. Numerator factors come from zeros; denominator factors come from vertical asymptotes.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$(x+2)$}
+  \choice[correct]{$(x-2)$}
+  \choice{$(x-1)$}
+  \choice{$(x-3)$}
+  \choice{$(x+1)$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Fill in the blank: for $f(x)$, the degree of the numerator is \underline{\hspace{0.75in}} the degree of the denominator.
+\begin{hint}
+The horizontal asymptote $y=3$ (not zero, not missing) means the degrees are equal, with the ratio of leading coefficients equal to 3.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{equal to}
+  \choice{less than}
+  \choice{greater than}
+  \choice{cannot be determined}
+  \choice{not listed}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which of the following is a possible factor of the \emph{denominator} of $f(x)$?
+\begin{hint}
+Vertical asymptotes occur at zeros of the denominator. Look at the behavior near the asymptote: does the graph go to the same side on both ($\Rightarrow$ even multiplicity) or opposite sides ($\Rightarrow$ odd multiplicity)?
+\end{hint}
+\begin{multipleChoice}
+  \choice{$(x-3)^2$}
+  \choice{$(x+2)$}
+  \choice[correct]{$(x+1)^2$}
+  \choice{$(x-1)^2$}
+  \choice{$(x-2)$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which of the following is a possible formula for $f(x)$?
+\begin{hint}
+Use the $x$-intercepts, vertical asymptotes, multiplicities, and horizontal asymptote $y=3$ to determine the correct formula.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$f(x)=\dfrac{3(x+1)^2(x-3)}{(x+2)(x-1)^2}$}
+  \choice{$f(x)=\dfrac{3(x-1)^2(x-3)}{(x+2)(x+1)^2}$}
+  \choice[correct]{$f(x)=\dfrac{3(x-1)^2(x+2)}{(x+1)^2(x-3)}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which best describes the end behavior of $f$?
+\begin{hint}
+Identify the horizontal asymptote from the dashed line on the graph.
+\end{hint}
+\begin{multipleChoice}
+  \choice{As $x\to\pm\infty$, $f(x)\to 0$}
+  \choice{As $x\to\pm\infty$, $f(x)\to \pm\infty$}
+  \choice[correct]{As $x\to\pm\infty$, $f(x)\to 3$}
+  \choice{As $x\to\pm\infty$, $f(x)\to -3$}
+  \choice{As $x\to\pm\infty$, $f(x)\to 1$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Sketch a graph of a rational function satisfying all of the following properties simultaneously. (Answers may vary.)
+
+$x$-intercept and $y$-intercept: $(0,0)$;\quad
+vertical asymptotes: $x=-1$ and $x=1$;\quad
+horizontal asymptote: $y=3$;\quad
+symmetric about the $y$-axis;\quad
+passes through $(2,4)$.
+
+\begin{solution}
+Because the function must be symmetric about the $y$-axis, it must be even — so only even powers of $x$ appear. A simple choice:
+$$f(x) = \frac{3x^2}{x^2-1}$$
+\textbf{Check:} $f(-x) = 3(-x)^2/((-x)^2-1) = f(x)$ ✓;\quad $f(0)=0$ ✓;\quad VAs at $x=\pm1$ ✓;\quad HA $y=3$ ✓;\quad $f(2)=12/3=4$ ✓.
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+For each function, find all intercepts, asymptotes, and any crossing of the horizontal asymptote. (Sketch on your handout.)
+\begin{enumerate}
+  \item[(a)] $\ds g(x) = \dfrac{x^3-2x^2}{x^3+3x^2-x-3}$
+  \medskip
+  \item[(b)] $\ds f(x) = \dfrac{2x^2-8}{(x+1)^2}$
+  \medskip
+  \item[(c)] $\ds r(x) = \dfrac{x^3-x^2}{(x+1)(x^2-x-2)}$
+  \medskip
+  \item[(d)] $\ds q(x) = \dfrac{2x-4}{x^2+x-2}$
+  \medskip
+  \item[(e)] $\ds z(x) = \dfrac{4x^2+7x-2}{x^2+4}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $g(x) = \dfrac{x^2(x-2)}{(x-1)(x+1)(x+3)}$
+  \begin{itemize}
+    \item $x$-intercepts: $(0,0)$ (mult 2, touches); $(2,0)$ (mult 1, crosses).
+    \item $y$-intercept: $(0,0)$.
+    \item Vertical asymptotes: $x=1$ (odd), $x=-1$ (odd), $x=-3$ (odd).
+    \item Horizontal asymptote: equal degrees, $y=1$.
+    \item Crosses $y=1$: set $g(x)=1 \Rightarrow x^3+3x^2-x-3 = x^3-2x^2 \Rightarrow 5x^2-x-3=0 \Rightarrow x = \dfrac{1\pm\sqrt{61}}{10}$.\\
+    Crossing points: $\left(\dfrac{1-\sqrt{61}}{10},1\right)\approx(-0.68,1)$ and $\left(\dfrac{1+\sqrt{61}}{10},1\right)\approx(0.88,1)$.
+  \end{itemize}
+
+  \item[(b)] $f(x) = \dfrac{2(x-2)(x+2)}{(x+1)^2}$
+  \begin{itemize}
+    \item $x$-intercepts: $(2,0)$ and $(-2,0)$, each multiplicity 1.
+    \item $y$-intercept: $f(0)=-8$. Point: $(0,-8)$.
+    \item Vertical asymptote: $x=-1$ (even multiplicity).
+    \item Horizontal asymptote: $y=2$.
+    \item Crosses $y=2$: $2(x^2+2x+1)=2x^2-8 \Rightarrow 4x=-10 \Rightarrow x=-2.5$. Point: $(-2.5,\,2)$.
+  \end{itemize}
+
+  \item[(c)] $r(x) = \dfrac{x^2(x-1)}{(x+1)^2(x-2)}$
+  \begin{itemize}
+    \item $x$-intercepts: $(0,0)$ (mult 2, touches); $(1,0)$ (mult 1, crosses).
+    \item $y$-intercept: $(0,0)$.
+    \item Vertical asymptotes: $x=-1$ (even), $x=2$ (odd).
+    \item Horizontal asymptote: $y=1$.
+    \item Crosses $y=1$: $(x+1)(x^2-x-2)=x^3-x^2 \Rightarrow x^2-3x-2=0 \Rightarrow x=\dfrac{3\pm\sqrt{17}}{2}$.\\
+    Points: $\approx(-0.56,1)$ and $\approx(3.56,1)$.
+  \end{itemize}
+
+  \item[(d)] $q(x) = \dfrac{2(x-2)}{(x+2)(x-1)}$
+  \begin{itemize}
+    \item $x$-intercept: $(2,0)$.
+    \item $y$-intercept: $q(0)=\dfrac{-4}{-2}=2$. Point: $(0,2)$.
+    \item Vertical asymptotes: $x=-2$ (odd), $x=1$ (odd).
+    \item Horizontal asymptote: $y=0$.
+    \item Crosses $y=0$ at the $x$-intercept $(2,0)$.
+  \end{itemize}
+
+  \item[(e)] $z(x) = \dfrac{(4x-1)(x+2)}{x^2+4}$ — denominator $x^2+4>0$ always, no VAs.
+  \begin{itemize}
+    \item $x$-intercepts: $\left(\tfrac{1}{4},0\right)$ and $(-2,0)$.
+    \item $y$-intercept: $z(0)=\dfrac{-2}{4}=-\tfrac{1}{2}$. Point: $\left(0,-\tfrac{1}{2}\right)$.
+    \item Vertical asymptotes: None.
+    \item Horizontal asymptote: $y=4$.
+    \item Crosses $y=4$: $4(x^2+4)=4x^2+7x-2 \Rightarrow 16=7x-2 \Rightarrow x=\dfrac{18}{7}$. Point: $\left(\tfrac{18}{7},4\right)$.
+  \end{itemize}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Write a possible rational function $f(x)$ for each graph in the handout. (Ignore vertical scaling.)
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] The graph has $x$-intercepts at $x=-6$ (odd), $x=-3$ (even), $x=1$ (odd), $x=4$ (odd); vertical asymptotes at $x=2$ (odd, so odd multiplicity $\geq3$ to keep degree balance) and $x=-5$ (even). A possible formula:
+  $$f(x) = \frac{(x+6)(x+3)^2(x-1)(x-4)}{(x-2)^3(x+5)^2}$$
+
+  \item[(b)] The graph has $x$-intercepts at $x=-3$ (odd), $x=1$ (even), $x=7$ (odd); vertical asymptotes at $x=0$ (even), $x=-5$ (odd), $x=3$ (odd); negative leading behavior. A possible formula:
+  $$f(x) = \frac{-(x+3)(x-1)^2(x-7)}{x^2(x+5)(x-3)}$$
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
