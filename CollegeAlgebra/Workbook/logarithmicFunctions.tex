@@ -1,8 +1,230 @@
 \documentclass{ximera}
 \title{Logarithmic Functions}
+
+\outcome{Convert between exponential and logarithmic form.}
+\outcome{Evaluate logarithmic expressions without a calculator.}
+\outcome{Determine the domain, range, and asymptote of a logarithmic function.}
+\outcome{Graph logarithmic functions using transformations.}
+\outcome{Solve applied problems using logarithms.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Convert between exponential and logarithmic form: $\log_b x = y \Longleftrightarrow b^y = x$.
+  \item Evaluate logarithmic expressions without a calculator.
+  \item Determine the domain, range, and vertical asymptote of a logarithmic function.
+  \item Graph logarithmic functions using transformations.
+\end{itemize}
+\medskip
+
+\noindent\textbf{Key facts about $f(x)=\log_b x$} ($b>0$, $b\neq1$): Domain $(0,\infty)$; Range $(-\infty,\infty)$; VA $x=0$; passes through $(\tfrac{1}{b},-1)$, $(1,0)$, $(b,1)$.
+
+\bigskip
+\section*{Quick Check}
+
+\begin{problem}
+Which of the following statements about logarithms is true?
+\begin{hint}
+Use the definition $\log_b x = y \Longleftrightarrow b^y = x$ to check each option.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$\log_2 16 = 8$}
+  \choice{$\log_5 1 = 5$}
+  \choice[correct]{$\log_3 9 = 2$}
+  \choice{$\log_{10} 0 = 1$}
+  \choice{$\log_4(-16) = -2$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which of the following describes a \emph{vertical shift and reflection} of $f(x) = \log_2(x)$?
+\begin{hint}
+A reflection over the $x$-axis multiplies $f$ by $-1$. A vertical shift adds or subtracts a constant from $f$. Look for both.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$f(x) = \log_2(x-3)$}
+  \choice{$f(x) = \log_2(-x)$}
+  \choice[correct]{$f(x) = -\log_2(x)+2$}
+  \choice{$f(x) = \log_2(2x)$}
+  \choice{$f(x) = \log_2(x+2)+1$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+What are the domain and range of $f(x) = \log(x-1)$?
+\begin{hint}
+The argument of any logarithm must be strictly positive: $x-1>0$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{Domain: $x>0$;\quad Range: $(0,\infty)$}
+  \choice[correct]{Domain: $x>1$;\quad Range: $(-\infty,\infty)$}
+  \choice{Domain: $x\geq1$;\quad Range: $(0,\infty)$}
+  \choice{Domain: $x<1$;\quad Range: $(-\infty,\infty)$}
+  \choice{Domain: $x>1$;\quad Range: $(0,\infty)$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Which of the following is equivalent to $\log_b(x) = y$?
+\begin{hint}
+Recall the definition of a logarithm: $\log_b x = y$ means ``$b$ raised to the power $y$ equals $x$''.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$b^x = y$}
+  \choice{$x^y = b$}
+  \choice[correct]{$b^y = x$}
+  \choice{$y^b = x$}
+  \choice{$x^b = y$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graph below has the form $f(x) = \log_b(x-a)$. What are the values of $a$ and $b$?
+
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+\begin{axis}[
+  axis lines=middle,
+  xmin=-2, xmax=6,
+  ymin=-3, ymax=3,
+  xtick={0,1,...,6},
+  ytick={-3,-2,...,3},
+  grid=both,
+  xlabel={$x$}, ylabel={$f(x)$}
+]
+\addplot[very thick, blue, domain=1.001:6, samples=200] {log2(x-1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{hint}
+The vertical asymptote is at $x=a$. Check which value of $b$ makes the graph pass through the correct points (e.g., $(a+1,0)$ and $(a+b,1)$).
+\end{hint}
+\begin{multipleChoice}
+  \choice{$a=0$, $b=10$}
+  \choice[correct]{$a=1$, $b=2$}
+  \choice{$a=-1$, $b=10$}
+  \choice{$a=2$, $b=e$}
+  \choice{$a=1$, $b=10$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Convert each statement to the other form ($\log_b x = y \Longleftrightarrow b^y = x$).
+\begin{enumerate}
+  \item[(a)] $\log_4 64 = 3$
+  \item[(b)] $4^{-2} = \dfrac{1}{16}$
+  \item[(c)] $\log_2 \dfrac{1}{4} = -2$
+  \item[(d)] $\ln 1 = 0$
+  \item[(e)] $3^3 = 27$
+  \item[(f)] $\left(\dfrac{2}{3}\right)^2 = \dfrac{4}{9}$
+  \item[(g)] $(2x)^{3w-1} = \dfrac{z}{12}$
+  \item[(h)] $\log_{x-1}(0.5t) = a$
+  \item[(i)] $\log_{3b}(4x-1) = -y+1$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $4^3 = 64$
+  \item[(b)] $\log_4\!\left(\tfrac{1}{16}\right) = -2$
+  \item[(c)] $2^{-2} = \tfrac{1}{4}$
+  \item[(d)] $e^0 = 1$
+  \item[(e)] $\log_3 27 = 3$
+  \item[(f)] $\log_{2/3}\!\left(\tfrac{4}{9}\right) = 2$
+  \item[(g)] $\log_{2x}\!\left(\tfrac{z}{12}\right) = 3w-1$
+  \item[(h)] $(x-1)^a = 0.5t$
+  \item[(i)] $(3b)^{-y+1} = 4x-1$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Evaluate without a calculator.
+\begin{enumerate}
+  \item[(a)] $\ln e^2$
+  \item[(b)] $\log_3 27$
+  \item[(c)] $\log_4 \dfrac{1}{2}$
+  \item[(d)] $\log_9 \sqrt{3}$
+  \item[(e)] $\ln \dfrac{1}{e^3}$
+  \item[(f)] $\log_{1/4} 64$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $\ln e^2 = 2$ (since $\log_b b^x = x$).
+  \item[(b)] $\log_3 27 = \log_3 3^3 = 3$.
+  \item[(c)] Let $x=\log_4\tfrac{1}{2}$. Then $4^x=\tfrac{1}{2}$: $(2^2)^x=2^{-1}\Rightarrow 2x=-1\Rightarrow x=-\tfrac{1}{2}$.
+  \item[(d)] Let $x=\log_9\sqrt{3}$. Then $9^x=3^{1/2}$: $(3^2)^x=3^{1/2}\Rightarrow 2x=\tfrac{1}{2}\Rightarrow x=\tfrac{1}{4}$.
+  \item[(e)] $\ln\tfrac{1}{e^3}=\ln e^{-3}=-3$.
+  \item[(f)] Let $x=\log_{1/4}64$. Then $\left(\tfrac{1}{4}\right)^x=64$: $4^{-x}=4^3\Rightarrow x=-3$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+For each function: describe the transformations, find the domain and range, and state the vertical asymptote. (Sketch on your handout.)
+\begin{enumerate}
+  \item[(a)] $f(x) = \log_2(x-2)-1$
+  \medskip
+  \item[(b)] $g(x) = -\ln(x+2)$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Parent: $\log_2 x$. Transformations: shift right 2, shift down 1.
+  Domain: $(2,\infty)$;\quad Range: $(-\infty,\infty)$;\quad VA: $x=2$.
+
+  \item[(b)] Parent: $\ln x$. Transformations: shift left 2, reflect over the $x$-axis.
+  Domain: $(-2,\infty)$;\quad Range: $(-\infty,\infty)$;\quad VA: $x=-2$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Find the domain of each function. Express your answer in interval notation.
+\begin{enumerate}
+  \item[(a)] $h(x) = \log_2(2x+7)$
+  \medskip
+  \item[(b)] $f(x) = \ln(x^2-16)$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Need $2x+7>0 \Rightarrow x>-\tfrac{7}{2}$. Domain: $\left(-\dfrac{7}{2},\infty\right)$.
+  \item[(b)] Need $x^2-16>0 \Rightarrow (x-4)(x+4)>0 \Rightarrow x<-4$ or $x>4$. Domain: $(-\infty,-4)\cup(4,\infty)$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+The magnitude of an earthquake is $M = \log\!\left(\dfrac{I}{I_0}\right)$, where $I_0$ is a reference intensity. An earthquake's intensity is originally reported as $10^{5.4}I_0$ and later revised to $10^{5.8}I_0$.
+\begin{enumerate}
+  \item[(a)] Find the magnitude using the original intensity.
+  \item[(b)] Find the magnitude using the revised intensity.
+  \item[(c)] Solve $M = \log\!\left(\dfrac{I}{I_0}\right)$ for $I$.
+  \item[(d)] How many times more intense was the earthquake than originally thought? Round to 1 decimal place.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $M = \log\!\left(\dfrac{10^{5.4}I_0}{I_0}\right) = \log(10^{5.4}) = 5.4$.
+  \item[(b)] $M = \log(10^{5.8}) = 5.8$.
+  \item[(c)] $10^M = \dfrac{I}{I_0} \Rightarrow I = 10^M\cdot I_0$.
+  \item[(d)] $\dfrac{I_{\text{revised}}}{I_{\text{original}}} = \dfrac{10^{5.8}}{10^{5.4}} = 10^{0.4} \approx \mathbf{2.5}$ times as intense.
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
