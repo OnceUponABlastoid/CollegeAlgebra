@@ -1,8 +1,201 @@
 \documentclass{ximera}
-\title{Systems of Linear Equations in 2 Variables}
+\title{Systems of Linear Equations in Two Variables}
+
+\outcome{Solve systems of linear equations by substitution and elimination.}
+\outcome{Classify systems as consistent, inconsistent, or dependent.}
+\outcome{Set up and solve systems of equations from word problems.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Solve systems of linear equations by substitution and elimination.
+  \item Classify systems as consistent (one solution), inconsistent (no solution), or dependent (infinitely many solutions).
+  \item Set up and solve systems of equations from word problems.
+\end{itemize}
+\medskip
+
+\section*{Quick Check}
+
+\begin{problem}
+Amara buys 3 notebooks and 2 pens for \$8. Jack buys 4 notebooks and 1 pen for \$9. Let $x$ be the price of a notebook and $y$ the price of a pen. Which system of equations models this situation?
+\begin{hint}
+Translate each purchase into an equation of the form $(\text{price of notebook})\cdot(\text{qty}) + (\text{price of pen})\cdot(\text{qty}) = \text{total}$.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$\begin{cases} 3x + 2y = 8 \\ 4x + y = 9 \end{cases}$}
+  \choice{$\begin{cases} 3x + 2y = 9 \\ 4x + y = 8 \end{cases}$}
+  \choice{$\begin{cases} 2x + 3y = 8 \\ x + 4y = 9 \end{cases}$}
+  \choice{$\begin{cases} x + y = 8 \\ x + y = 9 \end{cases}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graph below shows two lines that intersect at a single point.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\begin{axis}[
+  axis lines=middle,
+  xmin=-5, xmax=5,
+  ymin=-5, ymax=5,
+  xtick={-4,-2,0,2,4},
+  ytick={-4,-2,0,2,4},
+  grid=both,
+  width=7cm, height=7cm,
+  xlabel={$x$}, ylabel={$y$}
+]
+\addplot[domain=-5:5, very thick, blue] {2*x + 1};
+\addplot[domain=-5:5, very thick, red] {-0.5*x + 3.5};
+\addplot[only marks, mark=*, mark size=3pt] coordinates {(1,3)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Which system of equations best matches the graph?
+\begin{hint}
+Read the slope and $y$-intercept of each line. The intersection point should satisfy both equations.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$\begin{cases} y = -0.5x + 3 \\ y = -0.5x + 5 \end{cases}$}
+  \choice{$\begin{cases} y = 2x + 1 \\ 2y = 4x + 2 \end{cases}$}
+  \choice{$\begin{cases} y = 2x + 1 \\ y = 2x - 4 \end{cases}$}
+  \choice[correct]{$\begin{cases} y = 2x + 1 \\ y = -0.5x + 3.5 \end{cases}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Two workers, Alex and Jamie, have different hourly wages. The average of their wages is \$18, and the difference between their wages is \$6. What are the values of Alex's wage $x$ and Jamie's wage $y$?
+\begin{hint}
+Write two equations: one for the average and one for the difference, then solve the system.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$x = 15$, $y = 21$}
+  \choice{$x = 12$, $y = 24$}
+  \choice{$x = 16$, $y = 20$}
+  \choice{$x = 14$, $y = 22$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+You graph two equations and discover they form the same line. Which of the following systems could correspond to that graph?
+\begin{hint}
+A dependent system has equations that are multiples of each other, resulting in the same line.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$\begin{cases} y = 2x + 1 \\ y = 2x + 3 \end{cases}$}
+  \choice[correct]{$\begin{cases} 2x - y = 4 \\ 4x - 2y = 8 \end{cases}$}
+  \choice{$\begin{cases} y = -x + 2 \\ y = x + 2 \end{cases}$}
+  \choice{$\begin{cases} y = 2x + 1 \\ y = -2x + 1 \end{cases}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+You are comparing two cell phone plans: Plan A charges \$30/month plus \$0.10 per text; Plan B charges \$20/month plus \$0.20 per text. Let $x$ be the number of texts and $y$ the total cost. Which system correctly models both plans?
+\begin{hint}
+Translate the monthly fee and per-text cost into a linear equation for each plan.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$\begin{cases} y = 30 + 0.1x \\ y = 20 + 0.2x \end{cases}$}
+  \choice{$\begin{cases} y = 0.1x - 30 \\ y = 0.2x - 20 \end{cases}$}
+  \choice{$\begin{cases} y = 0.1x + 20 \\ y = 0.2x + 30 \end{cases}$}
+  \choice{$\begin{cases} y = 0.1x \\ y = 0.2x \end{cases}$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Solve the following systems using substitution or elimination. If the system does not have a unique solution, state whether it is \textbf{inconsistent} or \textbf{dependent}.
+\begin{enumerate}
+  \item[(a)] $\ds\begin{cases} 5(x+y) = 9+2y\\ 6y - 2 = 10-7x \end{cases}$
+  \medskip
+  \item[(b)] $\ds\begin{cases} 3x+y = 6\\ x+\dfrac{1}{3}y = 2 \end{cases}$
+  \medskip
+  \item[(c)] $\ds\begin{cases} 3x-4y = 9\\ 2x+9y = 2 \end{cases}$
+  \medskip
+  \item[(d)] $\ds\begin{cases} -4x - 8y = 2\\ 2x = 8 - 4y \end{cases}$
+  \medskip
+  \item[(e)] $\ds\begin{cases} 0.25x - 0.04y = 0.24\\ 0.15x - 0.12y = 0.12 \end{cases}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Put into standard form: $\begin{cases} 5x+3y=9 & (E1)\\ 7x+6y=12 & (E2) \end{cases}$
+
+  Eliminate $y$: add $-2(E1)$ to $(E2)$:
+  $$-10x-6y=-18,\quad 7x+6y=12 \implies -3x=-6 \implies x=2$$
+  Back-substitute: $5(2)+3y=9 \implies y=-\dfrac{1}{3}$.\\
+  Solution: $\left(2,-\dfrac{1}{3}\right)$.
+
+  \item[(b)] Substitute $y=6-3x$ from $(E1)$ into $(E2)$: $x+\dfrac{1}{3}(6-3x)=x+2-x=2$. This gives $2=2$ (always true).\\
+  \textbf{Dependent system} — infinitely many solutions. The solutions lie on the line $y=6-3x$, i.e., $(t,\,6-3t)$ for any $t$.
+
+  \item[(c)] Eliminate $x$: add $2(E1)$ to $-3(E2)$: $6x-8y=18$ and $-6x-27y=-6$, giving $-35y=12 \implies y=-\dfrac{12}{35}$.\\
+  Back-substitute: $3x=9+4\!\left(-\dfrac{12}{35}\right)=9-\dfrac{48}{35}=\dfrac{267}{35} \implies x=\dfrac{89}{35}$.\\
+  Solution: $\left(\dfrac{89}{35},-\dfrac{12}{35}\right)$.
+
+  \item[(d)] Standard form: $\begin{cases} -4x-8y=2 \\ 2x+4y=8 \end{cases}$. Add $(E1)$ to $2(E2)$: $0=18$. Contradiction.\\
+  \textbf{Inconsistent system} — no solution.
+
+  \item[(e)] Eliminate $y$: add $-3(E1)$ to $(E2)$: $-0.75x+0.12y=-0.72$ and $0.15x-0.12y=0.12$, giving $-0.6x=-0.6 \implies x=1$.\\
+  Back-substitute: $0.25(1)-0.04y=0.24 \implies y=0.25$.\\
+  Solution: $(1,\,0.25)$.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Set up and solve a system of linear equations for each scenario. Clearly define your variables.
+\begin{enumerate}
+  \item[(a)] Walt wants to mix a 30\% saline solution with a 10\% saline solution to get 200 mL of a 12\% saline solution. How much of each solution should he use?
+  \medskip
+  \item[(b)] A sedan gets 12 mpg in the city and 18 mpg on the highway. Chris drives a total of 420 miles on 26 gallons of gas. How many miles did he drive in the city and on the highway?
+  \medskip
+  \item[(c)] A fishing boat travels 44 mi north with the Gulf Stream current in 2 hr, and 56 mi south against the current in 4 hr. Find the speed of the current and the speed of the boat in still water.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Let $x=$ mL of 30\% solution, $y=$ mL of 10\% solution.
+  $$\begin{cases} x+y=200 \\ 0.30x+0.10y=0.12(200) \end{cases} \implies \begin{cases} x+y=200 \\ 3x+y=240 \end{cases}$$
+  Subtract: $2x=40 \implies x=20$, $y=180$.\\
+  \textbf{Walt should use 20 mL of the 30\% solution and 180 mL of the 10\% solution.}
+
+  \item[(b)] Let $c=$ city miles, $h=$ highway miles.
+  $$\begin{cases} c+h=420 \\ \dfrac{c}{12}+\dfrac{h}{18}=26 \end{cases} \implies \begin{cases} c+h=420 \\ 3c+2h=936 \end{cases}$$
+  Eliminate $h$: add $-2(E1)$ to $(E2)$: $c=96$, $h=324$.\\
+  \textbf{Chris drove 96 city miles and 324 highway miles.}
+
+  \item[(c)] Let $b=$ boat speed in still water, $c=$ current speed.
+  $$\begin{cases} b+c=44/2=22 \\ b-c=56/4=14 \end{cases}$$
+  Add: $2b=36 \implies b=18$; $c=4$.\\
+  \textbf{The current is 4 mph; the boat's speed in still water is 18 mph.}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+\textbf{Challenge.} Solve the system for $x$ and $y$.
+$$\begin{cases} \dfrac{1}{x} + \dfrac{2}{y} = 1\\[6pt] -\dfrac{1}{x}+\dfrac{4}{y} = -7\end{cases}$$
+\begin{hint}
+Let $u = \dfrac{1}{x}$ and $v = \dfrac{1}{y}$ to convert this into a linear system in $u$ and $v$.
+\end{hint}
+
+\begin{solution}
+Substitute $u=\dfrac{1}{x}$, $v=\dfrac{1}{y}$:
+$$\begin{cases} u+2v=1 \\ -u+4v=-7 \end{cases}$$
+Add both equations: $6v=-6 \implies v=-1$. Then $u=1-2(-1)=3$.\\
+Back-substitute: $x=\dfrac{1}{u}=\dfrac{1}{3}$, $y=\dfrac{1}{v}=-1$.\\
+Solution: $\left(\dfrac{1}{3},-1\right)$.
+\end{solution}
+\end{problem}
 
 \end{document}
