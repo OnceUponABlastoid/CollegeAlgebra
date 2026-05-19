@@ -1,8 +1,314 @@
 \documentclass{ximera}
 \title{Analyzing Graphs and Piecewise Functions}
+
+\outcome{Determine whether a function is even, odd, or neither from its formula.}
+\outcome{Identify intervals of increase/decrease and relative extrema from a graph.}
+\outcome{Evaluate and graph piecewise-defined functions.}
+\outcome{Model real-world situations with piecewise functions.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Determine whether a function is even, odd, or neither from its formula.
+  \item Identify intervals of increase/decrease and relative extrema from a graph.
+  \item Evaluate and graph piecewise-defined functions.
+  \item Model real-world situations with piecewise functions.
+\end{itemize}
+\medskip
+
+\section*{Quick Check}
+
+\begin{problem}
+The piecewise graph below is shown.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+  axis lines=middle,
+  xmin=-3, xmax=5,
+  ymin=-3, ymax=4,
+  xtick={-3,...,5},
+  ytick={-3,...,4},
+  grid=both,
+  width=8cm, height=6cm,
+  xlabel={$x$}, ylabel={$f(x)$}
+]
+\addplot[very thick, blue, domain=-2:1] {x+1};
+\addplot[very thick, blue, domain=1:4] {2};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(1,2)};
+\addplot[only marks, mark=*, blue] coordinates {(-2,-1) (4,2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+What is the value of $f(1)$?
+\begin{hint}
+Identify which branch, if any, includes $x = 1$ with a closed dot (filled circle).
+\end{hint}
+\begin{multipleChoice}
+  \choice{$-1$}
+  \choice{$0$}
+  \choice{$1$}
+  \choice{$2$}
+  \choice[correct]{$f(1)$ is undefined}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Let $g(x) = \begin{cases} x^2 - 1 & x < 2 \\ 3x - 5 & x \geq 2 \end{cases}$. What is the domain of $g$?
+\begin{hint}
+The two branches together cover all real values of $x$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x < 2$}
+  \choice{$x \leq 2$}
+  \choice{$x \geq 2$}
+  \choice{$(-\infty, 2]$}
+  \choice[correct]{$(-\infty,\infty)$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graph of $h$ is shown.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+  axis lines=middle,
+  xmin=-4, xmax=4,
+  ymin=-3, ymax=5,
+  xtick={-4,...,4},
+  ytick={-3,...,5},
+  grid=both,
+  width=8cm, height=6cm,
+  xlabel={$x$}, ylabel={$h(x)$}
+]
+\addplot[very thick, red, domain=-4:0] {-x};
+\addplot[very thick, red, domain=0:3] {2*x - 1};
+\addplot[only marks, mark=*, red] coordinates {(0,0)};
+\addplot[only marks, mark=*, mark options={fill=white}, red] coordinates {(0,-1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Which of the following defines $h(x)$?
+\begin{hint}
+Look at the slope of each branch and whether $x=0$ is included (closed) or excluded (open) in each branch.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$\begin{cases} x & x < 0 \\ 2x-1 & x \geq 0 \end{cases}$}
+  \choice[correct]{$\begin{cases} -x & x \leq 0 \\ 2x-1 & x > 0 \end{cases}$}
+  \choice{$\begin{cases} -x & x \leq 0 \\ 2x+1 & x > 0 \end{cases}$}
+  \choice{$\begin{cases} x & x \leq 0 \\ 2x+1 & x > 0 \end{cases}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Let $f(x) = \begin{cases} x+2 & x < -1 \\ 3 & -1 \leq x \leq 2 \\ x-1 & x > 2 \end{cases}$. What is the range of $f$?
+\begin{hint}
+Determine the range of each branch separately, then take the union.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$(-\infty,\infty)$}
+  \choice{$(-\infty,3]$}
+  \choice{$(-\infty,3) \cup (1,\infty)$}
+  \choice[correct]{$(-\infty,1) \cup \{3\} \cup (1,\infty)$}
+  \choice{$(-\infty,1) \cup \{3\}$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+The graph of $f$ is shown and values of $g$ are given in the table.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\begin{axis}[
+  axis lines=middle,
+  xmin=-1, xmax=3,
+  ymin=-2, ymax=4,
+  xtick={-1,...,3},
+  ytick={-2,...,4},
+  grid=both,
+  width=7cm, height=5cm,
+  xlabel={$x$}, ylabel={$f(x)$}
+]
+\addplot[very thick, blue, domain=-1:1] {-x^2 + 2};
+\addplot[only marks, mark=*, blue] coordinates {(1,1)};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(1,0)};
+\end{axis}
+\end{tikzpicture}
+\quad
+\begin{tabular}{c|c}
+$x$ & $g(x)$ \\\hline
+2 & 3 \\
+3 & 2 \\
+4 & 0
+\end{tabular}
+\end{center}
+
+Define $h(x) = \begin{cases} f(x) & x \leq 1 \\ g(x) & x > 1 \end{cases}$. Which gives the correct values of $h(1)$ and $h(3)$?
+\begin{hint}
+Use the branch condition to determine which function to apply for each input.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$h(1) = 0$, $h(3)$ is undefined}
+  \choice{$h(1) = 0$, $h(3) = 3$}
+  \choice{$h(1) = 1$, $h(3) = 3$}
+  \choice{$h(1) = 0$, $h(3) = 2$}
+  \choice[correct]{$h(1) = 1$, $h(3) = 2$}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Determine whether each function is even, odd, or neither. Justify your answer algebraically.
+\begin{enumerate}
+  \item[(a)] $p(x) = -|x| + 12x^{10} + 5$
+  \medskip
+  \item[(b)] $f(x) = \sqrt{81 - (x+2)^2}$
+  \medskip
+  \item[(c)] $\ds g(x) = \dfrac{-\sqrt[3]{x}}{x^2+1}$
+  \medskip
+  \item[(d)] $\ds h(x) = \dfrac{x^3}{2(x-1)^3}$
+  \medskip
+  \item[(e)] $k(x) = -x^8 + |3x|$
+  \medskip
+  \item[(f)] $a(x) = -8x^5 - 6x^3$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $p(-x) = -|-x|+12(-x)^{10}+5 = -|x|+12x^{10}+5 = p(x)$. \textbf{Even.}
+
+  \item[(b)] $f(-x) = \sqrt{81-(-x+2)^2} = \sqrt{81-(x-2)^2} \neq f(x)$ and $\neq -f(x)$. \textbf{Neither.}
+
+  \item[(c)] $g(-x) = \dfrac{-\sqrt[3]{-x}}{(-x)^2+1} = \dfrac{\sqrt[3]{x}}{x^2+1} = -g(x)$. \textbf{Odd.}
+
+  \item[(d)]
+  \begin{align*}
+    h(-x) &= \frac{(-x)^3}{2(-x-1)^3} = \frac{-x^3}{-2(x+1)^3} = \frac{x^3}{2(x+1)^3}
+  \end{align*}
+  This is not equal to $h(x)$ or $-h(x)$ (the denominator differs). \textbf{Neither.}
+
+  \item[(e)] $k(-x) = -(-x)^8+|3(-x)| = -x^8+|3x| = k(x)$. \textbf{Even.}
+
+  \item[(f)] $a(-x) = -8(-x)^5-6(-x)^3 = 8x^5+6x^3 = -(- 8x^5-6x^3) = -a(x)$. \textbf{Odd.}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+For each graph of $f(x)$ below, use interval notation to identify the intervals where $f$ is (i) increasing and (ii) decreasing, and (iii) state the location and value of any relative maxima or minima.
+
+\begin{enumerate}
+  \item[(a)] The graph has relative minima at $(-2,0)$ and $(2,0)$ and a relative maximum at $(0,2)$.
+  \medskip
+  \item[(b)] The graph has a relative maximum at $(-1,2)$ and no relative minimum.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)]
+  \begin{enumerate}
+    \item[(i)] Increasing: $(-2,0)$ and $(2,\infty)$
+    \item[(ii)] Decreasing: $(-\infty,-2)$ and $(0,2)$
+    \item[(iii)] Relative maximum: $(0,2)$; Relative minima: $(-2,0)$ and $(2,0)$
+  \end{enumerate}
+
+  \item[(b)]
+  \begin{enumerate}
+    \item[(i)] Increasing: $(-\infty,-1)$
+    \item[(ii)] Decreasing: $(-1,\infty)$
+    \item[(iii)] No relative minimum; Relative maximum: $(-1,2)$
+  \end{enumerate}
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Evaluate the functions at the indicated values.
+
+\medskip
+\textbf{(a)} $\ds f(x) = \begin{cases} 3, & -4 < x < -1\\ -x, & -1 \leq x < 3\\ \sqrt{x-3}, & x \geq 3 \end{cases}$
+\begin{enumerate}
+  \item[(i)] $f(-3)$
+  \medskip
+  \item[(ii)] $f(-1)$
+  \medskip
+  \item[(iii)] $f(3)$
+  \medskip
+  \item[(iv)] $f(4)$
+\end{enumerate}
+
+\medskip
+\textbf{(b)} $\ds g(x) = \begin{cases} -3x+1, & x < -1 \\ x^2-2, & -1 \leq x < 2\\ 5, & x \geq 2 \end{cases}$
+\begin{enumerate}
+  \item[(i)] $g(-2)$
+  \medskip
+  \item[(ii)] $g(-1)$
+  \medskip
+  \item[(iii)] $g(2)$
+  \medskip
+  \item[(iv)] $g(5)$
+\end{enumerate}
+
+\begin{solution}
+\textbf{(a)}
+\begin{enumerate}
+  \item[(i)] $f(-3) = 3$ (since $-4 < -3 < -1$)
+  \item[(ii)] $f(-1) = -(-1) = 1$ (since $-1 \leq -1 < 3$)
+  \item[(iii)] $f(3) = \sqrt{3-3} = 0$ (since $3 \geq 3$)
+  \item[(iv)] $f(4) = \sqrt{4-3} = 1$ (since $4 \geq 3$)
+\end{enumerate}
+
+\medskip
+\textbf{(b)}
+\begin{enumerate}
+  \item[(i)] $g(-2) = -3(-2)+1 = 7$ (since $-2 < -1$)
+  \item[(ii)] $g(-1) = (-1)^2-2 = -1$ (since $-1 \leq -1 < 2$)
+  \item[(iii)] $g(2) = 5$ (since $2 \geq 2$)
+  \item[(iv)] $g(5) = 5$ (since $5 \geq 2$)
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+A cell phone plan charges \$49.95/month plus \$14.02 in taxes, plus \$0.40/min for calls beyond a 600-minute monthly limit. Write a piecewise-defined function $C(x)$ modeling the monthly cost (in \$) as a function of the number of minutes used $x$.
+
+\begin{solution}
+The flat monthly cost is $\$49.95 + \$14.02 = \$63.97$.
+$$C(x) = \begin{cases} 63.97, & 0 \leq x \leq 600\\ 63.97 + 0.4(x-600), & x > 600 \end{cases}$$
+The term $(x-600)$ charges only the minutes \textit{beyond} the 600-minute included limit.
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+\textbf{Challenge.} Write a piecewise-defined function $f(x)$ for each description.
+\begin{enumerate}
+  \item[(a)] The graph consists of: a line with slope 1 passing through the origin for $x \leq 0$; a line with slope $-1$ for $0 < x \leq 2$; a horizontal line at $y = -2$ for $x > 2$.
+  \medskip
+  \item[(b)] The graph consists of: a line with slope $-1$ through the origin for $x < 0$; the function $\sqrt{x}+1$ for $x \geq 0$.
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] $$f(x) = \begin{cases} x, & x \leq 0\\ -x, & 0 < x \leq 2\\ -2, & x > 2 \end{cases}$$
+  (Alternatively: $f(x) = \begin{cases} -|x| & x \leq 2\\ -2 & x > 2 \end{cases}$)
+
+  \item[(b)] $$f(x) = \begin{cases} -x, & x < 0\\ \sqrt{x}+1, & x \geq 0 \end{cases}$$
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
