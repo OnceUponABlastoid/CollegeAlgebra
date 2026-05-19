@@ -1,8 +1,290 @@
 \documentclass{ximera}
 \title{Polynomial Division; Factor and Remainder Theorems}
+
+\outcome{Divide polynomials using long division.}
+\outcome{Divide polynomials using synthetic division.}
+\outcome{Apply the Remainder Theorem to find remainders and evaluate polynomials.}
+\outcome{Apply the Factor Theorem to determine factors and zeros of a polynomial.}
+\outcome{Write polynomial functions given their zeros and multiplicities.}
+
 \begin{document}
 \begin{abstract}
 \end{abstract}
 \maketitle
+
+\textbf{Learning Objectives:}
+\begin{itemize}
+  \item Divide polynomials using long division.
+  \item Divide polynomials using synthetic division.
+  \item Apply the Remainder Theorem to find remainders and evaluate polynomials.
+  \item Apply the Factor Theorem to determine factors and zeros of a polynomial.
+  \item Write polynomial functions given their zeros and multiplicities.
+\end{itemize}
+\medskip
+
+\noindent\textbf{Remainder Theorem:} If a polynomial $f(x)$ is divided by $(x-c)$, then the remainder equals $f(c)$.
+
+\medskip
+
+\noindent\textbf{Factor Theorem:} Let $f(x)$ be a polynomial. Then $f(c)=0$ if and only if $(x-c)$ is a factor of $f(x)$.
+
+\bigskip
+\section*{Quick Check}
+
+\begin{problem}
+Given $f(x) = 2x^3 - 3x^2 - 8x + 12$, which of the following values is a zero of $f(x)$?
+\begin{hint}
+Substitute each value into $f$ and check which one gives $f(c)=0$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$x = 1$}
+  \choice[correct]{$x = 2$}
+  \choice{$x = 3$}
+  \choice{$x = -3$}
+  \choice{Not listed}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+What is the quotient (polynomial part only) when $3x^3 - 2x^2 + 5x + 6$ is divided by $x + 2$?
+\begin{hint}
+Use synthetic division with $c = -2$. The quotient is the degree-2 polynomial you get; the remainder is the final value.
+\end{hint}
+\begin{multipleChoice}
+  \choice[correct]{$3x^2 - 8x + 21$}
+  \choice{$3x^2 + 4x - 3$}
+  \choice{$3x^2 - 8x + 19$}
+  \choice{$3x^2 - 8x + 21 - \dfrac{36}{x+2}$}
+  \choice{Not listed}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+If $x - 3$ is a factor of $f(x) = x^3 - 2x^2 - 5x + k$, what must the value of $k$ be?
+\begin{hint}
+By the Factor Theorem, $f(3) = 0$. Substitute $x=3$ and solve for $k$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$-6$}
+  \choice[correct]{$6$}
+  \choice{$12$}
+  \choice{$18$}
+  \choice{$24$}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+What is the remainder when $f(x) = x^3 + 4x^2 - 3x + 7$ is divided by $x - 2$?
+\begin{hint}
+By the Remainder Theorem, the remainder equals $f(2)$.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$5$}
+  \choice{$13$}
+  \choice{$29$}
+  \choice{$37$}
+  \choice[correct]{Not listed}
+\end{multipleChoice}
+\end{problem}
+
+\begin{problem}
+Using the Factor Theorem, which of the following is a factor of $p(x) = x^3 - 7x + 6$?
+\begin{hint}
+Test each candidate $c$ by evaluating $p(c)$. If $p(c)=0$, then $(x-c)$ is a factor.
+\end{hint}
+\begin{multipleChoice}
+  \choice{$(x - 3)$}
+  \choice[correct]{$(x - 2)$}
+  \choice{$(x + 4)$}
+  \choice{$(x - 4)$}
+  \choice{Not listed}
+\end{multipleChoice}
+\end{problem}
+
+
+\bigskip
+\section*{Extended Practice}
+
+\begin{problem}
+Use long division to divide.
+\begin{enumerate}
+  \item[(a)] $\ds\frac{2x^3 - 7x^2 - 65}{x-5}$
+  \medskip
+  \item[(b)] $\ds\frac{12x^4 - 4x^3+13x^2+2x+1}{3x^2 - x + 4}$
+  \medskip
+  \item[(c)] $\ds\frac{x^5 - 2x^4+x^3 - 8x + 18}{x^2 - 3}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Divide $2x^3-7x^2+0x-65$ by $x-5$:
+  \begin{itemize}
+    \item $2x^3 \div x = 2x^2$;\quad $2x^2(x-5) = 2x^3-10x^2$;\quad remainder: $3x^2+0x-65$
+    \item $3x^2 \div x = 3x$;\quad $3x(x-5) = 3x^2-15x$;\quad remainder: $15x-65$
+    \item $15x \div x = 15$;\quad $15(x-5) = 15x-75$;\quad remainder: $10$
+  \end{itemize}
+  Quotient $Q(x) = 2x^2+3x+15$, Remainder $R = 10$.
+  $$\frac{2x^3-7x^2-65}{x-5} = 2x^2+3x+15+\frac{10}{x-5}$$
+
+  \item[(b)] Divide $12x^4-4x^3+13x^2+2x+1$ by $3x^2-x+4$:
+  \begin{itemize}
+    \item $12x^4 \div 3x^2 = 4x^2$;\quad $4x^2(3x^2-x+4) = 12x^4-4x^3+16x^2$;\quad remainder: $-3x^2+2x+1$
+    \item $-3x^2 \div 3x^2 = -1$;\quad $-1(3x^2-x+4) = -3x^2+x-4$;\quad remainder: $x+5$
+  \end{itemize}
+  Quotient $Q(x) = 4x^2-1$, Remainder $R(x) = x+5$.
+  $$\frac{12x^4-4x^3+13x^2+2x+1}{3x^2-x+4} = 4x^2-1+\frac{x+5}{3x^2-x+4}$$
+
+  \item[(c)] Divide $x^5-2x^4+x^3+0x^2-8x+18$ by $x^2-3$:
+  \begin{itemize}
+    \item $x^5 \div x^2 = x^3$;\quad $x^3(x^2-3) = x^5-3x^3$;\quad remainder: $-2x^4+4x^3+0x^2-8x+18$
+    \item $-2x^4 \div x^2 = -2x^2$;\quad $-2x^2(x^2-3) = -2x^4+6x^2$;\quad remainder: $4x^3-6x^2-8x+18$
+    \item $4x^3 \div x^2 = 4x$;\quad $4x(x^2-3) = 4x^3-12x$;\quad remainder: $-6x^2+4x+18$
+    \item $-6x^2 \div x^2 = -6$;\quad $-6(x^2-3) = -6x^2+18$;\quad remainder: $4x$
+  \end{itemize}
+  Quotient $Q(x) = x^3-2x^2+4x-6$, Remainder $R(x) = 4x$.
+  $$\frac{x^5-2x^4+x^3-8x+18}{x^2-3} = x^3-2x^2+4x-6+\frac{4x}{x^2-3}$$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Use synthetic division to divide.
+\begin{enumerate}
+  \item[(a)] $\ds\frac{2x^2+x-21}{x-3}$
+  \medskip
+  \item[(b)] $\ds\frac{-5+2x+5x^3-2x^4}{x+1}$
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] Synthetic division with $c=3$ on coefficients $[2,\;1,\;-21]$:
+  $$3 \mid 2 \quad 1 \quad -21$$
+  $$\phantom{3 \mid} \underline{\phantom{2}\quad 6 \quad 21}$$
+  $$\phantom{3 \mid} 2 \quad 7 \quad 0$$
+  Quotient $Q(x) = 2x+7$, Remainder $R = 0$.
+  $$\frac{2x^2+x-21}{x-3} = 2x+7$$
+
+  \item[(b)] Rewrite in descending order: $-2x^4+5x^3+0x^2+2x-5$. Synthetic division with $c=-1$ on $[-2,\;5,\;0,\;2,\;-5]$:
+  $$-1 \mid -2 \quad 5 \quad 0 \quad 2 \quad -5$$
+  $$\phantom{-1 \mid}\underline{\phantom{-2}\quad 2 \quad -7 \quad 7 \quad -9}$$
+  $$\phantom{-1 \mid}-2 \quad 7 \quad -7 \quad 9 \quad -14$$
+  Quotient $Q(x) = -2x^3+7x^2-7x+9$, Remainder $R = -14$.
+  $$\frac{-5+2x+5x^3-2x^4}{x+1} = -2x^3+7x^2-7x+9+\frac{-14}{x+1}$$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Use the Factor Theorem to answer each question about the polynomial.
+\begin{enumerate}
+  \item[(a)] Is $(x-1)$ a factor of $x^{1000} - 1$?
+  \medskip
+  \item[(b)] Is $(x+1)$ a factor of $x^{1000} - 1$?
+  \medskip
+  \item[(c)] Is $(x-1)$ a factor of $x^{999} - 1$?
+  \medskip
+  \item[(d)] Is $(x+1)$ a factor of $x^{999} - 1$?
+\end{enumerate}
+
+\begin{solution}
+Let $f(x) = x^{1000}-1$ for parts (a)--(b), and $g(x) = x^{999}-1$ for parts (c)--(d).
+\begin{enumerate}
+  \item[(a)] $f(1) = 1^{1000}-1 = 0$. \textbf{Yes}, $(x-1)$ is a factor.
+
+  \item[(b)] $f(-1) = (-1)^{1000}-1 = 1-1 = 0$. \textbf{Yes}, $(x+1)$ is a factor.
+
+  \item[(c)] $g(1) = 1^{999}-1 = 0$. \textbf{Yes}, $(x-1)$ is a factor.
+
+  \item[(d)] $g(-1) = (-1)^{999}-1 = -1-1 = -2 \neq 0$. \textbf{No}, $(x+1)$ is not a factor.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Given that $f(-2) = 0$, factor $f(x) = x^4+4x^3-x^2-20x-20$ completely and state its real zeros and their multiplicities.
+
+\begin{solution}
+Since $f(-2)=0$, $(x+2)$ is a factor. Divide $f(x)$ by $(x+2)$:
+\begin{itemize}
+  \item Synthetic with $c=-2$ on $[1,\;4,\;-1,\;-20,\;-20]$:
+\end{itemize}
+$$-2 \mid 1 \quad 4 \quad -1 \quad -20 \quad -20$$
+$$\phantom{-2 \mid}\underline{\phantom{1}\quad -2 \quad -4 \quad 10 \quad 20}$$
+$$\phantom{-2 \mid} 1 \quad 2 \quad -5 \quad -10 \quad 0$$
+So $f(x) = (x+2)(x^3+2x^2-5x-10)$. Factor the cubic by grouping:
+\begin{align*}
+  x^3+2x^2-5x-10 &= x^2(x+2)-5(x+2) = (x+2)(x^2-5)
+\end{align*}
+Therefore $f(x) = (x+2)^2(x^2-5) = (x+2)^2(x-\sqrt{5})(x+\sqrt{5})$.
+
+Zeros: $x = -2$ (multiplicity 2), $x = \sqrt{5}$ (multiplicity 1), $x = -\sqrt{5}$ (multiplicity 1).
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Given $P(x) = 3x^4 - 11x^3 - 69x^2 - 13x+42$, use the facts that $P(-3) = 0$ and $P(-1) = 0$ to factor $P(x)$ completely.
+
+\begin{solution}
+Since $P(-3)=0$, $(x+3)$ is a factor. Divide by $(x+3)$:
+
+Synthetic with $c=-3$ on $[3,\;-11,\;-69,\;-13,\;42]$:
+$$-3 \mid 3 \quad -11 \quad -69 \quad -13 \quad 42$$
+$$\phantom{-3 \mid}\underline{\phantom{3}\quad -9 \quad 60 \quad 27 \quad -42}$$
+$$\phantom{-3 \mid} 3 \quad -20 \quad -9 \quad 14 \quad 0$$
+So $P(x) = (x+3)(3x^3-20x^2-9x+14)$.
+
+Since $P(-1)=0$, $(x+1)$ must also divide $P(x)$. Divide $3x^3-20x^2-9x+14$ by $(x+1)$:
+
+Synthetic with $c=-1$ on $[3,\;-20,\;-9,\;14]$:
+$$-1 \mid 3 \quad -20 \quad -9 \quad 14$$
+$$\phantom{-1 \mid}\underline{\phantom{3}\quad -3 \quad 23 \quad -14}$$
+$$\phantom{-1 \mid} 3 \quad -23 \quad 14 \quad 0$$
+So $P(x) = (x+3)(x+1)(3x^2-23x+14)$.
+
+Factor the quadratic (AC method: $3 \times 14 = 42$; find factors summing to $-23$: $-21$ and $-2$):
+$$3x^2-23x+14 = 3x^2-21x-2x+14 = 3x(x-7)-2(x-7) = (x-7)(3x-2)$$
+
+Completely factored: $P(x) = (x+3)(x+1)(x-7)(3x-2)$.
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
+Write a polynomial $f(x)$ that meets each set of conditions.
+\begin{enumerate}
+  \item[(a)] Degree 3 polynomial with zeros $1$, $-6$, and $3$.
+  \medskip
+  \item[(b)] Degree 2 polynomial with zeros $5\sqrt{2}$ and $-5\sqrt{2}$.
+  \medskip
+  \item[(c)] Degree 5 polynomial with zeros $2$ and $\dfrac{5}{2}$ (each multiplicity 1) and $0$ (multiplicity 3).
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)]
+  \begin{align*}
+    f(x) &= (x-1)(x+6)(x-3) = (x^2+5x-6)(x-3) = x^3+2x^2-21x+18
+  \end{align*}
+
+  \item[(b)]
+  \begin{align*}
+    f(x) &= (x-5\sqrt{2})(x+5\sqrt{2}) = x^2-(5\sqrt{2})^2 = x^2-50
+  \end{align*}
+
+  \item[(c)]
+  \begin{align*}
+    f(x) &= (x-2)\!\left(x-\tfrac{5}{2}\right)x^3 = (x-2)(2x-5)\cdot\dfrac{x^3}{2}
+  \end{align*}
+  Equivalently (clearing the fraction by choosing $a=2$):
+  \begin{align*}
+    f(x) &= (x-2)(2x-5)x^3 = (2x^2-9x+10)x^3 = 2x^5-9x^4+10x^3
+  \end{align*}
+\end{enumerate}
+\end{solution}
+\end{problem}
 
 \end{document}
