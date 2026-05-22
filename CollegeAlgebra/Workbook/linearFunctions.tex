@@ -249,7 +249,7 @@ Determine the average rate of change of the function on the given interval.
 
 
 \begin{problem}
-Find the $x$- and $y$-intercepts of each line.
+Graph each equation and identify the $x$- and $y$-intercepts.
 \begin{enumerate}
   \item[(a)] $-3x + 4y = 12$
   \medskip
@@ -261,8 +261,38 @@ Find the $x$- and $y$-intercepts of each line.
   \item[(a)] $x$-intercept ($y=0$): $-3x=12 \Rightarrow x=-4$. Point: $(-4,0)$.\\
   $y$-intercept ($x=0$): $4y=12 \Rightarrow y=3$. Point: $(0,3)$.
 
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=5.5cm, height=5.5cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-6, xmax=4, xtick={-5,-4,-3,-2,-1,0,1,2,3},
+  ymin=-2, ymax=5, ytick={-1,0,1,2,3,4},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, blue, domain=-5.5:3.5] {3*x/4 + 3};
+\addplot[only marks, mark=*, blue] coordinates {(-4,0) (0,3)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
   \item[(b)] $x$-intercept ($y=0$): $0.02x=0.1 \Rightarrow x=5$. Point: $(5,0)$.\\
   $y$-intercept ($x=0$): $0.05y=0.1 \Rightarrow y=2$. Point: $(0,2)$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=5.5cm, height=5.5cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-2, xmax=7, xtick={-1,0,1,2,3,4,5,6},
+  ymin=-1, ymax=4, ytick={0,1,2,3},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, blue, domain=-1.5:6.5] {-0.4*x + 2};
+\addplot[only marks, mark=*, blue] coordinates {(5,0) (0,2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
 \end{enumerate}
 \end{solution}
 \end{problem}
@@ -281,6 +311,26 @@ Find the three vertices by solving pairs of equations:
 \end{itemize}
 The three lines form a triangle with base $= 3-(-6) = 9$ and height $= 6$:
 $$\text{Area} = \frac{1}{2}(9)(6) = 27$$
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=6cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-8, xmax=5, xtick={-6,-4,-2,0,2,4},
+  ymin=-1, ymax=8, ytick={0,2,4,6},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[fill=gray!20, draw=none] coordinates {(-6,0) (0,6) (3,0) (-6,0)};
+\addplot[thick, blue, domain=-6.5:2] {x+6};
+\addplot[thick, red, domain=-0.5:4] {-2*x+6};
+\addplot[thick, black, domain=-7.5:4.5] {0};
+\addplot[only marks, mark=*, black] coordinates {(-6,0) (0,6) (3,0)};
+\node[blue, font=\small] at (axis cs:-5,4) {$y=x+6$};
+\node[red, font=\small] at (axis cs:3.2,3.5) {$y=-2x+6$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
 \end{solution}
 \end{problem}
 

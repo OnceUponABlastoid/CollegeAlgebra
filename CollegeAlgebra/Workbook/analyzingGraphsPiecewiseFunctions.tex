@@ -168,6 +168,57 @@ Use the branch condition to determine which function to apply for each input.
 \section*{Extended Practice}
 
 \begin{problem}
+Determine whether each function is even, odd, or neither from its graph. (Even functions are symmetric about the $y$-axis; odd functions have $180^\circ$ rotational symmetry about the origin.)
+\begin{enumerate}
+  \item[(a)]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=6cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-4.5, xmax=4.5, xtick={-4,-2,0,2,4},
+  ymin=-4.5, ymax=4.5, ytick={-4,-2,0,2,4},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, blue, domain=-4.48:-1.8, samples=100] {1/cos(deg(x))};
+\addplot[thick, blue, domain=-1.35:1.35, samples=100] {1/cos(deg(x))};
+\addplot[thick, blue, domain=1.8:4.48, samples=100] {1/cos(deg(x))};
+\addplot[dashed, thin, blue] coordinates {(-1.5708,-4.5) (-1.5708,4.5)};
+\addplot[dashed, thin, blue] coordinates {(1.5708,-4.5) (1.5708,4.5)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+  \medskip
+  \item[(b)]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=6cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-4.5, xmax=4.5, xtick={-4,-2,0,2,4},
+  ymin=-4.5, ymax=4.5, ytick={-4,-2,0,2,4},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, magenta, domain=-2.42:2.43, samples=60] {x^3-4*x};
+\addplot[only marks, mark=*, magenta] coordinates {(-2,0) (0,0) (2,0)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+
+\begin{solution}
+\begin{enumerate}
+  \item[(a)] \textbf{Even} — the graph is symmetric about the $y$-axis.
+  \item[(b)] \textbf{Odd} — the graph has $180^\circ$ rotational symmetry about the origin.
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
 Determine whether each function is even, odd, or neither. Justify your answer algebraically.
 \begin{enumerate}
   \item[(a)] $p(x) = -|x| + 12x^{10} + 5$
@@ -209,9 +260,40 @@ Determine whether each function is even, odd, or neither. Justify your answer al
 For each graph of $f(x)$ below, use interval notation to identify the intervals where $f$ is (i) increasing and (ii) decreasing, and (iii) state the location and value of any relative maxima or minima.
 
 \begin{enumerate}
-  \item[(a)] The graph has relative minima at $(-2,0)$ and $(2,0)$ and a relative maximum at $(0,2)$.
+  \item[(a)]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=5cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-4, xmax=4, xtick={-3,-2,-1,0,1,2,3},
+  ymin=-1, ymax=4, ytick={0,1,2,3},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, blue, domain=-3.2:3.2, samples=80] {x^4/8 - x^2 + 2};
+\addplot[only marks, mark=*, blue] coordinates {(-2,0) (0,2) (2,0)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
   \medskip
-  \item[(b)] The graph has a relative maximum at $(-1,2)$ and no relative minimum.
+  \item[(b)]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=5cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-5, xmax=3, xtick={-4,-3,-2,-1,0,1,2},
+  ymin=-8, ymax=3, ytick={-6,-4,-2,0,2},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, blue, domain=-4.2:2.2, samples=60] {-(x+1)^2 + 2};
+\addplot[only marks, mark=*, blue] coordinates {(-1,2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
 \end{enumerate}
 
 \begin{solution}
@@ -239,6 +321,30 @@ Evaluate the functions at the indicated values.
 
 \medskip
 \textbf{(a)} $\ds f(x) = \begin{cases} 3, & -4 < x < -1\\ -x, & -1 \leq x < 3\\ \sqrt{x-3}, & x \geq 3 \end{cases}$
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=8cm, height=5cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-5, xmax=8, xtick={-4,-3,-2,-1,0,1,2,3,4,5,6,7},
+  ymin=-4, ymax=5, ytick={-3,-2,-1,0,1,2,3,4},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+% Branch 1: y=3 for (-4,-1), open at both ends
+\addplot[thick, blue, domain=-4:-1] {3};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(-4,3) (-1,3)};
+% Branch 2: y=-x for [-1,3), closed at -1, open at 3
+\addplot[thick, blue, domain=-1:3] {-x};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(3,-3)};
+\addplot[only marks, mark=*, blue] coordinates {(-1,1)};
+% Branch 3: y=sqrt(x-3) for x>=3, closed at (3,0)
+\addplot[thick, blue, domain=3:7, samples=60] {sqrt(x-3)};
+\addplot[only marks, mark=*, blue] coordinates {(3,0)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
 \begin{enumerate}
   \item[(i)] $f(-3)$
   \medskip
@@ -251,6 +357,30 @@ Evaluate the functions at the indicated values.
 
 \medskip
 \textbf{(b)} $\ds g(x) = \begin{cases} -3x+1, & x < -1 \\ x^2-2, & -1 \leq x < 2\\ 5, & x \geq 2 \end{cases}$
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=7cm, height=6cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-3, xmax=5, xtick={-2,-1,0,1,2,3,4},
+  ymin=-3, ymax=8, ytick={-2,0,2,4,6,8},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+% Branch 1: y=-3x+1 for x<-1, show from x=-2
+\addplot[thick, blue, domain=-2:-1] {-3*x+1};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(-1,4)};
+% Branch 2: y=x^2-2 for -1<=x<2, closed at -1, open at 2
+\addplot[thick, blue, domain=-1:2, samples=60] {x^2-2};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(2,2)};
+\addplot[only marks, mark=*, blue] coordinates {(-1,-1)};
+% Branch 3: y=5 for x>=2, closed at 2
+\addplot[thick, blue, domain=2:4.5] {5};
+\addplot[only marks, mark=*, blue] coordinates {(2,5)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
 \begin{enumerate}
   \item[(i)] $g(-2)$
   \medskip
@@ -294,11 +424,54 @@ The term $(x-600)$ charges only the minutes \textit{beyond} the 600-minute inclu
 
 
 \begin{problem}
-\textbf{Challenge.} Write a piecewise-defined function $f(x)$ for each description.
+\textbf{Challenge.} Write a piecewise-defined function $f(x)$ for each graph shown below.
 \begin{enumerate}
-  \item[(a)] The graph consists of: a line with slope 1 passing through the origin for $x \leq 0$; a line with slope $-1$ for $0 < x \leq 2$; a horizontal line at $y = -2$ for $x > 2$.
+  \item[(a)]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=5cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-4, xmax=5, xtick={-3,-2,-1,0,1,2,3,4},
+  ymin=-3, ymax=2, ytick={-2,-1,0,1},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+% Branch 1: y=x for x<=0 (slope 1, closed at origin)
+\addplot[thick, blue, domain=-3:0] {x};
+% Branch 2: y=-x for 0<x<=2 (slope -1)
+\addplot[thick, blue, domain=0:2] {-x};
+% Branch 3: y=-2 for x>2
+\addplot[thick, blue, domain=2:4.5] {-2};
+% Open dots first
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(0,0) (2,-2)};
+% Closed dots (branch 1 at origin, branch 2 at x=2)
+\addplot[only marks, mark=*, blue] coordinates {(0,0) (2,-2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
   \medskip
-  \item[(b)] The graph consists of: a line with slope $-1$ through the origin for $x < 0$; the function $\sqrt{x}+1$ for $x \geq 0$.
+  \item[(b)]
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=5cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-4, xmax=5, xtick={-3,-2,-1,0,1,2,3,4},
+  ymin=-1, ymax=4, ytick={0,1,2,3},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+% Branch 1: y=-x for x<0 (slope -1, open at origin)
+\addplot[thick, blue, domain=-3:0] {-x};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(0,0)};
+% Branch 2: y=sqrt(x)+1 for x>=0 (closed at (0,1))
+\addplot[thick, blue, domain=0:4.5, samples=60] {sqrt(x)+1};
+\addplot[only marks, mark=*, blue] coordinates {(0,1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
 \end{enumerate}
 
 \begin{solution}

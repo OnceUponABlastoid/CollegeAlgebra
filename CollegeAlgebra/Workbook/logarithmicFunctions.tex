@@ -172,7 +172,7 @@ Evaluate without a calculator.
 
 
 \begin{problem}
-For each function: describe the transformations, find the domain and range, and state the vertical asymptote. (Sketch on your handout.)
+For each function: describe the transformations, find the domain and range, state the vertical asymptote, and sketch the graph.
 \begin{enumerate}
   \item[(a)] $f(x) = \log_2(x-2)-1$
   \medskip
@@ -184,8 +184,51 @@ For each function: describe the transformations, find the domain and range, and 
   \item[(a)] Parent: $\log_2 x$. Transformations: shift right 2, shift down 1.
   Domain: $(2,\infty)$;\quad Range: $(-\infty,\infty)$;\quad VA: $x=2$.
 
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=6cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-2.5, xmax=8.5, xtick={0,2,4,6,8},
+  ymin=-5.5, ymax=5.5, ytick={-4,-2,0,2,4},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, magenta, domain=0.03:8.5, samples=150] {ln(x)/ln(2)};
+\addplot[only marks, mark=*, magenta] coordinates {(1,0) (0.5,-1) (2,1)};
+\node[magenta] at (axis cs:6,3.5) {$g(x)=\log_2 x$};
+\addplot[dashed, thin, magenta] coordinates {(0,-5.5) (0,5.5)};
+\addplot[thick, blue, domain=2.05:8.5, samples=150] {ln(x-2)/ln(2)-1};
+\addplot[only marks, mark=*, blue] coordinates {(3,-1) (2.5,-2) (4,0)};
+\node[blue] at (axis cs:5.5,-3) {$f(x)=\log_2(x{-}2){-}1$};
+\addplot[dashed, thin, blue] coordinates {(2,-5.5) (2,5.5)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
   \item[(b)] Parent: $\ln x$. Transformations: shift left 2, reflect over the $x$-axis.
   Domain: $(-2,\infty)$;\quad Range: $(-\infty,\infty)$;\quad VA: $x=-2$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=6cm, height=6cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-4.5, xmax=6.5, xtick={-4,-2,0,2,4,6},
+  ymin=-5.5, ymax=5.5, ytick={-4,-2,0,2,4},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, magenta, domain=0.005:6.5, samples=150] {ln(x)};
+\addplot[only marks, mark=*, magenta] coordinates {(1,0) (0.368,-1) (2.718,1)};
+\node[magenta] at (axis cs:5,3.5) {$f(x)=\ln x$};
+\addplot[dashed, thin, magenta] coordinates {(0,-5.5) (0,5.5)};
+\addplot[thick, blue, domain=-1.995:6.5, samples=150] {-ln(x+2)};
+\addplot[only marks, mark=*, blue] coordinates {(-1,0) (-1.632,1) (0.718,-1)};
+\node[blue] at (axis cs:4,-3) {$g(x)=-\ln(x{+}2)$};
+\addplot[dashed, thin, blue] coordinates {(-2,-5.5) (-2,5.5)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
 \end{enumerate}
 \end{solution}
 \end{problem}

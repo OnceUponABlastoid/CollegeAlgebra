@@ -162,6 +162,70 @@ Given $r(x) = -3x$, $p(x) = x^2+3x$, and $q(z) = \sqrt{1-z}$, evaluate the follo
 
 
 \begin{problem}
+Given the graphs of $f(x)$ (dashed) and $g(x)$ (solid) below, evaluate the following. Write \textit{Undefined} where appropriate.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=7cm, height=7cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-5, xmax=5, xtick={-4,-3,-2,-1,0,1,2,3,4},
+  ymin=-4.5, ymax=4.5, ytick={-4,-3,-2,-1,0,1,2,3,4},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+% g(x) solid blue: open at (-4,-1), closed at (4,1)
+\addplot[thick, blue, domain=-4:-2] {-1};
+\addplot[thick, blue, domain=-2:0] {-x-3};
+\addplot[thick, blue, domain=0:4] {x-3};
+\addplot[only marks, mark=*, mark options={fill=white}, blue] coordinates {(-4,-1)};
+\addplot[only marks, mark=*, blue] coordinates {(4,1)};
+\node[blue, font=\small] at (axis cs:3.5,2.5) {$g$};
+% f(x) dashed red: closed at (-4,-3), open at (3,3)
+\addplot[thick, dashed, red, domain=-4:0] {x+1};
+\addplot[thick, dashed, red, domain=0:1] {1};
+\addplot[thick, dashed, red, domain=1:3] {x};
+\addplot[only marks, mark=*, red] coordinates {(-4,-3)};
+\addplot[only marks, mark=*, mark options={fill=white}, red] coordinates {(3,3)};
+\node[red, font=\small] at (axis cs:-2.5,2) {$f$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+  \item[(a)] $(f+g)(0)$
+  \medskip
+  \item[(b)] $(g-f)(1)$
+  \medskip
+  \item[(c)] $(g\cdot f)(2)$
+  \medskip
+  \item[(d)] $\left(\dfrac{f}{g}\right)(-3)$
+  \medskip
+  \item[(e)] $(f\circ g)(3)$
+  \medskip
+  \item[(f)] $(g\circ f)(3)$
+  \medskip
+  \item[(g)] $(g\circ f)(0)$
+  \medskip
+  \item[(h)] $g(f(-4))$
+\end{enumerate}
+
+\begin{solution}
+Reading from the graphs: $g(-3)=-1$, $g(0)=-3$, $g(1)=-2$, $g(2)=-1$, $g(3)=0$, $g(4)=1$; $f(-4)=-3$, $f(-3)=-2$, $f(0)=1$, $f(1)=1$, $f(2)=2$, $f(3)$ undefined (open endpoint).
+\begin{enumerate}
+  \item[(a)] $(f+g)(0) = f(0)+g(0) = 1+(-3) = -2$
+  \item[(b)] $(g-f)(1) = g(1)-f(1) = (-2)-1 = -3$
+  \item[(c)] $(g\cdot f)(2) = g(2)\cdot f(2) = (-1)(2) = -2$
+  \item[(d)] $\left(\dfrac{f}{g}\right)(-3) = \dfrac{f(-3)}{g(-3)} = \dfrac{-2}{-1} = 2$
+  \item[(e)] $(f\circ g)(3) = f(g(3)) = f(0) = 1$
+  \item[(f)] $(g\circ f)(3)$: $f(3)$ is undefined (open endpoint), so $(g\circ f)(3)$ is \textbf{Undefined}.
+  \item[(g)] $(g\circ f)(0) = g(f(0)) = g(1) = -2$
+  \item[(h)] $g(f(-4)) = g(-3) = -1$
+\end{enumerate}
+\end{solution}
+\end{problem}
+
+
+\begin{problem}
 Use the table of values to evaluate the following. Write \textit{Undefined} where appropriate.
 
 \begin{center}

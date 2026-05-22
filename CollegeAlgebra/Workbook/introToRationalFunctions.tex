@@ -99,7 +99,24 @@ A hole occurs when a factor cancels from both numerator and denominator. A verti
 \section*{Extended Practice}
 
 \begin{problem}
-The graph of $f$ (from the handout) has a vertical asymptote at $x=-3$ and a horizontal asymptote at $y=-2$. Use the graph to complete each statement.
+Use the graph of $f$ below (vertical asymptote at $x=-3$, horizontal asymptote at $y=-2$) to complete each statement.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=7cm, height=7cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-8.2, xmax=2.2, xtick={-8,-6,-4,-2,0,2},
+  ymin=-6.2, ymax=4.2, ytick={-6,-4,-2,0,2,4},
+  grid=both, minor tick num=1, tick style={draw=none},
+]
+\addplot[thick, blue, domain=-8.2:-3.32, samples=100] {(-2*(x+4))/(x+3)};
+\addplot[thick, blue, domain=-2.52:2.2, samples=100] {(-2*(x+4))/(x+3)};
+\addplot[dashed, thin, blue] coordinates {(-8.2,-2) (2.2,-2)};
+\addplot[dashed, thin, blue] coordinates {(-3,-6.2) (-3,4.2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
 \begin{enumerate}
   \item[(a)] As $x\to -\infty$, $f(x) \to$ \underline{\hspace{0.75in}}.
   \item[(b)] As $x\to -3^-$, $f(x) \to$ \underline{\hspace{0.75in}}.

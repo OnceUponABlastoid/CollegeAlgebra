@@ -238,7 +238,27 @@ For each function: find (i) domain and range of $f$, (ii) $f^{-1}(x)$, (iii) dom
 
 
 \begin{problem}
-The graph of $h(x)$ has domain $[-5,3]$ (see handout). The graph passes through points including $(-5,-3)$, $(0,3)$, and $(3,4)$ (approximate).
+The graph of $h(x)$ is shown below (domain $[-5,3]$).
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+  axis lines=center, width=7cm, height=7cm,
+  xlabel={$x$}, ylabel={$y$},
+  xmin=-6, xmax=5, xtick={-5,-4,...,4},
+  ymin=-6, ymax=5, ytick={-5,-4,...,4},
+  grid=both, minor tick num=0, tick style={draw=none},
+]
+\addplot[thick, blue] coordinates {(-5,-3) (-1,-1) (0,3) (3,4)};
+\addplot[only marks, mark=*, blue] coordinates {(-5,-3) (-1,-1) (0,3) (3,4)};
+\node[blue] at (axis cs:-3,2) {$h(x)$};
+\addplot[thick, red, dashed] coordinates {(-3,-5) (-1,-1) (3,0) (4,3)};
+\addplot[only marks, mark=*, red] coordinates {(-3,-5) (-1,-1) (3,0) (4,3)};
+\node[red] at (axis cs:2,-3) {$h^{-1}(x)$};
+\addplot[thin, dashed, black, domain=-5.8:4.8] {x};
+\end{axis}
+\end{tikzpicture}
+\end{center}
 
 \begin{enumerate}
   \item[(a)] Describe how to sketch $h^{-1}(x)$ and identify corresponding points.
