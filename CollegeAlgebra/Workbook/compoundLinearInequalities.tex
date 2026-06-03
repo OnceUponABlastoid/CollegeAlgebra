@@ -173,10 +173,10 @@ $-4 \leq x \leq -1$ & $[-4,-1]$ & $\{x \mid -4 \leq x \leq -1\}$ \\[6pt]
 
   \item $0 < x < 12$:
 
-  \begin{tikzpicture}[scale=0.25]
-    \draw[<->,thick] (-2,0)--(14,0);
+  \begin{tikzpicture}[scale=0.5]
+    \draw[<->,thick] (-1,0)--(13,0);
     \foreach \x in {0,3,6,9,12} {
-      \draw[thick] (\x,0.4)--(\x,-0.4) node[below,font=\small] {$\x$};
+      \draw[thick] (\x,0.2)--(\x,-0.2) node[below,font=\small] {$\x$};
     }
     \draw[very thick,blue] (0,0)--(12,0);
     \opendot{0} \opendot{12}
