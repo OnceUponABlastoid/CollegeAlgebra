@@ -14,12 +14,12 @@
 %% src/makeCounter.dtx  (with options: `classXimera')
 %% src/pagesetup.dtx  (with options: `classXimera')
 %% src/metadata.dtx  (with options: `classXimera')
-%% src/outcomes.dtx  (with options: `classXimera')
 %% src/macros.dtx  (with options: `classXimera')
 %% src/theorems.dtx  (with options: `classXimera')
 %% src/enumerate.dtx  (with options: `classXimera')
 %% src/proof.dtx  (with options: `classXimera')
 %% src/only.dtx  (with options: `classXimera')
+%% src/outcomes.dtx  (with options: `classXimera')
 %% src/problem.dtx  (with options: `classXimera')
 %% src/hints.dtx  (with options: `classXimera')
 %% src/abstract.dtx  (with options: `classXimera')
@@ -28,6 +28,7 @@
 %% src/interactives/javascript.dtx  (with options: `classXimera')
 %% src/interactives/include.dtx  (with options: `classXimera')
 %% src/interactives/geogebra.dtx  (with options: `classXimera')
+%% src/interactives/doenet.dtx  (with options: `classXimera')
 %% src/interactives/desmos.dtx  (with options: `classXimera')
 %% src/interactives/google.dtx  (with options: `classXimera')
 %% src/interactives/graph.dtx  (with options: `classXimera')
@@ -46,18 +47,24 @@
 %% src/leash.dtx  (with options: `classXimera')
 %% src/interactives/sagemath.dtx  (with options: `classXimera')
 %% src/jax.dtx  (with options: `classXimera')
+%% src/accordion.dtx  (with options: `classXimera')
 %% src/ungraded.dtx  (with options: `classXimera')
+%% src/clearEnv.dtx  (with options: `classXimera')
+%% src/hideEnv.dtx  (with options: `classXimera')
+%% src/localization.dtx  (with options: `classXimera')
+%% src/preamble.dtx  (with options: `classXimera')
 %% ------------:| ------------------------------------------------------------
 %%       ximera:| Simultaneously writing print and online interactive materials
-%%       Author:| Jim Fowler and Jeramiah Hocutt and Oscar Levin and Jason Nowell and Hans Parshall and Bart Snapp
+%%       Author:| Jim Fowler and Oscar Levin and Jason Nowell and Wim Obbels and Hans Parshall and Bart Snapp
 %%       E-mail:| bart.snapp@gmail.com
 %%      License:| Released under the LaTeX Project Public License v1.3c or later
 %%          See:| http://www.latex-project.org/lppl.txt
 %% 
 \NeedsTeXFormat{LaTeX2e}[1999/12/01]
 \ProvidesClass{ximera}
- [2018/10/28 v1.00
+ [2024/05/12 v1.5.1
  Simultaneously write print and online interactive materials]
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -82,6 +89,9 @@
 \let\d\undefined
 \let\v\undefined
 \let\m\undefined
+\newif\ifnumberedProblems
+\numberedProblemsfalse% Default to no numbers, as that was previous behavior.
+\DeclareOption{onlineProblemNumbers}{\numberedProblemstrue}
 \newif\ifhandout
 \handoutfalse
 \DeclareOption{handout}{\handouttrue}
@@ -141,7 +151,6 @@
   \nooutcomesfalse%
 \fi
 
-
 \RequirePackage[makeroom]{cancel}
 \RequirePackage[inline]{enumitem}
 \RequirePackage[pagestyles]{titlesec}
@@ -165,10 +174,13 @@
 
 \RequirePackage{xkeyval}
 
+\RequirePackage{currfile}
 \RequirePackage{comment}
 \RequirePackage{gettitlestring}
 \RequirePackage{nameref}
 \RequirePackage{epstopdf}
+\ifdefined\reallyneverever
+
 \ifdefined\HCode
   \tikzexporttrue
 \fi
@@ -188,15 +200,17 @@
         pdflatex \tikzexternalcheckshellescape
         -halt-on-error -interaction=batchmode
         -jobname "\image" "\\PassOptionsToClass{tikzexport}{ximera}\texsource";
+        mutool draw -F svg \image.pdf > \image.svg ;     % mutool adds "1" to filename ????
         mutool draw -o \image.svg \image.pdf ;
         mutool draw -r 150 -c rgbalpha -o \image.png \image.pdf ;
+        ebb -x \image.png
       }
     }
     \tikzexternalize[optimize=false,prefix=./]
   \fi
 
   \fi
-
+\fi
 \ifdefined\HCode
 \RequirePackage{hyperref}
 \else
@@ -260,74 +274,63 @@
 \newcommand{\acknowledgement}{\excludecomment}
 
 \renewcommand{\tag}{\excludecomment}
-\def\theoutcomes{}
-
-\ifdefined\HCode%
-  \newcommand{\outcome}[1]{}
-\else%
-  \newwrite\outcomefile
-  \immediate\openout\outcomefile=\jobname.oc
-
-  \newcommand{\outcome}[1]{\edef\theoutcomes{\theoutcomes #1~}%
-  \immediate\write\outcomefile{\unexpanded{\outcome}{#1}}}
-  \fi%
 \everymath{\displaystyle}
 \let\prelim\lim
 \renewcommand{\lim}{\displaystyle\prelim}
+\theoremstyle{definition} % No italic (because this makes also text in TikZ italic !!!)
 
 
-      \newtheorem{theorem}{Theorem}
+      \newtheorem{theorem}{\GetTranslation{Theorem}}
 
-      \newtheorem{algorithm}{Algorithm}
+      \newtheorem{algorithm}{\GetTranslation{Algorithm}}
 
-      \newtheorem{axiom}{Axiom}
+      \newtheorem{axiom}{\GetTranslation{Axiom}}
 
-      \newtheorem{claim}{Claim}
+      \newtheorem{claim}{\GetTranslation{Claim}}
 
-      \newtheorem{conclusion}{Conclusion}
+      \newtheorem{conclusion}{\GetTranslation{Conclusion}}
 
-      \newtheorem{condition}{Condition}
+      \newtheorem{condition}{\GetTranslation{Condition}}
 
-      \newtheorem{conjecture}{Conjecture}
+      \newtheorem{conjecture}{\GetTranslation{Conjecture}}
 
-      \newtheorem{corollary}{Corollary}
+      \newtheorem{corollary}{\GetTranslation{Corollary}}
 
-      \newtheorem{criterion}{Criterion}
+      \newtheorem{criterion}{\GetTranslation{Criterion}}
 
-      \newtheorem{definition}{Definition}
+      \newtheorem{definition}{\GetTranslation{Definition}}
 
-      \newtheorem{example}{Example}
+      \newtheorem{example}{\GetTranslation{Example}}
 
-      \newtheorem*{explanation}{Explanation}
+      \newtheorem*{explanation}{\GetTranslation{Explanation}}
 
-      \newtheorem{fact}{Fact}
+      \newtheorem{fact}{\GetTranslation{Fact}}
 
-      \newtheorem{lemma}{Lemma}
+      \newtheorem{lemma}{\GetTranslation{Lemma}}
 
-      \newtheorem{formula}{Formula}
+      \newtheorem{formula}{\GetTranslation{Formula}}
 
-      \newtheorem{idea}{Idea}
+      \newtheorem{idea}{\GetTranslation{Idea}}
 
-      \newtheorem{notation}{Notation}
+      \newtheorem{notation}{\GetTranslation{Notation}}
 
-      \newtheorem{model}{Model}
+      \newtheorem{model}{\GetTranslation{Model}}
 
-      \newtheorem{observation}{Observation}
+      \newtheorem{observation}{\GetTranslation{Observation}}
 
-      \newtheorem{proposition}{Proposition}
+      \newtheorem{proposition}{\GetTranslation{Proposition}}
 
-      \newtheorem{paradox}{Paradox}
+      \newtheorem{paradox}{\GetTranslation{Paradox}}
 
-      \newtheorem{procedure}{Procedure}
+      \newtheorem{procedure}{\GetTranslation{Procedure}}
 
-      \newtheorem{remark}{Remark}
+      \newtheorem{remark}{\GetTranslation{Remark}}
 
-      \newtheorem{summary}{Summary}
+      \newtheorem{summary}{\GetTranslation{Summary}}
 
-      \newtheorem{template}{Template}
+      \newtheorem{template}{\GetTranslation{Template}}
 
-      \newtheorem{warning}{Warning}
-
+      \newtheorem{warning}{\GetTranslation{Warning}}
 \renewcommand{\theenumi}{\textup{(\alph{enumi})}}
 \renewcommand{\labelenumi}{\theenumi}
 \renewcommand{\theenumii}{\textup{(\roman{enumii})}}
@@ -337,66 +340,122 @@
   {\begin{trivlist}\item[\hskip \labelsep \itshape \bfseries #1{}\hspace{2ex}]}
 {\qed\end{trivlist}}
 
+
 \ifxake
         \newenvironment{prompt}{}{}
 \else
 \ifhandout
 \NewEnviron{prompt}{}
+    % Breaks when put in mathmode ?
+    % \newenvironment{prompt}{\suppress}{\endsuppress}
 \else
-\newenvironment{prompt}
-     {\bgroup\color{gray!50!black}}
-        {\egroup}
+\newenvironment{prompt}{\bgroup\color{gray!50!black}}{\egroup}
+\fi
+\fi
+\ifdefined\HCode
+\newenvironment{onlyPdf}{\setbox0\vbox\bgroup}{\egroup}
+\newenvironment{onlyHtml}{\bgroup}{\egroup}
+\newenvironment{onlineOnly}{\bgroup}{\egroup}
+\else
+\newenvironment{onlyPdf}{\bgroup}{\egroup}
+\ifdefined\xmPrintHtmlOnlyAlsoInPdf
+\newenvironment{onlyHtml}{\bgroup\color{red!50!black}}{\egroup}
+\newenvironment{onlineOnly}{\bgroup\color{red!50!black}}{\egroup}
+\else
+\newenvironment{onlyHtml}{\setbox0\vbox\bgroup}{\egroup}
+\newenvironment{onlineOnly}{\setbox0\vbox\bgroup}{\egroup}
 \fi
 \fi
 
-\ifhandout
-\NewEnviron{onlineOnly}{
-\iftikzexport
-\BODY
+
+\ifdefined\HCode
+\newcommand{\pdfOnly}[1]{}
+\newcommand{\htmlOnly}[1]{#1}
 \else
+\ifdefined\xmPrintHtmlOnlyAlsoInPdf
+\newcommand{\pdfOnly}[1]{#1}
+\newcommand{\htmlOnly}[1]{\bgroup\color{red!50!black}#1\egroup}
+\else
+\newcommand{\pdfOnly}[1]{#1}
+\newcommand{\htmlOnly}[1]{}
 \fi
+\fi
+
+\providecommand{\ifonlineTF}[2]{\htmlOnly{#1}\pdfOnly{#2}}
+\newif{\ifonline}
+\ifdefined\HCode
+\onlinetrue
+\else
+\onlinefalse
+\fi
+\newcommand{\preOutcomeLine}{\item }
+\newcommand{\postOutcomeLine}{}
+\newcommand{\preOutcomeBlock}{After completing this content, students should be able to: \begin{itemize}}
+\newcommand{\postOutcomeBlock}{\end{itemize} So go forth and learn!}
+
+\newcommand{\outcomeHeader}{Goals for this Section}
+\htmlOnly{
+  \newcommand{\outcomeBlock}{\ifvmode\IgnorePar\fi\EndP\HCode{<div class="outcomeHead">} \outcomeHeader \ifvmode\IgnorePar\fi\EndP\HCode{</div>} \ifvmode\IgnorePar\fi\EndP\HCode{<div class="outcomeContent">}}
 }
-\else
-\newenvironment{onlineOnly}
-     {\bgroup\color{red!50!black}}
-{\egroup}
-\fi
 
-\newcommand{\pdfOnly}[1]{\iftikzexport\else #1\fi}
+\newwrite\outcomefile
+\immediate\openout\outcomefile=\jobname.oc
+\newcommand{\outcome}[1]{%
+  \immediate\write\outcomefile{\expandafter\unexpanded\expandafter{\preOutcomeLine #1} \expandafter\unexpanded\expandafter{\postOutcomeLine}}
+}
 
+\newcommand{\displayOutcomes}[1][]{%
+  \immediate\closeout\outcomefile
+  \IfFileExists{\currfiledir\currfilebase.oc}{
+    \htmlOnly{\outcomeBlock}
+      \expandafter\preOutcomeBlock
+      \input{\currfiledir\currfilebase.oc}
+      \postOutcomeBlock
+      \htmlOnly{\ifvmode\IgnorePar\fi\EndP\HCode{</div>}}
+    }
+    {
+    \IfFileExists{\currfilebase.oc}{
+      \htmlOnly{\outcomeBlock}
+        \expandafter\preOutcomeBlock
+        \input{\currfilebase.oc}
+        \postOutcomeBlock
+        \htmlOnly{\ifvmode\IgnorePar\fi\EndP\HCode{</div>}}
+      }
+      {
+        No outcome file found.
+      }
+    }
+  }
 
-\providecommand{\latexProblemContent}[1]{#1}
-\Make@Counter{Iteration@probCnt}
 \newcommand{\hang}{% top theorem decoration
   \begingroup%
   \setlength{\unitlength}{.005\linewidth}% \linewidth/200
-    \begin{picture}(0,0)(1.5,0)%
-      \linethickness{1pt} \color{black!50}%
-      \put(-3,2){\line(1,0){206}}% Top line
-      \multido{\iA=2+-1,\iB=50+-10}{5}{% Top hangs
-        \color{black!\iB}%
-        \put(-3,\iA){\line(0,-1){1}}% Top left hang
-        %\put(203,\iA){\line(0,-1){1}}% Top right hang
-      }%
-    \end{picture}%
+\begin{picture}(0,0)(1.5,0)%
+  \linethickness{1pt} \color{black!50}%
+  \put(-3,2){\line(1,0){206}}% Top line
+  \multido{\iA=2+-1,\iB=50+-10}{5}{% Top hangs
+\color{black!\iB}%
+\put(-3,\iA){\line(0,-1){1}}% Top left hang
+  }%
+\end{picture}%
   \endgroup%
 }%
 \newcommand{\hung}{% bottom theorem decoration
   \nobreak
   \begingroup%
-    \setlength{\unitlength}{.005\linewidth}% \linewidth/200
-    \begin{picture}(0,0)(1.5,0)%
-      \linethickness{1pt} \color{black!50}%
-      \put(60,0){\line(1,0){143}}% Bottom line
-      \multido{\iA=0+1,\iB=50+-10}{5}{% Bottom hangs
-        \color{black!\iB}%
-        %\put(-3,\iA){\line(0,1){1}}% Bottom left hang
-        \put(203,\iA){\line(0,1){1}}% Bottom right hang
-        \put(\iB,0){\line(60,0){10}}% Left fade out
-      }%
-    \end{picture}%
+\setlength{\unitlength}{.005\linewidth}% \linewidth/200
+\begin{picture}(0,0)(1.5,0)%
+  \linethickness{1pt} \color{black!50}%
+  \put(60,0){\line(1,0){143}}% Bottom line
+  \multido{\iA=0+1,\iB=50+-10}{5}{% Bottom hangs
+\color{black!\iB}%
+\put(203,\iA){\line(0,1){1}}% Bottom right hang
+\put(\iB,0){\line(60,0){10}}% Left fade out
+  }%
+\end{picture}%
   \endgroup%
 }%
+\MakeCounter{Iteration@probCnt}
 \MakeCounter{problem}
 \newcommand{\problemNumber}{
 \ifcsname c@depth\Roman{problem@Depth}Count\endcsname% Check to see if counter exists
@@ -409,30 +468,21 @@
 \arabic{depthICount}% The first problem depth, what use to be |\theproblem|.
 
 \forloop{Iteration@probCnt}{2}{\arabic{Iteration@probCnt} < \numexpr \value{problem@Depth} + 1 \relax}{%
-    .\expandafter\arabic{depth\Roman{Iteration@probCnt}Count}% Get the problem number of the next depth level and append it with a ".".
+.\expandafter\arabic{depth\Roman{Iteration@probCnt}Count}% Get the problem number of the next depth level and append it with a ".".
 }
 }
-
 %%%%%% Configure various problem environment commands
 \Make@Counter{problem@Depth}
-
 %%%% Configure environments start content
-
 \newcommand{\problemEnvironmentStart}[2]{%
-
 \stepcounter{problem@Depth}% Started a problem, so we've sunk another problem layer.
 \def\spaceatend{#1}%
 \begin{trivlist}%
-\item%
-  [%
-    \hskip\labelsep\sffamily\bfseries
-    #2 \problemNumber% Determine the correct number of the problem, and the format of that number.
+\item[\hskip\labelsep\sffamily\bfseries\GetTranslation{#2} \problemNumber% Determine the correct number of the problem, and the format of that number.
 ]%
 \slshape
 }
-
-%%%%% Configure environments end content
-
+%%%%% Configure environments end content %%%%%%
 \newcommand{\problemEnvironmentEnd}{%This configures all the end content for a problem.
 \stepcounter{problem@Depth}
 \ifcsname c@depth\Roman{problem@Depth}Count\endcsname
@@ -440,11 +490,7 @@
 \expandafter\setcounter{depth\Roman{problem@Depth}Count}{0}
 \fi
 \fi
-
 \addtocounter{problem@Depth}{-2}% Exited a problem so we've exited a problem layer. Need -2 because we steppped once at the start to check for needing a depth-level count reset.
-
-\par\addvspace{.5ex}\nobreak\noindent\hung %% line at the bottom
-
 \ifhandout
 \ifnewpage
 \newpage
@@ -452,41 +498,23 @@
 \fi
 \end{trivlist}
 }
+%% Add a simple command that handles all the problem creation aspects:
+\newcommand{\createProblemEnv}[2]{% This is a nice command to define a new problem-like environment for a content-author.
+\newenvironment{#1}[1][2in]%
+{%Env start code
+\problemEnvironmentStart{#1}{#2}
+}
+{%Env end code
+\problemEnvironmentEnd
+}
+}
 
 %%%% Now populate the old environment names
 
-\newenvironment{problem}[1][2in]%
-{%Env start code
-\problemEnvironmentStart{#1}{Problem}
-}
-{%Env end code
-\problemEnvironmentEnd
-}
-
-\newenvironment{exercise}[1][2in]%
-{%Env start code
-\problemEnvironmentStart{#1}{Exercise}
-}
-{%Env end code
-\problemEnvironmentEnd
-}
-
-\newenvironment{exploration}[1][2in]%
-{%Env start code
-\problemEnvironmentStart{#1}{Exploration}
-}
-{%Env end code
-\problemEnvironmentEnd
-}
-
-\newenvironment{question}[1][2in]%
-{%Env start code
-\problemEnvironmentStart{#1}{Question}
-}
-{%Env end code
-\problemEnvironmentEnd
-}
-
+\createProblemEnv{problem}{Problem}
+\createProblemEnv{exercise}{Exercise}
+\createProblemEnv{exploration}{Exploration}
+\createProblemEnv{question}{Question}
 \newcounter{hintLevel}
 \setcounter{hintLevel}{0}
 \newenvironment{hint}{}{}
@@ -495,7 +523,7 @@
 \ifhandout
 \setbox0\vbox\bgroup
 \else
-\begin{trivlist}\item[\hskip \labelsep\small\slshape\bfseries Hint:\hspace{2ex}]
+\begin{trivlist}\item[\hskip \labelsep\small\slshape\bfseries \GetTranslation{Hint}:\hspace{2ex}]
 \small\slshape
 \fi
 \stepcounter{hintLevel}
@@ -511,15 +539,19 @@
 
 \ifhints
 \renewenvironment{hint}{
-\begin{trivlist}\item[\hskip \labelsep\small\slshape\bfseries Hint:\hspace{2ex}]
-\small\slshape}
-{\end{trivlist}}
+\begin{trivlist}\item[\hskip \labelsep\small\slshape\bfseries \GetTranslation{Hint}:\hspace{2ex}]
+\small\slshape
+}
+{
+\end{trivlist}
+}
 \fi
 
 \let\abstract\relax
 \let\endabstract\relax
 \NewEnviron{abstract}{\protected@xdef\theabstract{\BODY}}
 \let\@emptyauthor\@author
+\def\@authorfootnote{\gdef\@thefnmark{}\@footnotetext}
 \def\author#1{\gdef\@author{#1}}
 \def\@author{\@latex@warning@no@line{No \noexpand\author given}}
 \def\and{and }
@@ -547,42 +579,55 @@
   \phantomsection%
   \ifnumbers\addcontentsline{toc}{section}{\thetitlenumber~\@title}\else\addcontentsline{toc}{section}{\@title}\fi
   \vskip .6em\noindent\textit\theabstract\setcounter{problem}{0}\setcounter{section}{0}\setcounter{subsection}{0}\par\vspace{2em}
-  \ifnooutcomes\else\let\thefootnote\relax\footnote{Learning outcomes: \theoutcomes}\fi
-  \ifnoauthor\else\let\thefootnote\relax\footnote{Author(s):~\@author}\fi
+  %\ifnooutcomes\else\let\thefootnote\relax\footnote{Learning outcomes: \theoutcomes}\fi% Depreciated with new outcome mechanism.
+  \ifnoauthor\else\@authorfootnote{Author(s):~\@author}\fi
   \aftergroup\@afterindentfalse
   \aftergroup\@afterheading}
 
 \ifnumbers
 \setcounter{secnumdepth}{2}
-\renewcommand{\thesection}{\arabic{titlenumber}.\arabic{section}~}
+\renewcommand{\thesection}{\arabic{titlenumber}.\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{titlenumber}.\arabic{section}.\arabic{subsection}}
 \else
 \setcounter{secnumdepth}{-2}
 \fi
 
 \def\activitystyle{}
 \newcounter{sectiontitlenumber}
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{2}
+\setcounter{tocdepth}{2}
 \newcommand\chapterstyle{%
   \def\activitystyle{activity-chapter}
   \def\maketitle{%
     \addtocounter{titlenumber}{1}%
                     {\flushleft\small\sffamily\bfseries\@pretitle\par\vspace{-1.5em}}%
                     {\flushleft\LARGE\sffamily\bfseries\thetitlenumber\hspace{1em}\@title \par }%
-                    {\vskip .6em\noindent\textit\theabstract\setcounter{problem}{0}\setcounter{sectiontitlenumber}{0}}%
+                    {\vskip .6em\noindent\textit\theabstract\setcounter{problem}{0}\setcounter{section}{0}}%
                     \par\vspace{2em}
                     \phantomsection\addcontentsline{toc}{section}{\textbf{\thetitlenumber\hspace{1em}\@title}}%
-                  }}
+}}
 
 \newcommand\sectionstyle{%
   \def\activitystyle{activity-section}
   \def\maketitle{%
-    \addtocounter{sectiontitlenumber}{1}
+    \addtocounter{section}{1}
+    \setcounter{sectiontitlenumber}{\value{section}}
     {\flushleft\small\sffamily\bfseries\@pretitle\par\vspace{-1.5em}}%
     {\flushleft\Large\sffamily\bfseries\thetitlenumber.\thesectiontitlenumber\hspace{1em}\@title \par}%
-    {\vskip .6em\noindent\textit\theabstract}%
+    {\vskip .6em\noindent\textit\theabstract\setcounter{subsection}{0}}%
     \par\vspace{2em}
-    \phantomsection\addcontentsline{toc}{subsection}{\thetitlenumber.\thesectiontitlenumber\hspace{1em}\@title}%
-  }}
+    \phantomsection\addcontentsline{toc}{section}{\thetitlenumber.\thesectiontitlenumber\hspace{1em}\@title}%
+ \renewcommand\section{\@startsection{subsection}{2}{\z@}%
+                                       {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                       {1.5ex \@plus .2ex}%
+                                       {\normalfont\large\bfseries}}
+
+ \renewcommand\subsection{\@startsection{subsubsection}{3}{\z@}%
+                                          {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                          {1.5ex \@plus .2ex}%
+                                          {\normalfont\normalsize\bfseries}}
+
+}}
 
 \iftikzexport%% allows xake to handle \chapterstyle and \sectionstye
 \renewcommand\chapterstyle{\def\activitystyle{chapter}}
@@ -590,10 +635,26 @@
 \else
 \fi
 
+\providecommand{\xmDefaultGraphicsPath}{/xmPictures}
+\graphicspath{  %% When looking for images,
+{./}            %% look here first,
+{.\xmDefaultGraphicsPath/}   %% then look for a pictures folder,
+{..\xmDefaultGraphicsPath/}   %% then look for a pictures folder,
+{../..\xmDefaultGraphicsPath/}   %% then look for a pictures folder,
+{../../..\xmDefaultGraphicsPath/}   %% then look for a pictures folder,
+}
 \NewEnviron{image}[1][3in]{%
   \begin{center}\resizebox{#1}{!}{\BODY}\end{center}% resize and center
 }
-\newcommand{\alt}[1]{}
+\newcommand{\alt}[1]{}       %% Deprecated
+
+\providecommand\xmaltprint{}
+%% use \undef\xmaltprint to NOT have \xmalt output in the PDF
+\newcommand{\xmalt}[1]{%     %% see infra for HTML implementation;  2026, J. Kuan
+  \ifdefined\xmaltprint%
+     {\footnotesize\color{gray}Alt text: #1}%
+  \fi%
+}
 
 
 \DefineVerbatimEnvironment{javascript}{Verbatim}{numbers=left,frame=lines,label=JavaScript,labelposition=topline}
@@ -610,21 +671,44 @@
 Interactive
 }
 
-\newcommand{\geogebra}[3]{Geogebra link: \url{https://tube.geogebra.org/m/#1}}
+\newcommand{\geogebra}[3]{GeoGebra link: \url{https://www.geogebra.org/m/#1}}
+\newcommand{\doenet}[3]{Doenet link: \url{https://beta.doenet.org/activityViewer/#1}}%
 \newcommand{\desmos}[3]{Desmos link: \url{https://www.desmos.com/calculator/#1}}
+\newcommand{\desmosThreeD}[3]{Desmos3D link: \url{https://www.desmos.com/3d/#1}}
 \newcommand{\googleSheet}[5]{%
-  Google Spreadsheet link: \url{https://docs.google.com/spreadsheets/d/#1}%
+  Google Spreadsheet link: \expandafter\url{\detokenize{https://docs.google.com/spreadsheets/d/#1}}%
 }
 
 
 \newcommand{\graph}[2][]{\text{Graph of $#2$}}
 
 
-\newcommand*{\link}[2][]{#1%
-\ifthenelse{\equal{#1}{}}%
-{\footnote{Link: \url{#2}}}%
-{\footnote{See #1 at \url{#2}}}
-}
+%% \link[name]{url}   (opens in new tab)
+%% \link*[name]{url}   (opens in *same* tab)  (this was default behaviour for \link till 2025/06))
+%%  In PDF  \link[name]{url} uses \href but adds a Footnote with the url
+%%  The footnote is not added after  \let\xmLinkHasFootnote\undefined
+\def\xmLinkHasFootnote{1}
+\NewDocumentCommand{\link}{s o m}%
+ {%
+\ifdefined\HCode%
+  \IfBooleanTF{#1}%
+    { % Starred version    %
+      \IfNoValueTF{#2}%
+        {    \HCode{<a href="#3">}\Hurl{#3}\HCode{</a>}}%
+        {    \HCode{<a href="#3">}#2\HCode{</a>}}%
+    }%
+    { % Unstarred version%
+      \IfNoValueTF{#2}%
+        {    \HCode{<a href="#3" target="_blank">}\Hurl{#3}\HCode{</a>}}%
+        {    \HCode{<a href="#3" target="_blank">}#2\HCode{</a>}}%
+    }%
+\else   % PDF %
+      \IfNoValueTF{#2}%
+        {\url{#3}}%
+        {\href{#3}{#2}\ifdefined\xmLinkHasFootnote\footnote{See #2 at \url{#3}}\fi}% SWITCH ARGS ... !%
+ \fi%
+ }%
+
 
 \newcommand{\youtube}[1]{YouTube link: \url{https://www.youtube.com/watch?v=#1}}
 
@@ -640,7 +724,26 @@ Interactive
 \define@key{answer}{validator}{}
 \define@key{answer}{id}{\def\ans@id{#1}}
 \define@key{answer}{format}{}
-\setkeys{answer}{id=,given=false}
+\define@key{answer}{onlinenoinput}[false]{}
+\define@key{answer}{onlineshowanswerbutton}[false]{}
+\setkeys{answer}{id=,given=false,onlinenoinput=false,onlineshowanswerbutton=false}
+
+\newcommand{\answerFormatLength}{2cm}
+
+\newcommand{\answerFormatDots}[1]{\ldots\ldots}
+\newcommand{\answerFormatLine}[1]{\protect\rule{\answerFormatLength}{0.4pt}}
+\newcommand{\answerFormatFlexibleLine}[1]{\protect\rule{\widthof{$#1$}*2}{0.4pt}}
+\newcommand{\answerFormatFlexibleBox}[1]{\fbox{\scalebox{2}{\phantom{$#1$}}}}
+
+\newcommand{\answerFormatPlain}[1]{\ensuremath{#1}}
+\newcommand{\answerFormatBlue}[1]{\color{blue}\ensuremath{#1}}
+\newcommand{\answerFormatBoxed}[1]{\fbox{\ensuremath{#1}}}
+\newcommand{\answerFormatBoxedGiven}[1]{\underset{\scriptstyle\mathrm{given}}{\fbox{\ensuremath{#1}}}}
+
+\let\handoutAnswerFormat\answerFormatDots
+\let\defaultAnswerFormat\answerFormatBlue
+\let\givenAnswerFormat\answerFormatBoxedGiven
+
 \newcommand{\answer}[2][]{%
 \ifmmode%
 \setkeys{answer}{#1}%
@@ -650,14 +753,14 @@ Interactive
 \ifhandout
 #2
 \else
-\underset{\scriptstyle\mathrm{given}}{\fbox{\ensuremath{#2}}}
+\givenAnswerFormat{#2} %% in case the argument helps formatting
 \fi
 }% End then statement
 {% Start else statement
 \ifhandout
-\fbox{\rm{?}}
+\handoutAnswerFormat{#2} %% in case the argument helps formatting
 \else% show answer in box outside handout mode
-\fbox{\ensuremath{#2}}
+\defaultAnswerFormat{#2} %% in case the argument helps formatting
 \fi
 }% End else statement
 \else%
@@ -734,7 +837,7 @@ Interactive
 \setkeys{multipleChoice}{#1}%
 \recordvariable{\mc@id}%
 \begin{trivlist}
-\item[\hskip \labelsep\small\bfseries Multiple Choice:]\hfil
+\item[\hskip \labelsep\small\bfseries \GetTranslation{Multiple Choice}:]\hfil
 \begin{enumerate}
 }% Note this means that \item has to be the first line after \begin{multipleChoice}.
 {% Environment End Code
@@ -761,7 +864,7 @@ Interactive
 
 
 \newenvironment{selectAll}[1][]
-{\begin{trivlist}\item[\hskip \labelsep\small\bfseries Select All Correct Answers:]\hfil\begin{enumerate}}
+{\begin{trivlist}\item[\hskip \labelsep\small\bfseries \GetTranslation{Select All Correct Answers}:]\hfil\begin{enumerate}}
     {\end{enumerate}\end{trivlist}}
 
 
@@ -779,12 +882,12 @@ Interactive
 \newenvironment{solution}%
        {%
  \begin{trivlist}
- \item[\hskip \labelsep\bfseries Solution:\hspace{2ex}]
+ \item[\hskip \labelsep\bfseries \GetTranslation{Solution}:\hspace{2ex}]
        }
        % %% line at the bottom}
        {
 \end{trivlist}
- \par\addvspace{.5ex}\nobreak\noindent\hung
+ % (202410: no longer \par\addvspace{.5ex}\nobreak\noindent\hung
        }
 \fi
 
@@ -804,14 +907,16 @@ Interactive
 \else
 \newenvironment{feedback}[1][attempt]{
 
-\def\PH@Command{#1}% Use PH@Command to hold the content and be a target for "\expandafter" to expand once.
+\edef\PH@Command{\GetTranslation{#1}}% Use PH@Command to hold the content and be a target for "\expandafter" to expand once.
 
 \begin{trivlist}% Begin the trivlist to use formating of the "Feedback" label.
-\item[\hskip \labelsep\small\slshape\bfseries Feedback% Format the "Feedback" label. Don't forget the space.
-(\texttt{\detokenize\expandafter{\PH@Command}}):% Format (and detokenize) the condition for feedback to trigger
+\item[\hskip \labelsep\small\slshape\bfseries \GetTranslation{Feedback}% Format the "Feedback" label. Don't forget the space.
+\ifonlineTF{% If the feedback is on a pdf, we don't need to detokenize - which messes with the \MakeUppercase command anyway.
+(\texttt{\expandafter\detokenize\expandafter{\PH@Command}})}% Keep the online version the same as before.
+{(\expandafter\texttt{\PH@Command})}:% No need for detokenize in the pdf version
 \hspace{2ex}]\small\slshape% Insert some space before the actual feedback given.
 }{
-\end{trivlist} 
+\end{trivlist}
 }
 
 \fi
@@ -846,11 +951,11 @@ Interactive
   \ifthenelse{\boolean{#1}}%% Could probably change this with just putting the (given) in the boolean?-- Jason
    {% Begin then result
    \begin{trivlist}
-   \item[\hskip \labelsep\bfseries Free Response (Given):\hspace{2ex}]
+   \item[\hskip \labelsep\bfseries \GetTranslation{Free Response (Given)}:\hspace{2ex}]
    }% End then result
 {% Begin else result
 \begin{trivlist}
-\item[\hskip \labelsep\bfseries Free Response:\hspace{2ex}]
+\item[\hskip \labelsep\bfseries \GetTranslation{Free Response}:\hspace{2ex}]
 }% End else result
 }
 {% Environment Ending Code
@@ -862,6 +967,14 @@ Interactive
 \DefineVerbatimEnvironment{code}{Verbatim}{numbers=left,frame=lines,label=Code,labelposition=topline}
 \DefineVerbatimEnvironment{python}{Verbatim}{numbers=left,frame=lines,label=Python,labelposition=topline}
 \DefineVerbatimEnvironment{javascriptCode}{Verbatim}{numbers=left,frame=lines,label=JavaScript,labelposition=topline}
+%%% On the web, translate verbatim and lstlisting blocks into |<pre>|
+%%% elements.
+%%%    \begin{macrocode}
+%%%<*cfgXimera>
+%%\ConfigureEnv{verbatim}{\ifvmode\IgnorePar\fi\EndP\HCode{<pre style="white-space: pre; background-color: lightgray;" >}}{\ifvmode\IgnorePar\fi\EndP\HCode{</pre>}}{}{}
+%%\ConfigureEnv{lstlisting}{\ifvmode\IgnorePar\fi\EndP\HCode{<pre>}}{\ifvmode\IgnorePar\fi\EndP\HCode{</pre>}}{}{}
+%%%</cfgXimera>
+%%%    \end{macrocode}
 \newenvironment{dialogue}{%
    \renewcommand\descriptionlabel[1]{\hspace{\labelsep}\textbf{##1:}}
    \begin{description}%
@@ -876,7 +989,7 @@ Interactive
 \newenvironment{instructorIntro}%
        {%
  \begin{trivlist}
- \item[\hskip \labelsep\bfseries Instructor Introduction:\hspace{2ex}]
+ \item[\hskip \labelsep\bfseries \GetTranslation{Instructor Introduction}:\hspace{2ex}]
 }
        % %% line at the bottom}
        {
@@ -906,7 +1019,7 @@ Interactive
         \newenvironment{instructorIntro}%
 {%
   \begin{trivlist}
-  \item[\hskip \labelsep\bfseries Instructor Introduction:\hspace{2ex}]
+  \item[\hskip \labelsep\bfseries \GetTranslation{Instructor Introduction}:\hspace{2ex}]
 }
 {
   \end{trivlist}
@@ -921,7 +1034,7 @@ Interactive
 \newenvironment{instructorNotes}%
        {%
  \begin{trivlist}
- \item[\hskip \labelsep\bfseries Instructor Notes:\hspace{2ex}]
+ \item[\hskip \labelsep\bfseries \GetTranslation{Instructor Notes}:\hspace{2ex}]
        }
        % %% line at the bottom}
        {
@@ -950,7 +1063,7 @@ Interactive
        \newenvironment{instructorNotes}%
               {%
         \begin{trivlist}
-        \item[\hskip \labelsep\bfseries Instructor Notes:\hspace{2ex}]
+        \item[\hskip \labelsep\bfseries \GetTranslation{Instructor Notes}:\hspace{2ex}]
               }
               % %% line at the bottom}
               {
@@ -971,9 +1084,12 @@ Interactive
 }
 
 %% pretty-expandable
-\newenvironment{expandable}{%
-}{%
-}
+%% Overwritten in .4ht, but probably also in accordion!
+\ifdefined\xmNotExpandableAsAccordion
+\newenvironment{expandable}{}{}
+\else
+\newenvironment{expandable}[2]{}{}
+\fi
 
 \newcommand{\unfoldable}[1]{#1}
 
@@ -990,30 +1106,139 @@ Interactive
 \DefineVerbatimEnvironment{sageOutput}{Verbatim}{numbers=left,frame=lines,label=SAGE-Output,labelposition=topline}
 
 
+%% Pre-202412: .jax file written in non-\HCode, and in a next run inserted by ximera.cfg in .html file
+%% Post-202501: .mjax file written only in \HCode, and in luaxake post-processing inserted in .html file
+%%   ( used luaxake rather than sed ...)
+\newwrite\myfile
 \ifdefined\HCode
-  \else
-    \newwrite\myfile
-    \immediate\openout\myfile=\jobname.jax
-\fi
-\ifdefined\HCode
-  \else
-    \immediate\write\myfile{\unexpanded{\newenvironment}{prompt}{}{}}
-\fi
-\ifdefined\HCode
-  \else
+\immediate\openout\myfile=\jobname.xmjax
+
+%% From |only.dtx| we must also create |prompt| on the MathJax side.
+\immediate\write\myfile{\unexpanded{\newenvironment}{prompt}{}{}}
+
+%% Write all newcommands to .xmjax file, that will be included in the .html via luaxake
 \let\@oldargdef\@argdef
 \long\def\@argdef#1[#2]#3{%
 \immediate\write\myfile{\unexpanded{\newcommand}{\unexpanded{#1}}[\unexpanded{#2}]{\unexpanded{#3}}}%
 \@oldargdef#1[#2]{#3}%
 }
 
+%% Same for \DeclareMathOperator
 \let\@OldDeclareMathOperator\DeclareMathOperator
 \renewcommand{\DeclareMathOperator}[2]{\@OldDeclareMathOperator{#1}{#2}\immediate\write\myfile{\unexpanded{\DeclareMathOperator}{\unexpanded{#1}}{\unexpanded{#2}}}}
 
 \fi
+
+
+\colorlet{textColor}{black} % since textColor is referenced below
+\colorlet{background}{white} % since background is referenced below
+
+%% accordion container
+\newenvironment{accordion}{%
+}{%
+}
+%% pretty-accordion
+\iftikzexport
+  \newenvironment{accordion-item}[1][]{%
+  }{%
+  }
+\else
+  \newenvironment{accordion-item}[1][]{%
+  \paragraph{#1}
+  }{%
+  }
+\fi
+
 \newenvironment{ungraded}{}{}
+\newcommand{\clearEnv}[1]{
+    %% Syntax: \clearEnv{envName}
+    %   #1 is envName is the name of the environment you want to clear. This will (re)define the
+    %       begin and end environments, as well as the internal counter from \newtheoremenv to \relax.
+    \expandafter\let\csname #1\endcsname\relax
+    \expandafter\let\csname end#1\endcsname\relax
+    \expandafter\let\csname c@#1\endcsname\relax
+    }
+
+\newcommand{\hideEnv}[2][]{
+    %% Syntax: \hideEnv[NewCode]{environmentName}
+
+    \expandafter\def\csname temp@#2\endcsname\csname #2\endcsname
+    \expandafter\def\csname temp@end#2\endcsname\csname end#2\endcsname
+    \expandafter\def\csname#2\endcsname{
+        \ifnum\value{depth@Check}<1
+        Suppress Should start here.
+        \suppress
+        \fi
+        \stepcounter{depth@Check}
+
+        }
+    \expandafter\def\csname end#2\endcsname{
+        \addtocounter{depth@Check}{-1}
+        \ifnum\value{depth@Check}<1
+        Suppress Should End Here.
+        \endsuppress
+        \fi
+
+    \noexpand{#1}
+    }
+    }
+
+%%% This section builds the meta commands that support the various language implementations.
+%%% Each new language is added by adding a new file named (languageName).sty in the localization folder.
+%%%   e.g. to add french you would add a french.sty file in the localization folder.
+%%% This file is a list of translations of the relevant environment words.
+%%%   The best way to do add a new language is to:
+%%%       1) copy the english.sty file contents
+%%%       2) replace the second entry in each \addTranslation command
+%%%           with the translation of the word in the first entry.
+\AddToHook{begindocument/before}{\@ifpackageloaded{babel}{% Only load the translations package if babel is actually loaded.
+\RequirePackage{translations}
+%%% Now load the relevant dictionary file;
+\IfFileExists{xmDictionary-\localename.trsl}{%
+    % If it exists, load it on babel.
+    \input{xmDictionary-\localename.trsl}
+}{% If it doesn't exist, report a warning
+    \PackageWarning{Localization}{I don't see a dictionary file anywhere for your language, it should be named: xmDictionary-\localename.trsl}
+}
+
+\let\selectlanguageOLD\selectlanguage
+\renewcommand{\selectlanguage}[1]{
+    \selectlanguageOLD{#1}
+    \IfFileExists{xmDictionary-#1.trsl}{%
+        % If it exists, load it on babel.
+        \input{xmDictionary-\localename.trsl}
+    }{% If it doesn't exist, report a warning
+        \PackageWarning{Localization}{I don't see a dictionary file anywhere for your language, it should be named: xmDictionary-#1.trsl}
+    }
+}
+}% End of 'if babel package loaded' section.
+{% If babel package isn't loaded, we don't need any of the translation support, just make the '\GetTranslation' return the default.
+\providecommand{\GetTranslation}[1]{#1}% A little hacky to make sure the theorem environments are actually capitalized correctly.
+}
+}% End of 'do this right before begin document' hook.
+\def\input@path{{./}{../}{../../}{../../../}}    % Mmm, do we need to reset it to the previous value ?
+\providecommand{\xmDefaultPreamble}{xmPreamble.tex}
+    \IfFileExists{\xmDefaultPreamble}
+    {
+        \typeout{Loading Ximera defaultPreamble \xmDefaultPreamble}
+        \input{\xmDefaultPreamble}
+    }{
+        \typeout{Info: No default preamble loaded (\xmDefaultPreamble)}
+    }
+\providecommand{\xmDefaultPrintstyle}{xmPrintstyle.sty}
+\iftikzexport\else   % only in PDF
+    \IfFileExists{\xmDefaultPrintstyle}
+    {
+        \typeout{Loading Ximera defaultPrintstyle \xmDefaultPrintstyle}
+        \input{\xmDefaultPrintstyle}
+    }{
+        \typeout{Info: No default printstyle loaded (\xmDefaultPrintstyle)}
+    }
+\fi
+
+
 %% 
-%% Copyright (C) 2018 by Bart Snapp <bart.snapp@gmail.com> and Jim Fowler <kisonecat@gmail.com>
+%% Copyright (C) 2024 by Bart Snapp <bart.snapp@gmail.com> and Jim Fowler <kisonecat@gmail.com>
 %% 
 %% This work may be distributed and/or modified under the
 %% conditions of the LaTeX Project Public License (LPPL), either
