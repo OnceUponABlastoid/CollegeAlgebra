@@ -1,9 +1,9 @@
 name: Ximera Workflow
 
 on:
-  push:
-    tags:
-      - 'v*'  # Trigger the workflow when a new tag starting with 'v' is pushed   
+  push:    
+    branches:
+        - 'main'
 
 jobs:
   build-ximera:
@@ -42,17 +42,25 @@ jobs:
 
       - name: Build and publish Ximera courses
         env:
-          # These variables can/should be set at repository level
-          # If not set, defaults from xmScripts/config.txt or xlatex will be used 
-          # (The defaults will presumably make this step fail.)
-          GPG_KEY: ${{ secrets.GPG_KEY }}
-          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-          XIMERA_URL: ${{ vars.XIMERA_URL }}
-          XIMERA_NAME: ${{ vars.XIMERA_NAME }}${{ github.ref_name }}
+          ### Use .xmKeyfile for test/demo
+          # GPG_KEY: ${{ secrets.GPG_KEY }}
+          # GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+          XIMERA_URL: "https://xerxes.ximera.org/"
+          XIMERA_NAME: ${{ github.repository_owner }}-${{ github.event.repository.name }}
+          XM_COMPILE_SEQUENCE: "html,handout.pdf"
+          # XIMERA_NAME: ${{ vars.XIMERA_NAME }}*${{ github.ref_name }}
+          # XIMERA_NAME: ${{ github.repository_owner }}-${{ github.event.repository.name }}-${{ github.ref_name }}
         run: |
           ls -alrt
-          chmod +x xmScripts/xmlatex   # Overleaf sync might reset it :-()
-          ./xmScripts/xmlatex ghaction
+          chmod +x xmScripts/xmlatex
+          rm -rf ximera-downloads/with-answers
+          # git config --global http.postBuffer 524288000
+          # git config --global core.compression 9
+          ./xmScripts/xmlatex bake  -j 5 
+          ./xmScripts/xmlatex frost 
+          ./xmScripts/xmlatex name  
+          ./xmScripts/xmlatex serve  -f 
+          # ./xmScripts/xmlatex ghaction
           echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
 
       - name: Setup ximera serve cache (only .git)
@@ -63,35 +71,4 @@ jobs:
             xmScripts/**
             .git/**
           key: ximeraSERVE-${{ github.ref_name }}-${{ github.sha }}
-
-
-  publish-ximera:
-    name: Publish Ximera Courses
-    needs: build-ximera # Waits for the build job to complete
-    runs-on: ubuntu-latest
-    environment: production  # Allows for 'manual review' step
-    steps:
-      - name: Restore ximera serve cache (only .git)
-        id: serve-cache-restore
-        uses: actions/cache/restore@v4
-        with:
-          fail-on-cache-miss: true
-          path: | 
-            xmScripts/**
-            .git/**
-          key: ximeraSERVE-${{ github.ref_name }}-${{ github.sha }}
-          
-      - name: Serve
-        env:
-          GPG_KEY: ${{ secrets.GPG_KEY }}
-          GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
-          XIMERA_URL: ${{ vars.XIMERA_URL }}
-          XIMERA_NAME: ${{ vars.XIMERA_NAME }}
-        run: |
-          chmod +x xmScripts/xmlatex # Overleaf sync might reset it :-()
-          ./xmScripts/xmlatex name         
-          ./xmScripts/xmlatex serve -f  # NOTE: -f  should not be needed ...        
-          echo "✅ Published to $XIMERA_URL$XIMERA_NAME " >> $GITHUB_STEP_SUMMARY
-
-
 
